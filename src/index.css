@@ -13,12 +13,32 @@ code {
 /* HEADER COMPONENT'S CSS */
 .headers {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
 
-.headers > img {
-  width: 30px;
-  padding: 10px;
+/* left headers */
+.headers .left {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* right headers */
+.headers .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.icons {
+    display: flex;
+    flex-direction: row;
+}
+.icons > img {
+    height: 25px;
+}
+.ham {
+    height: 50px;
+    margin-top: 25px;
 }
 
 /* LANDING COMPONENT'S CSS */
@@ -35,27 +55,34 @@ code {
 }
 
 .companyLogo {
-  width: 60%;
+  width: 80%;
 }
 
 .arrow {
-  width: 35%;
+  width: 30%;
 }
 
-/* POPULAR COMPONENT'S CSS */
-.popular img {
-  width: 90%;
-  margin-left: auto;
-	margin-right: auto;
+/* FOOTER COMPONENT'S CSS */
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
-.slick-next {
-  right: -10px !important;
-}
-.slick-prev {
-  left: -10px !important;
+.bold {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
-.slick-prev:before, .slick-next:before{
-  color: gray !important;
+.links {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 50px;
+}
+
+.home {
+    width: 50px;
+    align-self: center;  
 }

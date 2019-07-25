@@ -8,6 +8,7 @@ function Landing () {
     <div className="logo">
       <img className="companyLogo" src={logo} alt="logo" />
       <p>Find your perfect trip, designed by insiders <br /> who know and love their cities</p>
+      <h2>Start browsing</h2>
       <img className="arrow" src={arrow}  alt="arrow" />
   </div>
   )

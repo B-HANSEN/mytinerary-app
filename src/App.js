@@ -1,31 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Route, BrowserRouter } from 'react-router-dom'
 
-// import component and nest in function 
-import Headers from './components_2/Headers2';
-import Landing from './components_2/Landing2';
-import Footer from './components_2/Footer2';
+// import omponents
+import Headers from './Components/Headers'
+import Footer from './Components/Footer'
 
-import Navbar from './components_2/Navbar'
-import { BrowserRouter, Route } from "react-router-dom";
-import Home from './components_2/Home'
-import About from './components_2/About'
-import Contact from './components_2/Contact'
+// import Views
+import Home from './Views/Home'
+import CreateAccount from './Views/CreateAccount'
+import Login from './Views/Login'
+import MYtinerary from './Views/MYtinerary'
+import Cities from './Views/Cities'
 
-
-function App() {
-  return (
-    <BrowserRouter>
+class App extends Component{
+  render () {
+    return (
         <div className="App">
-            <Navbar />
-                <Route exact path='/' component={Home} />
-                <Route path='/about' component={About} />
-                <Route path='/contact' component={Contact} />
-            <Headers />
-            <Landing />
-            <Footer />    
+          <Headers/>
+         
+          <BrowserRouter>
+          <Route exact path='/' component={Home} />
+          <Route path='/createaccount' component={CreateAccount} />
+          <Route path='/login' component={Login} />
+          <Route path='/mytinerary' component={MYtinerary} />
+          <Route path='/cities' component={Cities} />         
+          </BrowserRouter>
+
+          <Footer />
         </div>
-    </BrowserRouter>
-  );
+    );
+  } 
 }
 
 export default App;

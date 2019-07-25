@@ -1,13 +1,61 @@
+/* global style sheet for application */
 body {
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+/* HEADER COMPONENT'S CSS */
+.headers {
+  display: flex;
+  justify-content: space-between
+}
+
+.headers > img {
+  width: 30px;
+  padding: 10px;
+}
+
+/* LANDING COMPONENT'S CSS */
+.logo {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.logo > p {
+  text-align: center;
+}
+
+.companyLogo {
+  width: 60%;
+}
+
+.arrow {
+  width: 35%;
+}
+
+/* POPULAR COMPONENT'S CSS */
+.popular img {
+  width: 90%;
+  margin-left: auto;
+	margin-right: auto;
+}
+
+.slick-next {
+  right: -10px !important;
+}
+.slick-prev {
+  left: -10px !important;
+}
+
+.slick-prev:before, .slick-next:before{
+  color: gray !important;
 }

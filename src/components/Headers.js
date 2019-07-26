@@ -30,8 +30,6 @@ function Headers () {
 
         <Navbar />
 
-        {/* <img className="ham" src={hamburger} alt="hamburger" /> */}
-
       </div>
     )
   }

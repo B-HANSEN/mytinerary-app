@@ -1,15 +1,16 @@
-import React from '../../node_modules/react';
+import React from 'react';
 
 // import icons
 import profile from '../images/profile.png';
-import hamburger from '../images/hamburger.png';
+// import hamburger from '../images/hamburger.png';
 
 import network from '../images/network.png';
 import wifi from '../images/wifi.png';
 import battery from '../images/battery.png';
 
-// import components
+// import components & styles
 import Navbar from './Navbar'
+import './Navbar.css';
 
 function Headers () {
     return (
@@ -29,7 +30,8 @@ function Headers () {
 
         <Navbar />
 
-        <img className="ham" src={hamburger} alt="hamburger" />
+        {/* <img className="ham" src={hamburger} alt="hamburger" /> */}
+
       </div>
     )
   }

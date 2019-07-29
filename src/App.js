@@ -1,9 +1,9 @@
 import React from 'react';
 
 // import component and nest in function 
-import Popular from './components/Popular';  
-import Landing from './components/Landing';
-import Headers from './components/Headers';
+import Popular from './Components/Popular';  
+import Landing from './Components/Landing';
+import Headers from './Components/Headers';
 
 function App() {
   return (

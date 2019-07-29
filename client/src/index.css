@@ -1,0 +1,89 @@
+/* global style sheet for application */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+/* HEADER COMPONENT'S CSS */
+.headers {
+  display: flex;
+  justify-content: space-between;
+  /* width: 100%; */
+}
+
+/* left headers */
+.headers .left {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* right headers */
+.headers .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.icons {
+    display: flex;
+    flex-direction: row;
+}
+.icons > img {
+    height: 25px;
+}
+.profile {
+    height: 50px;
+    margin-top: 15px;
+}
+
+/* LANDING COMPONENT'S CSS */
+.logo {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.logo > p {
+  text-align: center;
+}
+
+.companyLogo {
+  width: 80%;
+}
+
+.arrow {
+  width: 30%;
+}
+
+/* FOOTER COMPONENT'S CSS */
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.bold {
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+.links {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 50px;
+}
+
+.home {
+    width: 50px;
+    align-self: center;  
+}

@@ -8,10 +8,12 @@ import Foo from '../Foo';
 // setup file
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-
 configure({ adapter: new Adapter() });
+
 // test file
 import { shallow, mount, render } from 'enzyme';
+import { doesNotReject } from 'assert';
+import { spawnSync } from 'child_process';
 
 const wrapper = shallow(<Foo />);
 
@@ -24,7 +26,7 @@ const wrapper = shallow(<Foo />);
   }
 
 
-//   Task 3: Write test to mock calling and displaying city images in the slider
+//   Task 3: Write test to mock calling and displaying images in the slider
 // Examples
   describe('A suite', function() {
     it('should render without throwing an error', function() {
@@ -43,3 +45,15 @@ const wrapper = shallow(<Foo />);
       expect(render(<Foo />).text()).toEqual('Bar');
     });
   });
+
+//   call done()-method to verify mocks are bing hit??
+
+
+// spy on the componentDidMount() lifecycle method:
+
+// fetching of data done from the API when the component mounts:
+// it('calls componentDidMount', () => {
+//     jest.spyOn(App.prototype, 'componentDidMount')
+//     const wrapper = shallow(<App />)
+//     expect(App.prototype.componentDidMount.mock.calls.length).toBe(1)
+//   })

@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom'
 
+// configure enzyme to use adapter
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
 // import omponents
 import Headers from './Components/Headers'
 import Footer from './Components/Footer'
@@ -11,6 +15,9 @@ import CreateAccount from './Views/CreateAccount'
 import Login from './Views/Login'
 import MYtinerary from './Views/MYtinerary'
 import Cities from './Views/Cities'
+
+
+Enzyme.configure({ adapter: new Adapter() });
 
 class App extends Component {
   render () {

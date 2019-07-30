@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTES
 app.get('/test', (req, res) => {
-  res.send({ express: 'HELLO WORLD mmwwwwwlafgdajgilshguidydugyfilgdfs;gku' });
+  res.send({ express: 'HELLO WORLD' });
 });
 
 app.post('/api/world', (req, res) => {
@@ -22,3 +22,10 @@ app.post('/api/world', (req, res) => {
 
 // START THE SERVER
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+
+
+mongoose.connect('mongodb://localhost:27017/mytinerary-app', {useNewUrlParser: true});
+var MyModel = mongoose.model('Test', new Schema({ name: String }));
+// Works
+MyModel.findOne(function(error, result) { /* ... */ });

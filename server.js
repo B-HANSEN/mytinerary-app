@@ -1,31 +1,28 @@
 // BASE SETUP
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const mongoose = require("mongoose")
 const app = express();
-const port = process.env.PORT || 5000;
 
+// to make the server know to look for this route; import it from routes
+const cities = require ('./routes/api/cities')
+
+  // body parser middle ware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// ROUTES
-app.get('/test', (req, res) => {
-  res.send({ express: 'HELLO WORLD' });
-});
+// DB config
+const db = require('./config/keys').mongoURI;
 
-app.post('/api/world', (req, res) => {
-  console.log(req.body);
-  res.send(
-    `I received your POST request. This is what you sent to meeee me: ${req.body.post}`,
-  );
-});
+// connect to Mongo
+mongoose.connect(db, {useNewUrlParser: true})
+.then(() => console.log("connection done"))
+.catch(err => console.log(err)); 
+
+// use routes; anything that goes to api/cities should refer to the above variable which is the file
+app.use('./api/cities', cities)
+
+const port = process.env.PORT || 5000;
 
 // START THE SERVER
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
-
-
-mongoose.connect('mongodb://localhost:27017/mytinerary-app', {useNewUrlParser: true});
-var MyModel = mongoose.model('Test', new Schema({ name: String }));
-// Works
-MyModel.findOne(function(error, result) { /* ... */ });

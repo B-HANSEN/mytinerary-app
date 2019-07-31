@@ -41,3 +41,21 @@ class Cities extends Component {
 
 
 export default Cities
+
+
+// ********** Resource: https://reactjs.org/docs/lists-and-keys.html **********
+// function fetchCities(props) {
+//   const cities = props.cities;
+//   const listItems = cities.map((city) =>
+//     <li key= {} >{city}</li>
+//   );
+//   return (
+//     <ul>{listItems}</ul>
+//   );
+// }
+
+// const cities = [1, 2, 3, 4, 5];
+// ReactDOM.render(
+//   <NumberList numbers={cities} />,
+//   document.getElementById('root')
+// );

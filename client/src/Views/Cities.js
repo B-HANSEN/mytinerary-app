@@ -1,14 +1,43 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-const Cities = () => {
-  return (
-    <div>
-      <div className="container">
-        <h4 className="center">Cities</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae repudiandae repellat illo magni eligendi cupiditate voluptates eius nam voluptate. Incidunt nihil ullam quae quia officia quaerat, deserunt eligendi explicabo totam?</p>
+const API = 'mongodb+srv://Bjoern2:test1234@cluster0-o5yth.mongodb.net/mytinerary-app?retryWrites=true&w=majority';
+
+
+class Cities extends Component {
+  constructor(props) {
+    super(props);
+
+      this.state = {
+        data: null,
+      };
+  }
+  
+  componentDidMount() {
+// fetch API is a promise-based API returning a response object.
+// to get actual JSON content, invoke json() method of response object
+    fetchCities = () => {
+      this.setState({...this.state, isFetching: true})
+          fetch(API)
+        .then(response => response.json())
+        .then(result => this.setState({ cities: result, isFetching: false }))
+        .catch(e => console.log(e));
+    } 
+  }
+
+  render () {
+  // displays a list of countries/cities as a bullet list:
+    const cities = ({ cities }) =>
+      cities.map(city => 
+      <li key={_id }>{country}: {city}</li>) 
+  
+    return (
+      <div>
+          <h1>Cities</h1>
+          {cities}
       </div>
-    </div>
-  )
+    )
+  };  
 }
+
 
 export default Cities

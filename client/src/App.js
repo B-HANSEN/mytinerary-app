@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom'
+import { Route, BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
 
 // configure enzyme to use adapter
 import Enzyme from 'enzyme';
@@ -22,6 +24,7 @@ Enzyme.configure({ adapter: new Adapter() });
 class App extends Component {
   render () {
     return (
+      <Provider store={store}>
         <div className="App">
          
           <BrowserRouter>
@@ -35,6 +38,7 @@ class App extends Component {
 
           <Footer />
         </div>
+      </Provider>
     );
   } 
 }

@@ -1,8 +1,11 @@
 // BASE SETUP
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require("mongoose")
+const mongoose = require('mongoose'); 
 const app = express();
+
+// Bodyparser Middleware
+app.use(express.json());
 
 // to make the server know to look for this route; import it from routes
 const cities = require ('./routes/api/cities')
@@ -20,7 +23,7 @@ mongoose.connect(db, {useNewUrlParser: true})
 .catch(err => console.log(err)); 
 
 // use routes; anything that goes to api/cities should refer to the above variable which is the file
-app.use('./api/cities', cities)
+app.use('/api/cities', cities)
 
 const port = process.env.PORT || 5000;
 

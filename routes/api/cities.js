@@ -24,7 +24,7 @@ router.get('/', (req,res) => {
 // @access  Public
 
 router.post('/', (req,res) => {
-   const NewCity = new City ({
+   const newCity = new City ({
     name: req.body.name
    })
     newCity.save().then(city => res.json(city));

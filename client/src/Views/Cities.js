@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react';
-import { getItems } from '../actions/itemActions';
+import { getCities } from '../actions/citiesActions';
 import PropTypes from 'prop-types'
 
 const API = 'mongodb+srv://Bjoern2:test1234@cluster0-o5yth.mongodb.net/mytinerary-app?retryWrites=true&w=majority';
@@ -8,13 +8,13 @@ const API = 'mongodb+srv://Bjoern2:test1234@cluster0-o5yth.mongodb.net/mytinerar
 
 class Cities extends Component { 
   componentDidMount() {
-    this.props.getItems();
+    this.props.getCities();
 
 // or do the fetch here?
 
 // fetch API is a promise-based API returning a response object.
 // to get actual JSON content, invoke json() method of response object
-    getItems = () => {
+    getCities = () => {
       this.setState({...this.state, isFetching: true})
           fetch(API)
         .then(response => response.json())
@@ -45,12 +45,12 @@ Cities.propTypes = {
 
 
 const mapStateToProps = (state) => ({
-    item: itemReducer
+    city: cityReducer
 })
 
 
 
-export default connect (mapStateToProps, { getItems }  ) (Cities)
+export default connect (mapStateToProps, { getCities }  ) (Cities)
 
 
 // ********** Resource: https://reactjs.org/docs/lists-and-keys.html **********

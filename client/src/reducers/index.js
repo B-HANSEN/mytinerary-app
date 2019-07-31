@@ -1,8 +1,8 @@
 // root reducer to combine various reducers
 
 import { combineReducers } from 'redux';
-import itemReducer from './itemReducer'
+import cityReducer from './cityReducer';
 
 export default combineReducers ({
-    item: itemReducer
+    city: cityReducer
 })

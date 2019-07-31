@@ -1,3 +1,3 @@
-export const GET_ITEMS = 'GET ITEMS';
-export const ADD_ITEM = 'ADD ITEM';
-export const DELETE_ITEM = 'DELETE ITEM';
+export const GET_CITIES = 'GET CITIES';
+export const ADD_CITY = 'ADD CITY';
+export const DELETE_CITY = 'DELETE CITY';

@@ -1,8 +1,8 @@
 import uuid from 'uuid';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM} from '../action/types';
+import { GET_CITIES, ADD_CITY, DELETE_CITY} from '../action/types';
 
 const initialState = {
- items:  [
+ cities:  [
      { id: uuid(), country: 'Spain', city: 'Madrid' },
      { id: uuid(), country: 'Germany', city: 'Berlin' }
  ]
@@ -10,7 +10,7 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
-        case GET_ITEMS:
+        case GET_CITIES:
             return {
                 ...state
             }

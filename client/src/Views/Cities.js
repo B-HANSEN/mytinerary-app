@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react';
+import { getItems } from '../actions/itemActions';
+import PropTypes from 'prop-types'
 
 const API = 'mongodb+srv://Bjoern2:test1234@cluster0-o5yth.mongodb.net/mytinerary-app?retryWrites=true&w=majority';
 
 
-class Cities extends Component {
-  constructor(props) {
-    super(props);
-
-      this.state = {
-        data: null,
-      };
-  }
-  
+class Cities extends Component { 
   componentDidMount() {
+    this.props.getItems();
+
+// or do the fetch here?
+
 // fetch API is a promise-based API returning a response object.
 // to get actual JSON content, invoke json() method of response object
-    fetchCities = () => {
+    getItems = () => {
       this.setState({...this.state, isFetching: true})
           fetch(API)
         .then(response => response.json())
@@ -39,8 +38,19 @@ class Cities extends Component {
   };  
 }
 
+Cities.propTypes = {
+  getItems: PropTypes.func.isRequired,
+  item: PropTypes.object.isrequired
+}
 
-export default Cities
+
+const mapStateToProps = (state) => ({
+    item: itemReducer
+})
+
+
+
+export default connect (mapStateToProps, { getItems }  ) (Cities)
 
 
 // ********** Resource: https://reactjs.org/docs/lists-and-keys.html **********

@@ -1,20 +1,28 @@
 // import uuid from 'uuid';
-// import { GET_CITIES, ADD_CITY, DELETE_CITY} from '../action/types';
+import { GET_CITIES, CITIES_LOADING } from '../actions/types';
+// import { ADD_CITY, DELETE_CITY} from '../actions/types';
 
-// const initialState = {
-//  cities:  [
-//      { id: uuid(), country: 'Spain', city: 'Madrid' },
-//      { id: uuid(), country: 'Germany', city: 'Berlin' }
-//  ]
-// };
+const initialState = {
+    cities:  [],
+    city: {},
+    loading: false, 
+    msg:"Hello world"
+};
 
-// export default function(state = initialState, action) {
-//     switch (action.type) {
-//         case GET_CITIES:
-//             return {
-//                 ...state
-//             }
-//             default:
-//             return state;
-//     }
-// };
+export default function(state = initialState, action) {
+    switch (action.type) {
+        case GET_CITIES:
+            return {
+                ...state,
+                cities: action.payload, 
+                loading: false
+            };
+        case CITIES_LOADING:
+            return {
+                ...state,
+                loading: true
+            }
+            default:
+                return state;
+    }
+}

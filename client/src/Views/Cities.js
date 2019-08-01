@@ -1,56 +1,62 @@
 import React, { Component } from 'react';
-import { connect } from 'react';
-import { getCities } from '../actions/citiesActions';
-import PropTypes from 'prop-types'
+// import { set } from 'mongoose';
 
-const API = 'mongodb+srv://Bjoern2:test1234@cluster0-o5yth.mongodb.net/mytinerary-app?retryWrites=true&w=majority';
+
 
 
 class Cities extends Component { 
+
+  state={
+    cities:[]
+  }
   componentDidMount() {
-    this.props.getCities();
+
 
 // or do the fetch here?
 
 // fetch API is a promise-based API returning a response object.
 // to get actual JSON content, invoke json() method of response object
-    getCities = () => {
-      this.setState({...this.state, isFetching: true})
-          fetch(API)
+
+
+        fetch("/api/cities")
         .then(response => response.json())
-        .then(result => this.setState({ cities: result, isFetching: false }))
+        .then(result => this.setState({cities:result}))
+        
         .catch(e => console.log(e));
-    } 
+    
   }
 
   render () {
+    console.log("Hola", this.state.cities);
+    
   // displays a list of countries/cities as a bullet list:
-    const cities = ({ cities }) =>
-      cities.map(city => 
-      <li key={_id }>{country}: {city}</li>) 
+    const cities = this.state.cities.map(city => 
+      <li key={city._id }>{city.country}: {city.city}</li>) 
   
     return (
       <div>
           <h1>Cities</h1>
-          {cities}
+         <ul> {cities}</ul>
+         <ul>{this.state.cities.map(city => 
+      <li key={city._id }>{city.country}: {city.city}</li>) }</ul>
       </div>
     )
   };  
 }
 
-Cities.propTypes = {
-  getItems: PropTypes.func.isRequired,
-  item: PropTypes.object.isrequired
-}
+// Cities.propTypes = {
+//   getItems: PropTypes.func.isRequired,
+//   item: PropTypes.object.isrequired
+// }
 
 
-const mapStateToProps = (state) => ({
-    city: cityReducer
-})
+// const mapStateToProps = (state) => ({
+//     city: cityReducer
+// })
 
 
 
-export default connect (mapStateToProps, { getCities }  ) (Cities)
+export default  Cities
 
 
 // ********** Resource: https://reactjs.org/docs/lists-and-keys.html **********

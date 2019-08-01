@@ -1,4 +1,3 @@
-// import uuid from 'uuid';
 import { GET_CITIES, CITIES_LOADING } from '../actions/types';
 // import { ADD_CITY, DELETE_CITY} from '../actions/types';
 

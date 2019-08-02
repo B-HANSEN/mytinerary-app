@@ -1,28 +1,48 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-    import { getCities } from '../actions/citiesActions';
-    // import { set } from 'mongoose';
+import { getCities } from '../actions/citiesActions';
+import Search from '../components/Search';
+// import { set } from 'mongoose';
 
 class Cities extends Component { 
   state = {
-    cities: []
+    cities: [],
+    searchfield: "",
+    filteredCities: []
   }
 
   componentDidMount() {
     this.props.getCities();
   }
 
+  handleInput = (e) => {
+    console.log(e.target.value)
+    this.setState({ searchfield: e.target.value })
+  }
+
   render () {
     console.log("Hello World", this.props.city.cities);
-    const cities = this.props.city.cities.map(city => 
-      <li key = { city._id } > { city.country }: { city.city } </li>
-      ) 
+    
+    let filteredCities = this.state.cities.filter((city)  => {
+      return city.cities.toLowerCase().includes(this.state.searchfield.toLowerCase())
+      }
+    )
+
+    // filteredCities = this.props.city.cities.map(city => 
+    //   <li key = { city._id } > { city.country }: { city.city } </li>
+    //   ) 
+
+    this.filteredCities.map(city => 
+        <li key = { city._id }> { city.country }: { city.city } </li>
+        ) 
 
     return (
       <div>
         <h1>Cities</h1>
-          <ul> {cities}</ul>
+         {/* pass down to component */}
+          <Search handleInput={this.handleInput}/>
+          <ul> { filteredCities } </ul>  
       </div>
     )
   };  

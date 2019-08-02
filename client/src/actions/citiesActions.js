@@ -1,5 +1,4 @@
 import { GET_CITIES, CITIES_LOADING } from './types';
-// import { ADD_CITY, DELETE_CITY} from './types';  
 import axios from 'axios';
 
 
@@ -20,3 +19,4 @@ export const setCitiesLoading = () => {
         type: CITIES_LOADING
     }
 }
+

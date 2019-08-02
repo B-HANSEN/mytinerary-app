@@ -6,7 +6,6 @@ import logo from '../images/MYtineraryLogo.png';
 import arrow from '../images/circled-right-2.png';
 
 class Home extends React.Component {
-// const Home = () => {
     state = {
       redirect: false
     }

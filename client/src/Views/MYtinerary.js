@@ -3,8 +3,8 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import titlePic from '../images/barcelona.jpeg';
-import './MYtinerary.css';
 import SingleIt from '../components/SingleIt'
+import './MYtinerary.css';
 import { getItineraries } from '../actions/itActions';
 
 
@@ -39,7 +39,7 @@ class MYtinerary extends React.Component {
           
           <div>     
           {this.renderRedirect()}
-              <button onClick={this.setRedirect}>Choose another city...
+              <button className="otherCity" onClick={this.setRedirect}>Choose another city...
               </button>
           </div> 
 

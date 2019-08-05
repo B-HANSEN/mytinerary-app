@@ -3,17 +3,28 @@ import React from 'react';
 import './singleIt.css';
 import prof1 from '../images/GaudiLover.png';
 
-class SingleIt extends React.Component {
+function Activities(props) {
+    if (!props.more) {
+      return null;
+    }
+  
+    return (
+      <div className="activities">
+        Show all activity's images here!
+      </div>
+    );
+  }
 
-    state = { 
-        itineraries: [],
-        isopen: false
+  class SingleIt extends React.Component {
+      state = {showActivities: false};
+      handleToggleClick = this.handleToggleClick.bind(this);
+
+    handleToggleClick() {
+      this.setState(state => ({
+        showActivities: !state.showActivities
+      }));
     }
 
-    toggle = () => {
-        this.setState( 
-          { isopen: !this.state.isopen });
-    }   
     render () {
         return (
             <div className="textAndLink">
@@ -30,8 +41,10 @@ class SingleIt extends React.Component {
                 </div>
 
                 <div>
-                    <button onClick={this.toggle}>vvv View All vvv</button>
-                    <h3 className="Activities" isopen="false">Activities</h3>
+                    <Activities more={this.state.showActivities} />
+                    <button onClick={this.handleToggleClick}>
+                    {this.state.showActivities ? 'Close' : 'View all'}
+                    </button>
                 </div>
             </div>
         )

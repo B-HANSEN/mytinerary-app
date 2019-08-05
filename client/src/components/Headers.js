@@ -1,8 +1,7 @@
 import React from 'react';
 
-// import icons
+import Clock from './Clock';
 import profile from '../images/profile.png';
-
 import network from '../images/network.png';
 import wifi from '../images/wifi.png';
 import battery from '../images/battery.png';
@@ -15,7 +14,9 @@ function Headers () {
     return (
       <div className="headers">
         <div className="left">
-          <div>time stamp</div>
+          <div>
+            <Clock />
+          </div>
           <img className="profile" src={profile} alt="profile" />
         </div>
 

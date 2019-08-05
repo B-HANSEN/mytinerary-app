@@ -81,4 +81,7 @@ body {
   background: rgba(0, 0, 0, 0.3);
 }
 
-
+/* styling for timestamp */
+.timeStamp >p {
+  padding-left: 10px;
+}

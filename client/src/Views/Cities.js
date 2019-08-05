@@ -25,25 +25,23 @@ class Cities extends Component {
   render () {
     console.log("Hello World", this.props.city.cities);
     
+// show cities that match with what has been input in searchfield
     let filteredCities = this.props.city.cities.filter((city)  => {
       return city.city.toLowerCase().includes(this.state.searchfield.toLowerCase())
       }
     )
 
-    // filteredCities = this.props.city.cities.map(city => 
-    //   <li key = { city._id } > { city.country }: { city.city } </li>
-    //   ) 
-
-
+// loop through filteredCities and create list items for each one; then output list in html
+    let mappedCities = filteredCities.map(city => 
+        <li key = { city._id }> { city.country }: { city.city } </li>
+        ) 
 
     return (
       <div>
         <h1>Cities</h1>
          {/* pass down to component */}
           <Search handleInput={this.handleInput}/>
-          <ul> {  filteredCities.map(city => 
-        <li key = { city._id }> { city.country }: { city.city } </li>
-        )  } </ul>  
+          <ul> { mappedCities } </ul>  
       </div>
     )
   };  

@@ -16,8 +16,13 @@ router.get('/', (req,res) => {
 // ******************** HTTP: POST ********************
 router.post('/', (req,res) => {
    const newItinerary = new Itinerary ({
-    name: req.body.name
-   })
+    title: req.body.title,
+    profilePic: req.body.profilePic,
+    rating: req.body.rating,
+    duration: req.body.duration,
+    price: req.body.price,
+    hashtag: req.body.hashtag
+})
     newItinerary.save().then(itinerary => res.json(itinerary));
 });
 

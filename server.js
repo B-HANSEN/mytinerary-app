@@ -9,7 +9,7 @@ app.use(express.json());
 
 // to make the server know to look for this route; import it from routes
 const cities = require ('./routes/api/cities')
-//const itineraries = require ('.routes/api/itineraries')
+const itineraries = require ('./routes/api/itineraries')
 
   // body parser middle ware
 app.use(bodyParser.json());
@@ -25,7 +25,7 @@ mongoose.connect(db, {useNewUrlParser: true})
 
 // use routes; anything that goes to api/cities should refer to the above variable which is the file
 app.use('/api/cities', cities)
-//app.use('/api/itineraries', itineraries)
+app.use('/api/itineraries', itineraries)
 
 const port = process.env.PORT || 5000;
 

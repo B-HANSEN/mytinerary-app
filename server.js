@@ -27,6 +27,11 @@ mongoose.connect(db, {useNewUrlParser: true})
 app.use('/api/cities', cities)
 app.use('/api/itineraries', itineraries)
 
+// send back a dynamic string with the parameters of a specific itinerary
+app.get('/api/itineraries/:id', function(req, res) {
+  res.send('You requested to see the itinerary with ID + req.params.id' )
+})
+
 const port = process.env.PORT || 5000;
 
 // START THE SERVER

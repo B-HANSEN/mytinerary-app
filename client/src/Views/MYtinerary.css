@@ -1,0 +1,14 @@
+/* MYTINERARY COMPONENT'S CSS */
+
+/* main */
+.title {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  }
+
+.titlePic {
+    width: 80%;
+} 

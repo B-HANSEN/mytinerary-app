@@ -1,0 +1,27 @@
+.textAndLink {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+}
+
+.allDetailsIt {
+    display: flex;
+    flex-direction: row;
+}
+
+.overview {
+    display: flex;
+    flex-direction: column;
+}
+
+.prof {
+    width: 50%;
+}
+
+button {
+    font-size: 20px;
+}
+
+  
+  

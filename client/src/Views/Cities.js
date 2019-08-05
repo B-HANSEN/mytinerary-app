@@ -10,6 +10,7 @@ class Cities extends Component {
     cities: [],
     searchfield: "",
     filteredCities: []
+    // this.handleInput = this.handleInput.bind(this)
   }
 
   componentDidMount() {
@@ -24,8 +25,8 @@ class Cities extends Component {
   render () {
     console.log("Hello World", this.props.city.cities);
     
-    let filteredCities = this.state.cities.filter((city)  => {
-      return city.cities.toLowerCase().includes(this.state.searchfield.toLowerCase())
+    let filteredCities = this.props.city.cities.filter((city)  => {
+      return city.city.toLowerCase().includes(this.state.searchfield.toLowerCase())
       }
     )
 
@@ -33,16 +34,16 @@ class Cities extends Component {
     //   <li key = { city._id } > { city.country }: { city.city } </li>
     //   ) 
 
-    this.filteredCities.map(city => 
-        <li key = { city._id }> { city.country }: { city.city } </li>
-        ) 
+
 
     return (
       <div>
         <h1>Cities</h1>
          {/* pass down to component */}
           <Search handleInput={this.handleInput}/>
-          <ul> { filteredCities } </ul>  
+          <ul> {  filteredCities.map(city => 
+        <li key = { city._id }> { city.country }: { city.city } </li>
+        )  } </ul>  
       </div>
     )
   };  

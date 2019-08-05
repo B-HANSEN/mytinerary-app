@@ -24,8 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # exclude files
-MYtin_Cities_v1.png
-MYtin_LandingPage_v1.png
-MYtin_LandingPage_v2.png
-MYtinerary_Project_Spec.pdf
+/files
 /config/keys.js

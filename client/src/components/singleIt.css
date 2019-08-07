@@ -20,6 +20,16 @@
     flex-direction: column;
 }
 
+.details {
+    display: flex;
+    flex-direction: row;
+}
+
+.singleDetails {
+    padding-right: 10px;
+    padding-bottom: 20px;
+}
+
 .profilePic {
     width: 50%;
 }

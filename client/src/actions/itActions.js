@@ -2,10 +2,10 @@ import { GET_ITINERARIES, ITINERARIES_LOADING } from './types';
 import axios from 'axios';
 
 
-export const getItineraries = () => dispatch  => {
+export const getItineraries = (cityId) => dispatch  => {
     dispatch(setItinerariesLoading());
     axios
-    .get("/api/itineraries")
+    .get("/api/itineraries/"+cityId)
     .then(res =>
         dispatch({
             type: GET_ITINERARIES,

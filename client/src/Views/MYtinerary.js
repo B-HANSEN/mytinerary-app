@@ -15,7 +15,7 @@ class MYtinerary extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getItineraries();
+    this.props.getItineraries("5d3f05ec1c9d4400005e32fe");
   }
 
   setRedirect = () => {
@@ -27,6 +27,8 @@ class MYtinerary extends React.Component {
     }
   }
   render () {
+    console.log(this.props);
+    
     return (
       <div className="title">
           <img className="titlePic" src={titlePic} alt="titlePic" />

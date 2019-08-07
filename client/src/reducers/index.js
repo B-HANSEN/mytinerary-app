@@ -2,7 +2,9 @@
 
 import { combineReducers } from 'redux';
 import cityReducer from './cityReducer';
+import itReducer from './itReducer';
 
 export default combineReducers ({
-    city: cityReducer
+    city: cityReducer,
+    itinerary: itReducer
 })

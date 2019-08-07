@@ -14,7 +14,7 @@ router.get('/', (req,res) => {
     
 // fetch itineraries only for selected city
 router.get('/:singleCityId', (req,res) => {
-    console.log(req.params.cityId)
+    console.log(req.params.singleCityId)
     Itinerary.find({cityId: req.params.singleCityId})
     .then(itineraries => res.json(itineraries))
 });

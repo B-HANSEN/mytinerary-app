@@ -35,6 +35,7 @@ class MYtinerary extends React.Component {
           <div>
             <SingleIt/>
             <SingleIt/>
+            <SingleIt/>
           </div>
           
           <div>     

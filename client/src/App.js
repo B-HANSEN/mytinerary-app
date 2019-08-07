@@ -32,7 +32,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <Route path='/createaccount' component={CreateAccount} />
             <Route path='/login' component={Login} />
-            <Route path='/mytinerary' component={MYtinerary} />
+            <Route path='/itineraries' component={MYtinerary} />
             <Route path='/cities' component={Cities} />         
           </BrowserRouter>
 

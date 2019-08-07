@@ -9,7 +9,13 @@ const Itinerary = require ('../../models/Itinerary');
 // fetch all items from db: go into model, find and sort by date descending, jsonAPI --> res.json
 router.get('/', (req,res) => {
     Itinerary.find()
-    // .sort({ date: -1 })
+    .then(itineraries => res.json(itineraries))
+});
+    
+// fetch itineraries only for selected city
+router.get('/:singleCityId', (req,res) => {
+    console.log(req.params.cityId)
+    Itinerary.find({cityId: req.params.singleCityId})
     .then(itineraries => res.json(itineraries))
 });
 

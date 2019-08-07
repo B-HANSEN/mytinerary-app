@@ -1,7 +1,7 @@
 import React from 'react';
 import Slider from './activitySlider.js';
 
-import './singleIt.css';
+import './singleCity.css';
 import prof1 from '../images/GaudiLover.png';
 
 
@@ -17,7 +17,7 @@ function Activities(props) {
 }
 
 
-class SingleIt extends React.Component {
+class SingleCity extends React.Component {
       state = {showActivities: false};
       handleToggleClick = this.handleToggleClick.bind(this);
 
@@ -61,4 +61,4 @@ class SingleIt extends React.Component {
     }
 }
 
-export default SingleIt;
+export default SingleCity;

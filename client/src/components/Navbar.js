@@ -25,8 +25,9 @@ class Navbar extends Component {
                 <NavLink to="/" className="menu-item"  onClick={this.toggle} >Home</NavLink>
                 <Link to="/createaccount" className="menu-item"   onClick={this.toggle}>Create Account</Link>
                 <Link to="/login" className="menu-item"   onClick={this.toggle}>Login</Link>
-                <Link to="/itineraries" className="menu-item"   onClick={this.toggle}>MYtinerary</Link>
                 <Link to="/cities" className="menu-item"   onClick={this.toggle}>Cities</Link>
+                <Link to="/itineraries" className="menu-item"   onClick={this.toggle}>MYtinerary</Link>
+              
             </Menu>
         );
     }   

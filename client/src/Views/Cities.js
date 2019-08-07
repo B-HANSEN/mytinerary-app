@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCities } from '../actions/citiesActions';
 import Search from '../components/Search';
-// import { set } from 'mongoose';
 
 class Cities extends Component { 
   state = {
     cities: [],
     searchfield: "",
-    filteredCities: []
-    // this.handleInput = this.handleInput.bind(this)
+    images: [],
+    filteredCities: [],
+    redirect: false 
   }
 
   componentDidMount() {
@@ -22,6 +23,16 @@ class Cities extends Component {
     this.setState({ searchfield: e.target.value })
   }
 
+  // link to single city's itineraries page
+  setRedirect = () => {
+    this.setState({ redirect: true })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/itineraries/cityId' />
+    }
+  }
+
   render () {
     console.log("Hello World", this.props.city.cities);
     
@@ -31,17 +42,26 @@ class Cities extends Component {
       }
     )
 
-// loop through filteredCities and create list items for each one; then output list in html
-    let mappedCities = filteredCities.map(city => 
-        <li key = { city._id }> { city.country }: { city.city } </li>
-        ) 
+// loop through filteredCities and show each city from DB
+    let mappedCities = filteredCities.map(city =>
+        <p key = { city._id }>
+          {this.renderRedirect()}
+          <button className="cityIts" onClick={this.setRedirect}>
+            <img src={ city.img } alt="titlePic" />
+            <br />
+            { city.city }, { city.country }
+          </button>
+        </p>
+    ) 
 
     return (
       <div>
         <h1>Cities</h1>
          {/* pass down to component */}
           <Search handleInput={this.handleInput}/>
-          <ul> { mappedCities } </ul>  
+          <ul> 
+          { mappedCities }
+          </ul>  
       </div>
     )
   };  

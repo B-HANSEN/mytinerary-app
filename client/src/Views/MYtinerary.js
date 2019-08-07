@@ -2,10 +2,11 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import titlePic from '../images/barcelona.jpeg';
-import SingleIt from '../components/SingleIt'
+import SingleCity from '../components/SingleCity'
 import './MYtinerary.css';
 import { getItineraries } from '../actions/itActions';
+
+import titlePic from '../images/barcelona.jpeg';
 
 
 class MYtinerary extends React.Component {
@@ -15,9 +16,10 @@ class MYtinerary extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getItineraries("5d3f05ec1c9d4400005e32fe");
+    this.props.getItineraries()
   }
 
+  // link back to Cities page
   setRedirect = () => {
     this.setState({ redirect: true })
   }
@@ -26,6 +28,8 @@ class MYtinerary extends React.Component {
       return <Redirect to='/cities' />
     }
   }
+
+
   render () {
     console.log(this.props);
     
@@ -35,9 +39,9 @@ class MYtinerary extends React.Component {
           <h3>Available MYtineraries:</h3>
           
           <div>
-            <SingleIt/>
-            <SingleIt/>
-            <SingleIt/>
+            <SingleCity/>
+            <SingleCity/>
+            <SingleCity/>
           </div>
           
           <div>     

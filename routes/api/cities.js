@@ -41,6 +41,13 @@ router.delete('/:id', (req,res) => {
      .then( () => res.json({ success: true })))
      .catch(err => res.status(404).json({ success: false }))
  })
+
+
+ router.get('/:id', (req,res) => {
+    City.findById(req.params.id)
+    .then(city => res.json(city))
+
+  })
  
 // to export router, not in ES6!
 module.exports =  router

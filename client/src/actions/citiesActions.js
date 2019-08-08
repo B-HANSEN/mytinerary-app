@@ -1,4 +1,4 @@
-import { GET_CITIES, CITIES_LOADING } from './types';
+import { GET_CITIES, CITIES_LOADING, SINGLE_CITY } from './types';
 import axios from 'axios';
 
 
@@ -20,3 +20,14 @@ export const setCitiesLoading = () => {
     }
 }
 
+export const getCityById = (id) => dispatch  => {
+    dispatch(setCitiesLoading());
+    axios
+    .get("/api/cities/"+id)
+    .then(res =>
+        dispatch({
+            type: SINGLE_CITY,
+            payload: res.data
+        })
+    )
+};

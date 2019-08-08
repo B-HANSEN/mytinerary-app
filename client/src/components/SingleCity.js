@@ -16,9 +16,12 @@ function Activities(props) {
   );
 }
 
-
 class SingleCity extends React.Component {
-      state = {showActivities: false};
+      state = {
+        showActivities: false
+        // ,
+        // img: this.props.city.img
+      };
       handleToggleClick = this.handleToggleClick.bind(this);
 
     handleToggleClick() {

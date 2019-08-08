@@ -3,10 +3,11 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import SingleCity from '../components/SingleCity'
-import './MYtinerary.css';
 import { getItineraries } from '../actions/itActions';
+import { getCityById } from '../actions/citiesActions';
 
-import titlePic from '../images/barcelona.jpeg';
+import './MYtinerary.css';
+// import titlePic from '../images/barcelona.jpeg';
 
 
 class MYtinerary extends React.Component {
@@ -16,7 +17,10 @@ class MYtinerary extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
+    
     this.props.getItineraries()
+    this.props.getCityById(this.props.match.params.cityId)
   }
 
   // link back to Cities page
@@ -30,12 +34,16 @@ class MYtinerary extends React.Component {
   }
 
 
+  // So all you have to do is have <img src={this.props.imagePath} /> in your render
+
+  
   render () {
     console.log(this.props);
     
+    
     return (
       <div className="title">
-          <img className="titlePic" src={titlePic} alt="titlePic" />
+          <img className="titlePic" src={this.props.city.city.img} alt="titlePic" />
           <h3>Available MYtineraries:</h3>
           
           <div>
@@ -56,7 +64,8 @@ class MYtinerary extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  itinerary: state.itinerary
+  itinerary: state.itinerary,
+  city: state.city
 })
 
-export default connect (mapStateToProps, { getItineraries }) (MYtinerary)
+export default connect (mapStateToProps, { getItineraries, getCityById }) (MYtinerary)

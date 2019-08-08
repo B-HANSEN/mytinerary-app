@@ -47,14 +47,11 @@ class Cities extends Component {
 // loop through filteredCities and show each city from DB
     let mappedCities = filteredCities.map(city =>
         <p key = { city._id }>
-         
-          {/* <button className="cityIts" onClick={() => this.renderRedirect(city._id)}> */}
           <Link to={"/itineraries/" + city._id}>
             <img src={ city.img } alt="titlePic" />
             <br />
             { city.city }, { city.country }
             </Link>
-          {/* </button> */}
         </p>
     ) 
 

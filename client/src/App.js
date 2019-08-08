@@ -28,14 +28,13 @@ class App extends Component {
         <div className="App">
          
           <BrowserRouter>
-          <Headers/>
-            <Route exact path='/' component={Home} />
-            <Route path='/createaccount' component={CreateAccount} />
-            <Route path='/login' component={Login} />
-            <Route path='/cities' component={Cities} />  
-            <Route path='/itineraries' component={MYtinerary} />
-               
-          <Footer />
+            <Headers/>
+              <Route exact path='/' component={Home} />
+              <Route path='/createaccount' component={CreateAccount} />
+              <Route path='/login' component={Login} />
+              <Route path='/cities' component={Cities} />  
+              <Route path='/itineraries/:cityId' component={MYtinerary} />
+            <Footer />
           </BrowserRouter>
 
         </div>

@@ -27,7 +27,6 @@ class Navbar extends Component {
                 <Link to="/login" className="menu-item"   onClick={this.toggle}>Login</Link>
                 <Link to="/cities" className="menu-item"   onClick={this.toggle}>Cities</Link>
                 <Link to="/itineraries" className="menu-item"   onClick={this.toggle}>MYtinerary</Link>
-              
             </Menu>
         );
     }   

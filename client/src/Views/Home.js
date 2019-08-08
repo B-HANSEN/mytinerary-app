@@ -10,9 +10,7 @@ class Home extends React.Component {
       redirect: false
     }
     setRedirect = () => {
-      this.setState({
-        redirect: true
-      })
+      this.setState({ redirect: true })
     }
     renderRedirect = () => {
       if (this.state.redirect) {

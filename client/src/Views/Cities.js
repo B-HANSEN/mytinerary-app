@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCities } from '../actions/citiesActions';
@@ -27,10 +27,12 @@ class Cities extends Component {
   setRedirect = () => {
     this.setState({ redirect: true })
   }
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/itineraries/cityId' />
-    }
+  renderRedirect = (id) => {
+    console.log(this.props)
+    // if (this.state.redirect) {
+      this.props.location.push('/itineraries/' + id)
+      return <Redirect to={'/itineraries/' + id} />
+    // }
   }
 
   render () {
@@ -45,12 +47,14 @@ class Cities extends Component {
 // loop through filteredCities and show each city from DB
     let mappedCities = filteredCities.map(city =>
         <p key = { city._id }>
-          {this.renderRedirect()}
-          <button className="cityIts" onClick={this.setRedirect}>
+         
+          {/* <button className="cityIts" onClick={() => this.renderRedirect(city._id)}> */}
+          <Link to={"/itineraries/" + city._id}>
             <img src={ city.img } alt="titlePic" />
             <br />
             { city.city }, { city.country }
-          </button>
+            </Link>
+          {/* </button> */}
         </p>
     ) 
 

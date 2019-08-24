@@ -7,7 +7,6 @@ import { getItineraries } from '../actions/itActions';
 import { getCityById } from '../actions/citiesActions';
 
 import './MYtinerary.css';
-// import titlePic from '../images/barcelona.jpeg';
 
 
 class MYtinerary extends React.Component {
@@ -19,8 +18,9 @@ class MYtinerary extends React.Component {
   componentDidMount() {
     console.log(this.props);
     
-    this.props.getItineraries()
-    this.props.getCityById(this.props.match.params.cityId)
+    // this.props.getItineraries()  // required, because SingleCity sub-component already imported??
+    this.props.getItineraries(this.props.match.params.cityId) // load all itineraries related to this city
+    this.props.getCityById(this.props.match.params.cityId) // load city page showing cityPic
   }
 
   // link back to Cities page
@@ -33,23 +33,17 @@ class MYtinerary extends React.Component {
     }
   }
 
-
-  // So all you have to do is have <img src={this.props.imagePath} /> in your render
-
-  
   render () {
     console.log(this.props);
-    
-    
     return (
       <div className="title">
           <img className="titlePic" src={this.props.city.city.img} alt="titlePic" />
           <h3>Available MYtineraries:</h3>
           
           <div>
-            <SingleCity/>
-            <SingleCity/>
-            <SingleCity/>
+            <SingleCity />
+            <SingleCity />
+            <SingleCity />
           </div>
           
           <div>     

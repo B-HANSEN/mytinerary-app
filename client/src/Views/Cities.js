@@ -29,17 +29,15 @@ class Cities extends Component {
   }
   renderRedirect = (id) => {
     console.log(this.props)
-    // if (this.state.redirect) {
       this.props.location.push('/itineraries/' + id)
       return <Redirect to={'/itineraries/' + id} />
-    // }
   }
 
   render () {
     console.log("Hello World", this.props.city.cities);
     
 // show cities that match with what has been input in searchfield
-    let filteredCities = this.props.city.cities.filter((city)  => {
+    let filteredCities = this.props.city.cities.filter((city) => {
       return city.city.toLowerCase().includes(this.state.searchfield.toLowerCase())
       }
     )
@@ -47,11 +45,11 @@ class Cities extends Component {
 // loop through filteredCities and show each city from DB
     let mappedCities = filteredCities.map(city =>
         <p key = { city._id }>
-          <Link to={"/itineraries/" + city._id}>
+          <Link to={ "/itineraries/" + city._id }>
             <img src={ city.img } alt="titlePic" />
             <br />
             { city.city }, { city.country }
-            </Link>
+          </Link> 
         </p>
     ) 
 
@@ -59,7 +57,7 @@ class Cities extends Component {
       <div>
         <h1>Cities</h1>
          {/* pass down to component */}
-          <Search handleInput={this.handleInput}/>
+          <Search handleInput={ this.handleInput }/>
           <ul> 
           { mappedCities }
           </ul>  

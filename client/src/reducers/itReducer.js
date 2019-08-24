@@ -1,7 +1,7 @@
 import { GET_ITINERARIES, ITINERARIES_LOADING } from '../actions/types';
 
 const initialState = {
-    itineraries:  [],
+    itineraries: [],
     itinerary: {},
     loading: false, 
     msg:"Hello world (itineraries)"

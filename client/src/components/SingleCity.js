@@ -1,5 +1,8 @@
 import React from 'react';
-import Slider from './activitySlider.js';
+import SimpleSlider from './activitySlider.js';
+import { connect } from 'react-redux';
+
+import { getItineraries } from '../actions/itActions';
 
 import './singleCity.css';
 import prof1 from '../images/GaudiLover.png';
@@ -11,7 +14,7 @@ function Activities(props) {
   }
   return (
     <div className="activities">
-     <Slider />
+     <SimpleSlider />
     </div>
   );
 }
@@ -19,10 +22,12 @@ function Activities(props) {
 class SingleCity extends React.Component {
       state = {
         showActivities: false
-        // ,
-        // img: this.props.city.img
       };
       handleToggleClick = this.handleToggleClick.bind(this);
+
+    componentDidMount() {
+      // this.props.getItineraries(this.props.match.params.cityId) // load all itineraries related to this city
+    }
 
     handleToggleClick() {
       this.setState(state => ({
@@ -52,16 +57,21 @@ class SingleCity extends React.Component {
                         </div>
                     </div>
                 </div>
-
-                <div>
-                    <Activities more={this.state.showActivities} />
-                    <button onClick={this.handleToggleClick}>
-                    {this.state.showActivities ? 'Close' : 'View all'}
-                    </button>
-                </div>
+ 
+                <Activities more={ this.state.showActivities } />
+                
+                <button onClick={ this.handleToggleClick }>
+                  { this.state.showActivities ? 'Close' : 'View all' }
+                </button>
             </div>
         )
     }
 }
 
-export default SingleCity;
+const mapStateToProps = (state) => ({
+  itinerary: state.itinerary,
+  city: state.city
+})
+
+// export default SingleCity;
+export default connect (mapStateToProps, { getItineraries }) (SingleCity)

@@ -7,7 +7,7 @@ import store from './store';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-// import omponents
+// import components
 import Headers from './components/Headers'
 import Footer from './components/Footer'
 

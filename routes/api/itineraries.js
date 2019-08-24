@@ -4,9 +4,8 @@ const router = express.Router();
 // import itinerary model
 const Itinerary = require ('../../models/Itinerary');
 
-
 // ******************** HTTP: GET ********************
-// fetch all items from db: go into model, find and sort by date descending, jsonAPI --> res.json
+// fetch all items from db: go into model, find --> res.json
 router.get('/', (req,res) => {
     Itinerary.find()
     .then(itineraries => res.json(itineraries))
@@ -29,7 +28,8 @@ router.post('/', (req,res) => {
     price: req.body.price,
     hashtag: req.body.hashtag
 })
-    newItinerary.save().then(itinerary => res.json(itinerary));
+    newItinerary.save()
+    .then(itinerary => res.json(itinerary));
 });
 
 // ******************** HTTP: DELETE ********************
@@ -39,6 +39,12 @@ router.delete('/:id', (req,res) => {
      .then( () => res.json({ success: true })))
      .catch(err => res.status(404).json({ success: false }))
  })
+
+// for MYtinerary page itin pictures  ---  review model!!!
+router.get('/:id', (req,res) => {
+    City.findById(req.params.id)
+    .then(city => res.json(city))
+  })
  
 // to export router, not in ES6!
 module.exports =  router

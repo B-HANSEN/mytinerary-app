@@ -31,4 +31,5 @@ export default class SimpleSlider extends Component {
       </div>
     );
   }
+/* <img className="itinPic" src={this.props.itinerary.profilePic} alt="itinPic" />                     */       
 }

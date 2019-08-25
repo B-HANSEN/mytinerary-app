@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 
 // import styles
-import props from './Navbar.css';
+import props from './components.css';
 
 // import hamburger menu
 import { slide as Menu } from 'react-burger-menu'

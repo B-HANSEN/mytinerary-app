@@ -86,6 +86,7 @@ body {
   padding-left: 10px;
 }
 
+/* general header styling */
 .headers {
   height: 100px;
   z-index: 10;
@@ -96,6 +97,3 @@ body {
   padding-right: 500px;
 }
 
-.cities {
-  margin-top: 100px;
-}

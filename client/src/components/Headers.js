@@ -10,7 +10,7 @@ import battery from '../images/battery.png';
 
 // import components & styles
 import Navbar from './Navbar'
-import './Navbar.css';
+import './components.css';
 
 const Headers = () => (
     <StickyHeader  

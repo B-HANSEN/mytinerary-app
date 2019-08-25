@@ -7,7 +7,7 @@ import SingleItin from '../components/SingleItin'
 import { getItineraries } from '../actions/itActions';
 import { getCityById } from '../actions/citiesActions';
 
-import './MYtinerary.css';
+import './views.css';
 
 
 class MYtinerary extends React.Component {

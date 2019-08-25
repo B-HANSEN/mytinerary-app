@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { getCities } from '../actions/citiesActions';
 import Search from '../components/Search';
 
-import './../components/Navbar.css';
+import './views.css';
 
 class Cities extends Component { 
   state = {
@@ -57,7 +57,7 @@ class Cities extends Component {
 
     return (
       <div className="cities">
-        <h1>Cities</h1>
+        <h4>Cities</h4>
          {/* pass down to component */}
           <Search handleInput={ this.handleInput }/>
           <ul> 

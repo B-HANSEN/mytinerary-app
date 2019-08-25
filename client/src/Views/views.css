@@ -1,4 +1,4 @@
-/* COMPONENT'S CSS */
+/* VIEWS'S CSS */
 
 /* main */
 .title {
@@ -31,3 +31,15 @@ h4, .container >p {
   display: flex;
   justify-content: center;
 }
+
+.links {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+
+/* .home-at-home {
+
+} */

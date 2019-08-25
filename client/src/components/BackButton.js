@@ -1,12 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 
-const Back = ({ history }) => (
+const BackButton = ({ history }) => (
   <button onClick={history.goBack}>
-      <i class="material-icons">
+      <i className="material-icons">
         arrow_back_ios
       </i>
   </button>
 );
 
-export default withRouter(Back);
+export default withRouter(BackButton);

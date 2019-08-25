@@ -9,7 +9,6 @@ import Adapter from 'enzyme-adapter-react-16';
 
 // import components
 import Headers from './components/Headers'
-import Footer from './components/Footer'
 
 // import Views
 import Home from './Views/Home'
@@ -34,7 +33,6 @@ class App extends Component {
               <Route path='/login' component={Login} />
               <Route path='/cities' component={Cities} />  
               <Route path='/itineraries/:cityId' component={MYtinerary} />
-            <Footer />
           </BrowserRouter>
 
         </div>

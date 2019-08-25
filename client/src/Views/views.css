@@ -22,3 +22,12 @@
   margin-top: 100px;
   padding-top: 20px; 
 }
+
+h4, .container >p {
+  margin-left: 5px;
+}
+
+.navbuttons {
+  display: flex;
+  justify-content: center;
+}

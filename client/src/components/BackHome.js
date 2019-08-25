@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import home from '../images/homeIcon.png';
 
 
-class Footer extends Component { 
+class BackHome extends Component { 
 state = { redirect: false }
 
 // link to home page
@@ -20,17 +20,13 @@ renderRedirect = () => {
 
 render() {
     return (
-        <div className="footer">
+        <button onClick={ this.setRedirect }>
+            <img className="home" src={ home } alt="titlePic" />
             { this.renderRedirect() }
-            <button onClick={ this.setRedirect }>
-              <img className="home" src={ home } alt="titlePic" />
-            </button>
-          
-        </div>
+            {/* moved the renderRedirect into the button and removed the root-div */}
+        </button>
     )
   }
 }
 
-export default Footer;
-
-/// only works for first time when clicked
+export default BackHome;

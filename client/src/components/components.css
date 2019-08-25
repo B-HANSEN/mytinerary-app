@@ -97,3 +97,14 @@ body {
   padding-right: 500px;
 }
 
+/* search-field */
+.search {
+  padding: 5px 120px;
+}
+
+input {
+  padding-left: 5px;
+  font-size: 20px;
+  border: 2px solid lightslategray;
+  border-radius: 8px;
+}

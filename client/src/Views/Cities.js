@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import {VerticleButton as ScrollUpButton} from "react-scroll-up-button";
+
+
 import { getCities } from '../actions/citiesActions';
+import BackHome from '../components/BackHome'
 import Search from '../components/Search';
 
 import './views.css';
+
 
 class Cities extends Component { 
   state = {
@@ -58,11 +63,22 @@ class Cities extends Component {
     return (
       <div className="cities">
         <h4>Cities</h4>
-         {/* pass down to component */}
+        
+        {/* pass down to component */}
           <Search handleInput={ this.handleInput }/>
+          
+        {/* list of cities */}
           <ul> 
-          { mappedCities }
-          </ul>  
+            { mappedCities }
+          </ul>
+
+        {/* navigation buttons */}
+          <div>
+            <BackHome />
+            <ScrollUpButton AnimationDuration={1000}>
+              </ScrollUpButton> 
+          </div>
+
       </div>
     )
   };  

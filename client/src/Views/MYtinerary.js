@@ -1,7 +1,8 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
-import Back from './../components/BackButton.js';
+import BackButton from './../components/BackButton.js';
+import BackHome from '../components/BackHome'
 
 import SingleItin from '../components/SingleItin'
 import { getItineraries } from '../actions/itActions';
@@ -48,13 +49,22 @@ class MYtinerary extends React.Component {
               <SingleItin />
             </div>
             
-            <div>     
+        
+        </div>
+
+        <div>     
             { this.renderRedirect() }
                 <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
                 </button>
-            </div> 
+        </div> 
+
+        {/* navigation buttons */}  
+        <div className="navbuttons">
+            <BackButton />
+            <BackHome />
         </div>
-        <Back />
+
+
       </div>
     )
   }

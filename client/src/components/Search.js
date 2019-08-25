@@ -1,5 +1,5 @@
 import React from 'react';
-import './search.css';
+import './components.css';
 
 
 function Search (props) {
@@ -10,7 +10,7 @@ function Search (props) {
             <input
                 onChange={ props.handleInput }
                 type="text" 
-                placeholder="Search..."
+                placeholder="Search city..."
             />
         </div>
     )

@@ -53,5 +53,13 @@ button {
     justify-content: center;
 }
 
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: bolder;
+    color: black;
+    font-size: 50px;
+    display: inline-block;
+}
+
   
   

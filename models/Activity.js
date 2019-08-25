@@ -8,11 +8,8 @@ const ActivitySchema = new Schema ({
     },
     actPic: {
         type: String
-    },
-    itinId: {
-        type: String
     }
 })
 
-// to access the data: creating a model; the name of the model is "activity"; model should know what the schema is
+// to access the data: creating a model; the name of the model is "activity "; model should know what the schema is
 module.exports = Activity = mongoose.model('activity', ActivitySchema);

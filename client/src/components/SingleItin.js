@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { getItineraries } from '../actions/itActions';
 
-import './singleCity.css';
+import './singleItin.css';
 import prof1 from '../images/GaudiLover.png';
 
 
@@ -19,7 +19,7 @@ function Activities(props) {
   );
 }
 
-class SingleCity extends React.Component {
+class SingleItin extends React.Component {
       state = {
         showActivities: false
       };
@@ -59,7 +59,7 @@ class SingleCity extends React.Component {
                 </div>
  
                 <Activities more={ this.state.showActivities } />
-                
+
                 <button onClick={ this.handleToggleClick }>
                   { this.state.showActivities ? 'Close' : 'View all' }
                 </button>
@@ -73,5 +73,5 @@ const mapStateToProps = (state) => ({
   city: state.city
 })
 
-// export default SingleCity;
-export default connect (mapStateToProps, { getItineraries }) (SingleCity)
+// export default SingleItin;
+export default connect (mapStateToProps, { getItineraries }) (SingleItin)

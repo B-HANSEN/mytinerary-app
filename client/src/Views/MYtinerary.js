@@ -1,8 +1,9 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
+import Back from './../components/BackButton.js';
 
-import SingleCity from '../components/SingleCity'
+import SingleItin from '../components/SingleItin'
 import { getItineraries } from '../actions/itActions';
 import { getCityById } from '../actions/citiesActions';
 
@@ -37,20 +38,21 @@ class MYtinerary extends React.Component {
     console.log(this.props);
     return (
       <div className="title">
-          <img className="titlePic" src={this.props.city.city.img} alt="titlePic" />
+          <img className="titlePic" src={ this.props.city.city.img } alt="titlePic" />
           <h3>Available MYtineraries:</h3>
           
           <div>
-            <SingleCity />
-            <SingleCity />
-            <SingleCity />
+            <SingleItin />
+            <SingleItin />
+            <SingleItin />
           </div>
           
           <div>     
-          {this.renderRedirect()}
-              <button className="otherCity" onClick={this.setRedirect}>Choose another city...
+          { this.renderRedirect() }
+              <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
               </button>
           </div> 
+          <Back />
 
       </div>
     )

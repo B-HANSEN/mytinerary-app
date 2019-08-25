@@ -21,9 +21,8 @@ renderRedirect = () => {
 render() {
     return (
         <div className="footer">
-
-            {this.renderRedirect()}
-            <button onClick={this.setRedirect}>
+            { this.renderRedirect() }
+            <button onClick={ this.setRedirect }>
               <img className="home" src={ home } alt="titlePic" />
             </button>
           
@@ -33,3 +32,5 @@ render() {
 }
 
 export default Footer;
+
+/// only works for first time when clicked

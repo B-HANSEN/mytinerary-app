@@ -1,7 +1,8 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-// import icons
+// import styles
+import './MYtinerary.css';
 import logo from '../images/MYtineraryLogo.png';
 import arrow from '../images/circled-right-2.png';
 

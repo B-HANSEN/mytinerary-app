@@ -37,23 +37,24 @@ class MYtinerary extends React.Component {
   render () {
     console.log(this.props);
     return (
-      <div className="title">
-          <img className="titlePic" src={ this.props.city.city.img } alt="titlePic" />
-          <h3>Available MYtineraries:</h3>
-          
-          <div>
-            <SingleItin />
-            <SingleItin />
-            <SingleItin />
-          </div>
-          
-          <div>     
-          { this.renderRedirect() }
-              <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
-              </button>
-          </div> 
-          <Back />
-
+      <div>
+        <div className="title">
+            <img className="titlePic" src={ this.props.city.city.img } alt="titlePic" />
+            <h3>Available MYtineraries:</h3>
+            
+            <div>
+              <SingleItin />
+              <SingleItin />
+              <SingleItin />
+            </div>
+            
+            <div>     
+            { this.renderRedirect() }
+                <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
+                </button>
+            </div> 
+        </div>
+        <Back />
       </div>
     )
   }

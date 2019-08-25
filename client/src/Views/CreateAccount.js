@@ -1,4 +1,5 @@
 import React from 'react'
+import './MYtinerary.css';
 
 const createAccount = () => {
   return (

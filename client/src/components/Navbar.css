@@ -85,3 +85,17 @@ body {
 .timeStamp >p {
   padding-left: 10px;
 }
+
+.headers {
+  height: 100px;
+  z-index: 10;
+  background-color: lightgrey;
+}
+
+.right .img {
+  padding-right: 500px;
+}
+
+.cities {
+  margin-top: 100px;
+}

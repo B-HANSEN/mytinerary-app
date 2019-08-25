@@ -2,11 +2,12 @@
 
 /* main */
 .title {
-    margin-top: 30px;
     margin-bottom: 40px;
     display: flex;
     flex-direction: column;
     align-items: center; 
+    height: 515px;
+    overflow: scroll;
   }
 
 .titlePic {
@@ -15,4 +16,9 @@
 
 .otherCity {
   font-size: 20px;
+}
+
+.title, .logo, .container {
+  margin-top: 100px;
+  padding-top: 20px; 
 }

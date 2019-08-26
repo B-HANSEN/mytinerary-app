@@ -10,37 +10,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-/* HEADER COMPONENT'S CSS */
-.headers {
-  display: flex;
-  justify-content: space-between;
-  /* width: 100%; */
-}
 
-/* left headers */
-.headers .left {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-}
-
-/* right headers */
-.headers .right {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-}
-.icons {
-    display: flex;
-    flex-direction: row;
-}
-.icons > img {
-    height: 25px;
-}
-.profile {
-    height: 50px;
-    /* margin-top: 15px; */
-}
 
 /* LANDING COMPONENT'S CSS */
 .logo {

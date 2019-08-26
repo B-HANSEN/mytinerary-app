@@ -31,7 +31,7 @@
 }
 
 .profilePic {
-    width: 50%;
+    width: 40%;
 }
 
 .prof {
@@ -45,7 +45,12 @@ button {
     font-size: 15px;
     color: blue;
     text-decoration: underline;
+    margin-top: 20px;
   }
+
+.view_close {
+    background-color: lightgrey;
+}
 
 .activities {
     margin: 10px 10px;

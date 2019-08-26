@@ -37,10 +37,9 @@ body {
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 36px;
-  height: 30px;
-  right: 36px;
-  top: 36px;
+  width: 30px;
+  height: 20px;
+  right: 30px;
 }
 
 /* Color/shape of burger icon bars */
@@ -64,6 +63,7 @@ body {
   background: #373a47;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
+
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -81,28 +81,35 @@ body {
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* general header styling */
+/* HEADER COMPONENT'S CSS */
 .headers {
-  height: 70px;
-  z-index: 10;
-  background-color: lightgrey;
   display: flex;
   justify-content: space-between;
+  height: 60px;
+  z-index: 10;
+  background-color: #f5f5f5;
   align-items: center;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2)
 }
 
-.profile {
- height: 70%
+#profile {
+  padding-left: 15px;
+  color: #373a47;
 }
+
+
 
 /* search-field */
 .search {
-  padding: 5px 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 input {
-  padding-left: 5px;
   font-size: 20px;
-  border: 2px solid lightslategray;
-  border-radius: 8px;
+  border: 2px solid lightslategrey;
+  border-radius: 4px;
+  text-align: center;
+  padding: 10px;
 }

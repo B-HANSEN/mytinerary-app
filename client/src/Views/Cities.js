@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {VerticleButton as ScrollUpButton} from "react-scroll-up-button";
+import { VerticleButton as ScrollUpButton } from "react-scroll-up-button";
 
 
 import { getCities } from '../actions/citiesActions';
@@ -53,9 +53,7 @@ class Cities extends Component {
     let mappedCities = filteredCities.map(city =>
         <p key = { city._id }>
           <Link to={ "/itineraries/" + city._id }>
-            <img src={ city.img } alt="titlePic" />
-            <br />
-            { city.city }, { city.country }
+            { city.city }
           </Link> 
         </p>
     ) 
@@ -68,9 +66,9 @@ class Cities extends Component {
           <Search handleInput={ this.handleInput }/>
           
         {/* list of cities */}
-          <ul> 
+          <a className="new"> 
             { mappedCities }
-          </ul>
+          </a>
 
         {/* navigation buttons */}
           <div>

@@ -60,7 +60,7 @@ class SingleItin extends React.Component {
  
                 <Activities more={ this.state.showActivities } />
 
-                <button onClick={ this.handleToggleClick }>
+                <button className="view_close" onClick={ this.handleToggleClick }>
                   { this.state.showActivities ? 'Close' : 'View all' }
                 </button>
             </div>

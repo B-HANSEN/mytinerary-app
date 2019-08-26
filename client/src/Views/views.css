@@ -19,11 +19,32 @@
 }
 
 .title, .logo, .container, .cities {
-  margin-top: 100px;
-  padding-top: 20px; 
+  padding-top: 40px; 
 }
 
-h4, .container >p {
+a {
+  text-decoration: none;
+  color: #000;
+  }
+
+.new >p {
+  display: block;
+  text-align: center;
+  font-size: 25px;
+  text-decoration: none;
+  border: 1px solid lightslategray;
+  border-radius: 4px;
+  margin: 15px 20px;
+  padding: 10px;
+  background-color: lightgoldenrodyellow; 
+}
+
+h4 {
+  text-align: center;
+  font-size: 35px;
+}
+
+.container >p {
   margin-left: 5px;
 }
 
@@ -37,9 +58,3 @@ h4, .container >p {
   display: flex;
   justify-content: space-around;
 }
-
-
-
-/* .home-at-home {
-
-} */

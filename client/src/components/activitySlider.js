@@ -12,7 +12,7 @@ export default class ActivitySlider extends React.Component {
       slidesToScroll: 1
     },
     style: {
-      width: '300px'
+      width: '200px'
     }
   }
   render() {

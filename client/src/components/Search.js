@@ -10,7 +10,7 @@ function Search (props) {
             <input
                 onChange={ props.handleInput }
                 type="text" 
-                placeholder="Search city..."
+                placeholder="Search by city..."
             />
         </div>
     )

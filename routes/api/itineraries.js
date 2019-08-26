@@ -27,7 +27,8 @@ router.post('/', (req,res) => {
     rating: req.body.rating,
     duration: req.body.duration,
     price: req.body.price,
-    hashtag: req.body.hashtag
+    hashtag: req.body.hashtag,
+    cityId: req.body.cityId
 })
     newItinerary.save()
     .then(itinerary => res.json(itinerary));

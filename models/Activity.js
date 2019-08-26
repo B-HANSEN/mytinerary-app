@@ -3,10 +3,22 @@ const Schema = mongoose.Schema;
 
 // create schema
 const ActivitySchema = new Schema ({
-    actTitle: {
+    actPlace: {
+        type: String
+    },
+    actAddress: {
         type: String
     },
     actPic: {
+        type: String
+    },
+    actTime: {
+        type: String
+    },
+    actPrice: {
+        type: String
+    },
+    itinId: {
         type: String
     }
 })

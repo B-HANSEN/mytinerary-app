@@ -23,6 +23,7 @@ router.post('/', (req,res) => {
    const newItinerary = new Itinerary ({
     title: req.body.title,
     profilePic: req.body.profilePic,
+    username: req.body.username,
     rating: req.body.rating,
     duration: req.body.duration,
     price: req.body.price,

@@ -81,20 +81,18 @@ body {
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* styling for timestamp */
-.timeStamp >p {
-  padding-left: 10px;
-}
-
 /* general header styling */
 .headers {
-  height: 100px;
+  height: 70px;
   z-index: 10;
   background-color: lightgrey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.right .img {
-  padding-right: 500px;
+.profile {
+ height: 70%
 }
 
 /* search-field */

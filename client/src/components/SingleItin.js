@@ -1,5 +1,5 @@
 import React from 'react';
-import SimpleSlider from './activitySlider.js';
+import ActivitySlider from './activitySlider.js';
 import { connect } from 'react-redux';
 
 import { getItineraries } from '../actions/itActions';
@@ -13,8 +13,8 @@ function Activities(props) {
     return null;
   }
   return (
-    <div className="activities">
-     <SimpleSlider />
+    <div className="s">
+     <ActivitySlider />
     </div>
   );
 }

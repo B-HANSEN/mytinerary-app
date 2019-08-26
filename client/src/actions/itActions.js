@@ -1,6 +1,7 @@
 import { GET_ITINERARIES, ITINERARIES_LOADING, GET_ACTIVITIES, ACTIVITIES_LOADING } from './types';
 import axios from 'axios';
 
+// retrieve itineraries for specific city from database
 export const getItineraries = (cityId) => dispatch => {
     dispatch(setItinerariesLoading());
     axios.get("/api/itineraries/" + cityId)

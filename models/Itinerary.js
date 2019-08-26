@@ -19,10 +19,13 @@ const ItinerarySchema = new Schema ({
         type: Number  
     },
     price: {
-        type: Number  
+        type: String  
     },
     hashtag: {
         type: Array  
+    },
+    cityId: {
+        type: String
     }
 })
 

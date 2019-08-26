@@ -35,7 +35,7 @@ class Home extends React.Component {
     }
 
     // Redirect for Cities page
-    // {/* TODO: redirect to itineraties */}
+    // {/* TODO: redirect to itineraries */}
     setRedirectCities = () => {
       this.setState({ redirectCities: true })
       }

@@ -49,7 +49,6 @@ class MYtinerary extends React.Component {
               <SingleItin />
             </div>
             
-        
         </div>
 
         <div>     

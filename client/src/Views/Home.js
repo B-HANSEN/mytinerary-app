@@ -4,8 +4,8 @@ import { Redirect } from 'react-router-dom'
 // import components & styles
 import BackHome from '../components/BackHome'
 import './views.css';
-import logo from '../images/MYtineraryLogo.png';
-import arrow from '../images/circled-right-2.png';
+import logo from '../files/images/MYtineraryLogo.png';
+import arrow from '../files/images/circled-right-2.png';
 
 class Home extends React.Component {
     state = {

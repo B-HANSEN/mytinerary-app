@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 
 // import icon
-import home from '../images/homeIcon.png';
+import home from '../files/images/homeIcon.png';
 
 
 class BackHome extends Component { 

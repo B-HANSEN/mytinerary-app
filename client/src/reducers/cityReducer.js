@@ -9,6 +9,8 @@ const initialState = {
 
 export default function(state = initialState, action) {
     switch (action.type) {
+        
+        // case all cities
         case GET_CITIES:
             console.log(action.payload);
             return {
@@ -21,6 +23,8 @@ export default function(state = initialState, action) {
                 ...state,
                 loading: true
             };
+
+        // case MYtinerary page with one city only 
         case SINGLE_CITY:
             return {
                 ...state,

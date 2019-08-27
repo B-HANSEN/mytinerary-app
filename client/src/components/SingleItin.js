@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { getItineraries } from '../actions/itActions';
 
 import './singleItin.css';
+import PropTypes from 'prop-types';
 import prof1 from '../images/GaudiLover.png';
 
 
@@ -13,7 +14,7 @@ function Activities(props) {
     return null;
   }
   return (
-    <div className="s">
+    <div className="">
      <ActivitySlider />
     </div>
   );
@@ -23,9 +24,8 @@ class SingleItin extends React.Component {
       state = {
         showActivities: false
       };
-      handleToggleClick = this.handleToggleClick.bind(this);
-
-
+    
+    handleToggleClick = this.handleToggleClick.bind(this);
 
     handleToggleClick() {
       this.setState(state => ({
@@ -66,10 +66,16 @@ class SingleItin extends React.Component {
     }
 }
 
+SingleItin.propTypes = {
+  getItineraries: PropTypes.func.isRequired,
+  itinerary: PropTypes.object.isRequired,
+  city: PropTypes.object.isRequired
+}
+
 const mapStateToProps = (state) => ({
   itinerary: state.itinerary,
   city: state.city
 })
 
-// export default SingleItin;
+// export SingleItin;
 export default connect (mapStateToProps, { getItineraries }) (SingleItin)

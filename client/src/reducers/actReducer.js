@@ -1,22 +1,23 @@
-import { GET_ITINERARIES, ITINERARIES_LOADING } from '../actions/types';
+import { GET_ACTIVITIES, ACTIVITIES_LOADING } from '../actions/types';
 
 const initialState = {
-    itineraries: [],
-    itinerary: {},
+    activities: [],
+    activity: {},
     loading: false, 
-    msg:"Hello world (itineraries)"
+    msg:"Hello world (activities)"
 };
 
 export default function(state = initialState, action) {
     switch (action.type) {
-   
-        case GET_ITINERARIES:
+        
+        case GET_ACTIVITIES:
             return {
                 ...state,
-                itineraries: action.payload,
+                activties: action.payload,
                 loading: false
-            };
-        case ITINERARIES_LOADING:
+            }; 
+            
+        case ACTIVITIES_LOADING:
             return {
                 ...state,
                 loading: true

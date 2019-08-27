@@ -13,9 +13,9 @@ router.get('/', (req,res) => {
 });
 
 // ******************** HTTP: GET ********************
-// fetch activties only for selected city
-router.get('/:singleCityId', (req,res) => {
-    Activity.find({cityId: req.params.singleCityId})
+// fetch activities only for selected itinerary
+router.get('/:singleItinId', (req,res) => {
+    Activity.find({itinId: req.params.singleItinId})
     .then(activities => res.json(activities))
 });
 

@@ -8,6 +8,7 @@ import SingleItin from '../components/SingleItin'
 import { getItineraries } from '../actions/itActions';
 import { getCityById } from '../actions/citiesActions';
 
+import PropTypes from 'prop-types';
 import './views.css';
 
 
@@ -43,8 +44,7 @@ class MYtinerary extends React.Component {
             
             <div>
               {this.props.itinerary.itineraries.map(itin => 
-                <SingleItin it={itin} />
-                
+                <SingleItin it={ itin } />
               )}
             </div>
             
@@ -62,10 +62,17 @@ class MYtinerary extends React.Component {
             <BackHome />
         </div>
 
-
       </div>
     )
   }
+}
+
+
+MYtinerary.propTypes = {
+  getItineraries: PropTypes.func.isRequired,
+  getCityById: PropTypes.func.isRequired,
+  itinerary: PropTypes.object.isRequired,
+  city: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({

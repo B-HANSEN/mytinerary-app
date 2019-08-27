@@ -1,12 +1,13 @@
 import React from "react";
+import { connect } from 'react-redux';
 import Slider from "react-slick";
 
 import { getActivities } from '../actions/itActions';
-import { getCityById } from '../actions/citiesActions';
+import PropTypes from 'prop-types';
 
 
 class ActivitySlider extends React.Component { 
-  state={
+  state = {
     settings: {
       dots: true,
       infinite: true,
@@ -14,6 +15,8 @@ class ActivitySlider extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1
     },
+    activities: [],
+    activity: {},
     style: {
       width: '200px'
     }
@@ -21,11 +24,10 @@ class ActivitySlider extends React.Component {
 
   componentDidMount() {
           this.props.getActivities(this.props.match.params.itinId) // load single city and all its activities related to all itinIds
-          this.props.getCityById(this.props.match.params.cityId) // load single city page showing cityPic
       }
   
   render() {
-    
+    console.log(this.props);
     return (
       <div>
       
@@ -42,9 +44,15 @@ class ActivitySlider extends React.Component {
     );
   }
 }
+
+ActivitySlider.propTypes = {
+  getItineraries: PropTypes.func.isRequired,
+  activity: PropTypes.object.isRequired
+}
+
 const mapStateToProps = (state) => ({
-  activity: state.itinerary,
-  city: state.city
+  activity: state.activity
 })
 
-export default connect (mapStateToProps, { getActivities, getCityById }) (ActivitySlider)
+// export ActivitySlider;
+export default connect (mapStateToProps, { getActivities }) (ActivitySlider)

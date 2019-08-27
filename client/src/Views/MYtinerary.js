@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import BackButton from './../components/BackButton.js';
 import BackHome from '../components/BackHome'
+// import { VerticleButton as ScrollUpButton } from "react-scroll-up-button";
 
 import SingleItin from '../components/SingleItin'
 import { getItineraries } from '../actions/itActions';
@@ -46,20 +47,29 @@ class MYtinerary extends React.Component {
               {this.props.itinerary.itineraries.map(itinerary => 
                 <SingleItin itin={ itinerary } />
               )}
+
+              {/* <ScrollUpButton ShowAtPosition={50} ToggledStyle={{right: 50}} AnimationDuration={1000} >
+              </ScrollUpButton>  */}
             </div>
-            
+           
         </div>
 
+      
+        {/* link back to Cities page */}  
         <div>     
             { this.renderRedirect() }
                 <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
                 </button>
         </div> 
 
+       
+
         {/* navigation buttons */}  
         <div className="navbuttons">
             <BackButton />
             <BackHome />
+
+           
         </div>
 
       </div>

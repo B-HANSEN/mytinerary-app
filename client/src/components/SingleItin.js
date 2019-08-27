@@ -1,12 +1,10 @@
 import React from 'react';
 import ActivitySlider from './activitySlider.js';
 import { connect } from 'react-redux';
-
 import { getItineraries } from '../actions/itActions';
 
 import './singleItin.css';
 import PropTypes from 'prop-types';
-import prof1 from '../images/GaudiLover.png';
 
 
 function Activities(props) {
@@ -14,8 +12,8 @@ function Activities(props) {
     return null;
   }
   return (
-    <div className="">
-     <ActivitySlider itinID={props.props.itin._id} />
+    <div className="activityslider">
+     <ActivitySlider itinID= { props.props.itin._id } />
     </div>
   );
 }
@@ -38,20 +36,21 @@ class SingleItin extends React.Component {
             <div className="textAndLink">
                 <div className="allDetailsIt">
                     <div className="profilePic">
-                        <img className="prof" src={prof1} alt="prof1" />
+                        <img className="prof" src= { this.props.itin.profilePic } alt="prof1" />
+                        <h6 className="username"> { this.props.itin.username }</h6>
                     </div>
 
                     <div className="overview">   
                         <h3 className="titleIt">{this.props.itin.title}</h3>
                         <div className="details">
-                          <div className="singleDetails">Likes</div>
-                          <div className="singleDetails">Time</div>
-                          <div className="singleDetails">Price</div>
-                        </div>
-                        <div className="details">
-                          <div className="singleDetails">hash1</div>
-                          <div className="singleDetails">hash2</div>
-                          <div className="singleDetails">hash3</div>
+                          
+                          <ul>
+                            <li className="singleDetails">Rating: {this.props.itin.rating} </li>
+                            <li className="singleDetails">Duration: {this.props.itin.duration} hrs </li>
+                            <li className="singleDetails">Cost category: {this.props.itin.price} </li>
+                            <li className="singleDetails"> {this.props.itin.hashtag} </li>
+                          </ul>
+
                         </div>
                     </div>
                 </div>
@@ -61,7 +60,8 @@ class SingleItin extends React.Component {
                 <button className="view_close" onClick={ this.handleToggleClick }>
                   { this.state.showActivities ? 'Close' : 'View all' }
                 </button>
-            </div>
+
+              </div>
         )
     }
 }

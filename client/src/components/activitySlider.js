@@ -8,6 +8,29 @@ import PropTypes from 'prop-types';
 import './components.css';
 
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "lightgrey" }}
+      onClick={onClick}
+    />
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", background: "lightgrey" }}
+      onClick={onClick}
+    />
+  );
+}
+
+
 class ActivitySlider extends React.Component { 
   state = {
     settings: {
@@ -15,12 +38,14 @@ class ActivitySlider extends React.Component {
       infinite: true,
       speed: 500,
       slidesToShow: 2,
-      slidesToScroll: 2
+      slidesToScroll: 2,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />
     },
     activities: [],
     activity: {},
     style: {
-      width: '250px'
+      width: '300px'
     }
   }
 
@@ -37,13 +62,11 @@ class ActivitySlider extends React.Component {
         <Slider {...this.state.settings} style={this.state.style}>
                 
       {this.props.activity.activities.map(activity => 
-        <div className="">
+        <div className="actPicnPlace">
             <img className="actPic" src={ activity.actPic } alt="actPic" />
-            <h5 className="">{ activity.actPlace }</h5>
+            <p className="actPlace">{ activity.actPlace }</p>
         </div>   
       )}
-
-         
 
         </Slider>
       </div>

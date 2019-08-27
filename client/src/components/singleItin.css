@@ -1,3 +1,9 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .textAndLink {
     display: flex;
     flex-direction: column;
@@ -6,7 +12,7 @@
     border-style: solid;
     border-color: black;
     border-width: 1px;
-    margin: 10px auto;
+    margin: 30px auto;
 }
 
 .allDetailsIt {
@@ -15,27 +21,38 @@
 }
 
 .overview {
-    width: 50%;
+    width: 80%;
+    padding-right: 5px;
     display: flex;
     flex-direction: column;
 }
 
 .details {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .singleDetails {
-    padding-right: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 5px; 
+    width: 100%;
 }
+
+ul { 
+    list-style-type: none; 
+    padding-left: 0px;
+}
+
+
 
 .profilePic {
     width: 40%;
 }
 
 .prof {
-    width: 80%;
+    margin: 40px 40px 0px 40px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
 }
 
 button {
@@ -46,10 +63,13 @@ button {
     color: blue;
     text-decoration: underline;
     margin-top: 20px;
-  }
+}
 
 .view_close {
     background-color: lightgrey;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 25px;
+    text-decoration: none;
 }
 
 .activities {
@@ -66,5 +86,7 @@ button {
     display: inline-block;
 }
 
-  
-  
+.username {
+    text-align: center;
+    word-wrap: break-word;
+}

@@ -1,6 +1,7 @@
 html,
 body {
   margin: 0;
+  padding: 0;
 }
 
 #App {
@@ -116,8 +117,13 @@ input {
 
 /* Activity Slider */
 .actPic {
+  margin: 0 auto;
   height: auto;
-  max-height: 100px;
+  max-height: 120px;
   width: auto;
-  max-width: 100px;
+  max-width: 140px;
+}
+
+.actPlace {
+  text-align: center;
 }

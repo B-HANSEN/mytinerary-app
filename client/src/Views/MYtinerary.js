@@ -12,28 +12,26 @@ import './views.css';
 
 
 class MYtinerary extends React.Component {
-  state = {
-    itineraries: [],
-    redirect: false 
-  }
+      state = {
+        itineraries: [],
+        redirect: false 
+      }
 
-  componentDidMount() {
-    console.log(this.props);
-    
-    // this.props.getItineraries()  // required, because SingleCity sub-component already imported??
-    this.props.getItineraries(this.props.match.params.cityId) // load all itineraries related to this city
-    this.props.getCityById(this.props.match.params.cityId) // load city page showing cityPic
-  }
+      componentDidMount() {
+        console.log(this.props);
+        this.props.getCityById(this.props.match.params.cityId) // load single city page showing cityPic
+        this.props.getItineraries(this.props.match.params.cityId) // load all itineraries related to this city
+      }
 
-  // link back to Cities page
-  setRedirect = () => {
-    this.setState({ redirect: true })
-  }
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/cities' />
-    }
-  }
+      // link back to Cities page
+      setRedirect = () => {
+        this.setState({ redirect: true })
+      }
+      renderRedirect = () => {
+        if (this.state.redirect) {
+          return <Redirect to='/cities' />
+        }
+      } 
 
   render () {
     console.log(this.props);
@@ -44,9 +42,10 @@ class MYtinerary extends React.Component {
             <h3>Available MYtineraries:</h3>
             
             <div>
-              <SingleItin />
-              <SingleItin />
-              <SingleItin />
+              {this.props.itinerary.itineraries.map(itin => 
+                <SingleItin it={itin} />
+                
+              )}
             </div>
             
         </div>

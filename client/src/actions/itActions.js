@@ -5,10 +5,12 @@ import axios from 'axios';
 export const getItineraries = (cityId) => dispatch => {
     dispatch(setItinerariesLoading());
     axios.get("/api/itineraries/" + cityId)
-    .then(res => dispatch({
+    .then(res => {
+        console.log(res.data)
+        dispatch({
             type: GET_ITINERARIES,
             payload: res.data
-        })
+        })}
     )
 };
 

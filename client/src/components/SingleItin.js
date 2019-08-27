@@ -25,9 +25,7 @@ class SingleItin extends React.Component {
       };
       handleToggleClick = this.handleToggleClick.bind(this);
 
-    componentDidMount() {
-      // this.props.getItineraries(this.props.match.params.cityId) // load all itineraries related to this city
-    }
+
 
     handleToggleClick() {
       this.setState(state => ({
@@ -44,7 +42,7 @@ class SingleItin extends React.Component {
                     </div>
 
                     <div className="overview">   
-                        <h3 className="titleIt">Itinerary title</h3>
+                        <h3 className="titleIt">{this.props.it.title}</h3>
                         <div className="details">
                           <div className="singleDetails">Likes</div>
                           <div className="singleDetails">Time</div>

@@ -23,7 +23,8 @@ router.get('/:singleCityId', (req,res) => {
 router.post('/', (req,res) => {
    const newActivity = new Activity ({
     actPic: req.body.actPic,
-    actTitle: req.body.actTitle
+    actPlace: req.body.actPlace,
+    itinId: req.body.itinId
 })
     newActivity.save().then(activity => res.json(activity));
 });
@@ -35,12 +36,6 @@ router.delete('/:id', (req,res) => {
      .then( () => res.json({ success: true })))
      .catch(err => res.status(404).json({ success: false }))
  })
-
-// for MYtinerary page activity pictures   ---  review model!!!
-router.get('/:id', (req,res) => {
-    City.findById(req.params.id)
-    .then(city => res.json(city))
-  })
  
 // to export router, not in ES6!
 module.exports =  router

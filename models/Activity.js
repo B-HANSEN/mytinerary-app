@@ -6,16 +6,7 @@ const ActivitySchema = new Schema ({
     actPlace: {
         type: String
     },
-    actAddress: {
-        type: String
-    },
     actPic: {
-        type: String
-    },
-    actTime: {
-        type: String
-    },
-    actPrice: {
         type: String
     },
     itinId: {

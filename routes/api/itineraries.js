@@ -15,7 +15,9 @@ router.get('/', (req,res) => {
 router.get('/:singleCityId', (req,res) => {
     console.log(req.params.singleCityId)
     Itinerary.find({cityId: req.params.singleCityId})
-    .then(itineraries => res.json(itineraries))
+    .then(itineraries => {
+        console.log(itineraries)
+        res.json(itineraries)})
 });
 
 // ******************** HTTP: POST ********************
@@ -41,12 +43,6 @@ router.delete('/:id', (req,res) => {
      .then( () => res.json({ success: true })))
      .catch(err => res.status(404).json({ success: false }))
  })
-
-// for MYtinerary page itin pictures  ---  review model!!!
-router.get('/:id', (req,res) => {
-    City.findById(req.params.id)
-    .then(city => res.json(city))
-  })
  
 // to export router, not in ES6!
 module.exports =  router

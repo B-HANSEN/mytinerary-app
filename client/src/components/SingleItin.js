@@ -15,7 +15,7 @@ function Activities(props) {
   }
   return (
     <div className="">
-     <ActivitySlider />
+     <ActivitySlider itinID={props.props.itin._id} />
     </div>
   );
 }
@@ -42,7 +42,7 @@ class SingleItin extends React.Component {
                     </div>
 
                     <div className="overview">   
-                        <h3 className="titleIt">{this.props.it.title}</h3>
+                        <h3 className="titleIt">{this.props.itin.title}</h3>
                         <div className="details">
                           <div className="singleDetails">Likes</div>
                           <div className="singleDetails">Time</div>
@@ -56,7 +56,7 @@ class SingleItin extends React.Component {
                     </div>
                 </div>
  
-                <Activities more={ this.state.showActivities } />
+                <Activities more={ this.state.showActivities } props={this.props}/>
 
                 <button className="view_close" onClick={ this.handleToggleClick }>
                   { this.state.showActivities ? 'Close' : 'View all' }

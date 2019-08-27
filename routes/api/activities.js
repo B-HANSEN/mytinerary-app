@@ -6,7 +6,7 @@ const Activity = require ('../../models/Activity');
 
 
 // ******************** HTTP: GET ********************
-// fetch all items from db: go into model, find and sort by date descending, jsonAPI --> res.json
+// fetch all items from db: go into model, find, jsonAPI --> res.json
 router.get('/', (req,res) => {
     Activity.find()
     .then(activities => res.json(activities))

@@ -23,7 +23,7 @@ class ActivitySlider extends React.Component {
   }
 
   componentDidMount() {
-          this.props.getActivities(this.props.match.params.itinId) // load single city and all its activities related to all itinIds
+          this.props.getActivities(this.props.itinID) // load single city and all its activities related to all itinIds
       }
   
   render() {
@@ -34,10 +34,14 @@ class ActivitySlider extends React.Component {
         <h2>Activities</h2>
         <Slider {...this.state.settings} style={this.state.style}>
                 
+      {this.props.activity.activities.map(activity => 
         <div className="">
-            <img className="" src={ this.props.activity.activity.actPic } alt="actPic" />
-            <h5 className="">{ this.props.activity.activity.actPlace }</h5>
-        </div>     
+        <img className="" src={ activity.actPic } alt="actPic" />
+        <h5 className="">{ activity.actPlace }</h5>
+    </div>   
+      )}
+
+         
 
         </Slider>
       </div>
@@ -46,7 +50,7 @@ class ActivitySlider extends React.Component {
 }
 
 ActivitySlider.propTypes = {
-  getItineraries: PropTypes.func.isRequired,
+  getActivities: PropTypes.func.isRequired,
   activity: PropTypes.object.isRequired
 }
 

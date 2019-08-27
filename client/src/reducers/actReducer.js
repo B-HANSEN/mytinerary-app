@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
         case GET_ACTIVITIES:
             return {
                 ...state,
-                activties: action.payload,
+                activities: action.payload,
                 loading: false
             }; 
             

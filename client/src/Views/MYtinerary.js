@@ -43,8 +43,8 @@ class MYtinerary extends React.Component {
             <h3>Available MYtineraries:</h3>
             
             <div>
-              {this.props.itinerary.itineraries.map(itin => 
-                <SingleItin it={ itin } />
+              {this.props.itinerary.itineraries.map(itinerary => 
+                <SingleItin itin={ itinerary } />
               )}
             </div>
             

@@ -5,6 +5,8 @@ import Slider from "react-slick";
 import { getActivities } from '../actions/itActions';
 import PropTypes from 'prop-types';
 
+import './components.css';
+
 
 class ActivitySlider extends React.Component { 
   state = {
@@ -12,13 +14,13 @@ class ActivitySlider extends React.Component {
       dots: true,
       infinite: true,
       speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToShow: 2,
+      slidesToScroll: 2
     },
     activities: [],
     activity: {},
     style: {
-      width: '200px'
+      width: '250px'
     }
   }
 
@@ -36,9 +38,9 @@ class ActivitySlider extends React.Component {
                 
       {this.props.activity.activities.map(activity => 
         <div className="">
-        <img className="" src={ activity.actPic } alt="actPic" />
-        <h5 className="">{ activity.actPlace }</h5>
-    </div>   
+            <img className="actPic" src={ activity.actPic } alt="actPic" />
+            <h5 className="">{ activity.actPlace }</h5>
+        </div>   
       )}
 
          

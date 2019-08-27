@@ -113,3 +113,11 @@ input {
   text-align: center;
   padding: 10px;
 }
+
+/* Activity Slider */
+.actPic {
+  height: auto;
+  max-height: 100px;
+  width: auto;
+  max-width: 100px;
+}

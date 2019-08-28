@@ -54,7 +54,6 @@ class MYtinerary extends React.Component {
             </div>
            
         </div>
-
       
         {/* link back to Cities page */}  
         <div>     

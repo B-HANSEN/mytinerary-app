@@ -34,7 +34,7 @@ class App extends Component {
               <Route path='/cities' component={Cities} />  
               <Route path='/itineraries/:cityId' component={MYtinerary} />
           </BrowserRouter>
-
+        
         </div>
       </Provider>
     );

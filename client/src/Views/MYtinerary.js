@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import BackButton from './../components/BackButton.js';
-import BackHome from '../components/BackHome'
+import Footer from './../components/Footer'
 // import { VerticleButton as ScrollUpButton } from "react-scroll-up-button";
 
 import SingleItin from '../components/SingleItin'
@@ -41,11 +41,12 @@ class MYtinerary extends React.Component {
       <div>
         <div className="title">
             <img className="titlePic" src={ this.props.city.city.img } alt="titlePic" />
+            <h3>{ this.props.city.city.city }</h3>
             <h3>Available MYtineraries:</h3>
             
             <div>
-              {this.props.itinerary.itineraries.map(itinerary => 
-                <SingleItin itin={ itinerary } />
+              {this.props.itinerary.itineraries.map((itinerary, index) => 
+                <SingleItin  key={index} itin={ itinerary } />
               )}
 
               {/* <ScrollUpButton ShowAtPosition={50} ToggledStyle={{right: 50}} AnimationDuration={1000} >
@@ -67,7 +68,8 @@ class MYtinerary extends React.Component {
         {/* navigation buttons */}  
         <div className="navbuttons">
             <BackButton />
-            <BackHome />
+            {/* <BackHome /> */}
+            <Footer />
 
            
         </div>

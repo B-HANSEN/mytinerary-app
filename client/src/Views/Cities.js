@@ -6,8 +6,8 @@ import { VerticleButton as ScrollUpButton } from "react-scroll-up-button";
 
 
 import { getCities } from '../actions/citiesActions';
-import BackHome from '../components/BackHome'
 import Search from '../components/Search';
+import Footer from './../components/Footer'
 
 import './views.css';
 
@@ -72,7 +72,8 @@ class Cities extends Component {
 
         {/* navigation buttons */}
           <div>
-            <BackHome />
+            {/* <BackHome /> */}
+            <Footer />
             <ScrollUpButton AnimationDuration={1000}>
               </ScrollUpButton> 
           </div>

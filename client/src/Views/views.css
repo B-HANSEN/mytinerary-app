@@ -5,17 +5,18 @@
     margin-bottom: 40px;
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    /* height: 650px; */
+    align-items: center;
     overflow: scroll;
   }
 
 .titlePic {
     width: 70%;
+    margin-top: 50px;
 }
 
 .otherCity {
-  font-size: 20px;
+  font-size: 15x;
+  color: #007bff;
 }
 
 .title, .logo, .container, .cities {

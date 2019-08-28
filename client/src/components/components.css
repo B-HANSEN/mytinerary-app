@@ -108,7 +108,7 @@ body {
 }
 
 input {
-  font-size: 20px;
+  font-size: 15px;
   border: 2px solid lightslategrey;
   border-radius: 4px;
   text-align: center;
@@ -126,4 +126,21 @@ input {
 
 .actPlace {
   text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+
+/* FOOTER COMPONENT'S CSS */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  top: auto;
+  bottom: 0;
+  background-color: #f5f5f5;
+  align-items: center;
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2)
 }

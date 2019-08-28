@@ -2,7 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 
 // import components & styles
-import BackHome from '../components/BackHome'
+import Footer from './../components/Footer'
 import './views.css';
 import logo from '../files/images/MYtineraryLogo.png';
 import arrow from '../files/images/circled-right-2.png';
@@ -69,12 +69,12 @@ class Home extends React.Component {
               { this.renderRedirectAccount() }
                   <button onClick={ this.setRedirectAccount }>Create Account
                   </button>
-
             </div>
           
             {/* home to disable to the home button on the home page? */}
             <div className="home-at-home">
-            <BackHome />
+            {/* <BackHome /> */}
+            <Footer />
             </div>
 
           </div>

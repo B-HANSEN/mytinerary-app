@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 
-// import components & styles
-import { SvgIcon } from '@material-ui/core';
-import './components.css';
+// import icon
+import home from '../files/images/homeIcon.png';
 
-const Footer = () => (
-              <div>
-                  <div className="">
-
-                    <div>
-                      <i id="" className="material-icons">
-                       home
-                      </i>
-                    </div>
-                  
-                  <Navbar />
-                  </div>       
-              </div>
-);
+class Footer extends Component { 
+  state = { redirect: false }
   
-  export default Footer;
+  // link to home page
+  setRedirect = () => {
+    this.setState({ redirect: true })
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
+  
+  render() {
+      return (
+          <button onClick={ this.setRedirect }>
+              <img className="home" src={ home } alt="titlePic" />
+              { this.renderRedirect() }
+              {/* moved the renderRedirect into the button and removed the root-div */}
+          </button>
+      )
+  }
+}
+  
+export default Footer;

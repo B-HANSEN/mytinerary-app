@@ -11,13 +11,13 @@ import { slide as Menu } from 'react-burger-menu'
 
 
 class Navbar extends Component {
-    constructor(props) {
-      super(props);
-      this.state = { isOpen: false };
-      this.toggle = this.toggle.bind(this);
-    }
+    // constructor(props) {
+    //   super(props);
+      state = { isOpen: false };
+    //   this.toggle = this.toggle.bind(this);
+    // }
   
-    toggle() {
+    toggle = (e) => {
         this.setState({ isOpen : !this.state.isOpen })
     }
     
@@ -40,10 +40,6 @@ class Navbar extends Component {
 
                 <Link to="/cities" className="menu-item"   onClick={ this.toggle }>
                     <SvgIcon> home </SvgIcon>Cities
-                </Link>
-
-                <Link to="/itineraries" className="menu-item"   onClick={ this.toggle }>
-                    <SvgIcon> home </SvgIcon>MYtinerary
                 </Link>
 
             </Menu>

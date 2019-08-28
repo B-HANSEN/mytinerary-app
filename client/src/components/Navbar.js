@@ -1,55 +1,55 @@
-import React, { Component } from 'react'
-import { NavLink, Link } from 'react-router-dom'
-
-// import styles
-import props from './components.css';
-import { SvgIcon } from '@material-ui/core';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
-// import hamburger menu
-import { slide as Menu } from 'react-burger-menu'
+import { Link } from 'react-router-dom'
 
+export default function Navbar() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-class Navbar extends Component {
-     constructor(props) {
-       super(props);
-      this.state = { isOpen: false };
-     }
-  
-    toggle = (e) => {
-        this.setState({ isOpen : !this.state.isOpen })
-    }
+  function handleClick(event) {
+    setAnchorEl(event.currentTarget);
+  }
 
-    // This keeps your state in sync with the opening/closing of the menu
-    // via the default means, e.g. clicking the X, pressing the ESC key etc.
-    handleStateChange (state) {
-    this.setState({isOpen: state.isOpen})  
-    }
-    
-    render () {
-        return (
-            <Menu isOpen={this.state.isOpen} width= { 220 } onStateChange={(state) => this.handleStateChange(state)} >
-              
-                <NavLink to="/" className="menu-item"  onClick={ this.toggle } >
-                  <SvgIcon> home </SvgIcon>Home
-                </NavLink>    
+  function handleClose() {
+    setAnchorEl(null);
+  }
 
-                <Link to="/createaccount" className="menu-item"   onClick={ this.toggle }>
-                    <SvgIcon> add_circle </SvgIcon>Create Account
-                </Link>
+  return (
+    <div>
+      <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        Open Menu
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <Link to="/">
+        <MenuItem onClick={handleClose}>Home
+        </MenuItem>
+        </Link>
 
-                 
-                <Link to="/login" className="menu-item"   onClick={ this.toggle }>
-                    <SvgIcon> home </SvgIcon>Login
-                </Link>
+        <Link to="/createaccount">
+        <MenuItem onClick={handleClose}>Create Account
+        </MenuItem>
+        </Link>
 
-                <Link to="/cities" className="menu-item"   onClick={ this.toggle }>
-                    <SvgIcon> home </SvgIcon>Cities
-                </Link>
+        <Link to="/login">
+        <MenuItem onClick={handleClose}>Login
+        </MenuItem>
+        </Link>
 
-            </Menu>
-        );
-    }   
+        <Link to="/cities">
+        <MenuItem onClick={handleClose}>Cities
+        </MenuItem>
+        </Link>
+
+      </Menu>
+    </div>
+  );
 }
-
-export default Navbar

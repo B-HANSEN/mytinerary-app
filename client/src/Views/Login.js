@@ -1,20 +1,32 @@
-import React from 'react'
-import './views.css';
-import Footer from './../components/Footer'
+import React from 'react';
 
-const Login = () => {
-  return (
-    <div>
-      <div className="container">
-        <h4 className="center">Login</h4>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae repudiandae repellat illo magni eligendi cupiditate voluptates eius nam voluptate. Incidunt nihil ullam quae quia officia quaerat, deserunt eligendi explicabo totam?</p>
+import { connect } from 'react-redux';
+// import { userSignupRequest, isUserExists } from '../../actions/signupActions';
+// import { addFlashMessage } from '../../actions/flashMessages.js';
+
+class SignupPage extends React.Component {
+  render() {
+    // const { userSignupRequest, addFlashMessage, isUserExists } = this.props;
+    return (
+      <div className="row">
+        <div className="col-md-4 col-md-offset-4">
+          {/* <SignupForm
+            isUserExists={isUserExists}
+            userSignupRequest={userSignupRequest}
+            addFlashMessage={addFlashMessage} /> */}
+        </div>
       </div>
-
-      {/* <BackHome /> */}
-      <Footer />
-      
-    </div>
-  )
+    );
+  }
 }
 
-export default Login
+// SignupPage.propTypes = {
+//   userSignupRequest: React.PropTypes.func.isRequired,
+//   addFlashMessage: React.PropTypes.func.isRequired,
+//   isUserExists: React.PropTypes.func.isRequired
+// }
+
+
+// export default connect(null, { userSignupRequest, addFlashMessage, isUserExists })(SignupPage);
+
+export default SignupPage

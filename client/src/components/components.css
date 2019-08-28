@@ -64,7 +64,6 @@ body {
   background: #373a47;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
-
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -97,8 +96,7 @@ body {
   padding-left: 15px;
   color: #373a47;
 }
-
-
+  
 
 /* search-field */
 .search {
@@ -144,3 +142,4 @@ h2 {
   align-items: center;
   box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2)
 }
+

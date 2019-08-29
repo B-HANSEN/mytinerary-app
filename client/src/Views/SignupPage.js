@@ -20,11 +20,15 @@ class SignupPage extends React.Component {
   }
 }
 
+// this component expects this function to be passed
 SignupPage.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired,
   addFlashMessage: React.PropTypes.func.isRequired,
   isUserExists: React.PropTypes.func.isRequired
 }
 
-
+// use connect HOC (higher-order component) to provide the functions from Redux
+// connect()-function takes 2 parameters:
+// 1) "mapStateToProps" which provides data from Redux (takes state and returns object) & 
+// 2) "mapDispatchToProps" which specify action creators wrapped in dispatch
 export default connect(null, { userSignupRequest, addFlashMessage, isUserExists })(SignupPage);

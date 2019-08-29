@@ -14,6 +14,7 @@ const path = require('path');
 const cities = require ('./routes/api/cities')
 const itineraries = require ('./routes/api/itineraries')
 const activities = require ('./routes/api/activities')
+const users = require ('./routes/api/users')
 
 // body parser middle ware
 app.use(bodyParser.json());
@@ -34,6 +35,7 @@ mongoose.connect(db, {useNewUrlParser: true})
 app.use('/api/cities', cities)
 app.use('/api/itineraries', itineraries)
 app.use('/api/activities', activities)
+app.use('/api/users', users)
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

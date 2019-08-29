@@ -1,5 +1,6 @@
 import React from 'react';
 import TextFieldGroup from './common/TextFieldGroup';
+import { ITINERARIES_LOADING } from '../actions/types';
 
 
 class SignupForm extends React.Component {
@@ -55,8 +56,9 @@ class SignupForm extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    
     if (this.isValid()) {
+      // when submitting, first clear all errors, then repopulate state if any new
       this.setState({ errors: {}, isLoading: true });
       this.props.userSignupRequest(this.state).then(
         () => { 
@@ -124,6 +126,7 @@ class SignupForm extends React.Component {
   }
 }
 
+// as we expect this component to have this function passed to it, define prop types:
 SignupForm.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired,
   addFlashMessage: React.PropTypes.func.isRequired,

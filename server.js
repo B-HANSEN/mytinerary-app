@@ -1,8 +1,11 @@
+require("dotenv").config();
+
 // BASE SETUP
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); 
 const app = express();
+
 
 // core Node.js module for building purpose
 const path = require('path');
@@ -19,7 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
 // DB config
-const db = require('./config/keys').mongoURI;
+// const db = require('./config/keys').mongoURI;
+const db = process.env.DATABASE
 
 // connect to Mongo
 mongoose.connect(db, {useNewUrlParser: true})

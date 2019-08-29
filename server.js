@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); 
 const app = express();
 
+// core Node.js module for building purpose
+const path = require('path');
+
 // to make the server know to look for this route; import it from routes
 const cities = require ('./routes/api/cities')
 const itineraries = require ('./routes/api/itineraries')
@@ -27,6 +30,17 @@ mongoose.connect(db, {useNewUrlParser: true})
 app.use('/api/cities', cities)
 app.use('/api/itineraries', itineraries)
 app.use('/api/activities', activities)
+
+// serve static assets if in production
+if(process.env.NODE_ENV === 'production') {
+// set static folder
+    app.use(express.static('client/build'));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
 
 const port = process.env.PORT || 5000;
 

@@ -1,6 +1,6 @@
 import React from 'react';
+import TextFieldGroup from './common/TextFieldGroup';
 
-import TextFieldGroup from '../common/TextFieldGroup';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class SignupForm extends React.Component {
   }
 
   isValid() {
-    // const { errors, isValid } = validateInput(this.state);
+    const { errors, isValid } = validateInput(this.state);
 
     if (!isValid) {
       this.setState({ errors });

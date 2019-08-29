@@ -3,10 +3,6 @@ import TextFieldGroup from './common/TextFieldGroup';
 import { ITINERARIES_LOADING } from '../actions/types';
 import validateInput from './../server/shared/validations/signup';
 
-// enabling conditional class names (if have an error class)
-import classnames from 'classnames';
-import { request } from 'https';
-
 
 class SignupForm extends React.Component {
   constructor(props) {

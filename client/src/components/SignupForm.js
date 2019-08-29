@@ -1,6 +1,11 @@
 import React from 'react';
 import TextFieldGroup from './common/TextFieldGroup';
 import { ITINERARIES_LOADING } from '../actions/types';
+import validateInput from './../server/shared/validations/signup';
+
+// enabling conditional class names (if have an error class)
+import classnames from 'classnames';
+import { request } from 'https';
 
 
 class SignupForm extends React.Component {
@@ -57,6 +62,7 @@ class SignupForm extends React.Component {
   onSubmit(e) {
     e.preventDefault();
     
+    // if above isValid returns as boolean true, make the server-side request; otherwise ignore
     if (this.isValid()) {
       // when submitting, first clear all errors, then repopulate state if any new
       this.setState({ errors: {}, isLoading: true });
@@ -80,6 +86,8 @@ class SignupForm extends React.Component {
       <form onSubmit={this.onSubmit}>
         <h1>Join our community!</h1>
 
+
+{/* // different setup in video; work with classnames */}
         <TextFieldGroup
           error={errors.username}
           label="Username"

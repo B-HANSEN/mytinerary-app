@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 // configure enzyme to use adapter
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+// import Enzyme from 'enzyme';
+// import Adapter from 'enzyme-adapter-react-16';
 
 // import components
 import Headers from './components/Headers'
@@ -18,7 +18,7 @@ import MYtinerary from './Views/MYtinerary'
 import Cities from './Views/Cities'
 
 
-Enzyme.configure({ adapter: new Adapter() });
+// Enzyme.configure({ adapter: new Adapter() });
 
 class App extends Component {
   render () {

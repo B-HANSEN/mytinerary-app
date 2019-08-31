@@ -1,6 +1,7 @@
 import React from 'react';
 import 'react-sticky-header/styles.css';
 import StickyHeader from 'react-sticky-header';
+import AppNavbar from './AppNavbar'
 
 // import components & styles
 import Navbar from './Navbar'
@@ -18,6 +19,9 @@ const Headers = () => (
                       </i>
                     </div>
                   
+
+                  <AppNavbar />
+
                   <Navbar />
                   </div>       
               </div>

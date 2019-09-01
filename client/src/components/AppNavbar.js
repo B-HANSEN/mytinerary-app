@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  Nav,
+  // Collapse,
+  // Navbar,
+  // NavbarToggler,
+  // Nav,
   NavItem,
   // NavLink,
-  Container
+  // Container
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -61,7 +61,7 @@ class AppNavbar extends Component {
 
           <div className="nav-item dropdown">      
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                User authentication
+                Login/ Signup
               </a>
               
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">

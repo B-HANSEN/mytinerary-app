@@ -14,7 +14,7 @@ import Headers from './components/Headers'
 // import Views
 import Home from './Views/Home'
 import CreateAccount from './Views/CreateAccount'
-import Login from './Views/Login'
+// import Login from './Views/Login'
 import MYtinerary from './Views/MYtinerary'
 import Cities from './Views/Cities'
 
@@ -34,7 +34,7 @@ class App extends Component {
             <Headers />
               <Route exact path='/' component={Home} />
               <Route path='/createaccount' component={CreateAccount} />
-              <Route path='/login' component={Login} />
+              {/* <Route path='/login' component={Login} /> */}
               <Route path='/cities' component={Cities} />  
               <Route path='/itineraries/:cityId' component={MYtinerary} />
           </BrowserRouter>

@@ -7,6 +7,7 @@ import logo from '../files/images/MYtineraryLogo.png';
 import arrow from '../files/images/circled-right-2.png';
 import './views.css';
 
+
 class Home extends React.Component {
     state = {
       redirectLogin: false,
@@ -71,9 +72,7 @@ class Home extends React.Component {
                   </button>
             </div>
           
-            {/* home to disable to the home button on the home page? */}
-            <div className="home-at-home">
-            {/* <BackHome /> */}
+            <div>
             <Footer />
             </div>
 

@@ -12,6 +12,7 @@ import Footer from './../components/Footer'
 import './views.css';
 
 
+
 class Cities extends Component { 
   state = {
     cities: [],
@@ -59,6 +60,7 @@ class Cities extends Component {
     ) 
 
     return (
+
       <div className="cities">
         <h4>Cities</h4>
         
@@ -66,9 +68,9 @@ class Cities extends Component {
           <Search handleInput={ this.handleInput }/>
           
         {/* list of cities */}
-          <a className="new"> 
+          <div className="cityList"> 
             { mappedCities }
-          </a>
+          </div>
 
         {/* navigation buttons */}
           <div className="navbuttons">

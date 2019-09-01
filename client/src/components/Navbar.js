@@ -20,7 +20,7 @@ export default function Navbar() {
   return (
     <div>
       <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        Open Menu
+        Menu
       </Button>
       <Menu
         id="simple-menu"
@@ -39,10 +39,10 @@ export default function Navbar() {
         </MenuItem>
         </Link>
 
-        <Link to="/login">
+        {/* <Link to="/login">
         <MenuItem onClick={handleClose}>Login
         </MenuItem>
-        </Link>
+        </Link> */}
 
         <Link to="/cities">
         <MenuItem onClick={handleClose}>Cities

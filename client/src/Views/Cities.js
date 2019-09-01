@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { VerticleButton as ScrollUpButton } from "react-scroll-up-button";
 
-
 import { getCities } from '../actions/citiesActions';
 import Search from '../components/Search';
 import Footer from './../components/Footer'

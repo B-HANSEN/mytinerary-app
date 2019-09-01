@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import {
-  // Collapse,
-  // Navbar,
-  // NavbarToggler,
-  // Nav,
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
   NavItem,
-  // NavLink,
-  // Container
+  NavLink,
+  DropdownItem
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,20 +15,23 @@ import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';
 
+import './components.css';
+
 class AppNavbar extends Component {
   state = {
-    isOpen: false
+    collapsed: true
   };
 
   static propTypes = {
     auth: PropTypes.object.isRequired
   };
 
-  toggle = () => {
+  toggleNavbar = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      collapsed: !this.state.collapsed
     });
-  };
+  }
+
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -57,34 +61,33 @@ class AppNavbar extends Component {
     );
 
     return (
-      <div>
+      <div >
 
-          <div className="nav-item dropdown">      
-              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Login/ Signup
-              </a>
+          <Navbar color="light" light>
               
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" >{isAuthenticated ? authLinks : guestLinks} </a>
-              </div>
-          </div>
+              <NavbarBrand href="/" className="mr-auto">   MYtinerary travel app
+                     </NavbarBrand>
 
-
-
-          {/* <div>
-              <Navbar color='dark' dark expand='sm' className='mb-5'>
-                <Container>
-                  <NavbarToggler onClick={this.toggle} />
-                  <Collapse isOpen={this.state.isOpen} navbar>
-                    <Nav className='ml-auto' navbar>
-                      {isAuthenticated ? authLinks : guestLinks}
+           
+              <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+                 
+                  <Collapse isOpen={!this.state.collapsed} navbar>
+              
+              <DropdownItem divider /> 
+                    <NavLink className="dropdownItem" href="/">Home</NavLink>
+          
+              <DropdownItem divider />
+                    <Nav navbar>
+                      <NavItem >{isAuthenticated ? authLinks : guestLinks}</NavItem>
                     </Nav>
-                  </Collapse>
-                </Container>
-              </Navbar>
-          </div>  
-        */}
-       
+              <DropdownItem divider />
+        
+              <NavLink className="dropdownItem" href="/cities">Cities</NavLink>
+          
+              </Collapse>
+          </Navbar>
+
+
       </div>
     );
   }

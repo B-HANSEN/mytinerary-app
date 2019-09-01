@@ -12,7 +12,7 @@ function Activities(props) {
     return null;
   }
   return (
-    <div className="activityslider">
+    <div className="activitySlider">
      <ActivitySlider  itinID={ props.props.itin._id } />
     </div>
   );

@@ -53,15 +53,6 @@ ul {
     border-radius: 50%;
 }
 
-button {
-    height: 40px;
-    width: 80%;
-    margin: 0px 10px;
-    font-size: 15px;
-    color: blue;
-    text-decoration: underline;
-}
-
 .view_close {
     background-color: lightgrey;
     color: rgba(0, 0, 0, 0.54);
@@ -70,17 +61,18 @@ button {
     width: 100%;
 }
 
-.activities {
-    margin: 10px 10px;
+.activitySlider {
+    margin: 10px 10px 30px 10px;
     display: flex;
     justify-content: center;
 }
+
 
 .material-icons {
     font-family: 'Material Icons';
     font-weight: bolder;
     color: black;
-    font-size: 50px;
+    font-size: 40px;
     display: inline-block;
 }
 

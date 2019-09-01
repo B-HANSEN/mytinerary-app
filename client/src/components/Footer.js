@@ -24,7 +24,6 @@ class Footer extends Component {
           <button className="footer" onClick={ this.setRedirect }>
               <img src={ home } alt="titlePic" />
               { this.renderRedirect() }
-              {/* moved the renderRedirect into the button and removed the root-div */}
           </button>
         </div>
       )

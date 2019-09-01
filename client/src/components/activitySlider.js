@@ -4,9 +4,7 @@ import Slider from "react-slick";
 
 import { getActivities } from '../actions/itActions';
 import PropTypes from 'prop-types';
-
 import './components.css';
-
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -29,7 +27,6 @@ function SamplePrevArrow(props) {
     />
   );
 }
-
 
 class ActivitySlider extends React.Component { 
   state = {

@@ -10,8 +10,6 @@ import Footer from './../components/Footer'
 
 import './views.css';
 
-
-
 class Cities extends Component { 
   state = {
     cities: [],

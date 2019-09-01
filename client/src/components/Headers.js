@@ -16,14 +16,19 @@ const Headers = () => (
                     <div>
                       <i id="profile" className="material-icons">
                         account_circle
+           
                       </i>
+ 
                     </div>
+                    <AppNavbar /> 
                   
-
-                  <AppNavbar />
+               
+             
 
                   <Navbar />
-                  </div>       
+                 
+                  </div>   
+           
               </div>
               }> 
       </StickyHeader>

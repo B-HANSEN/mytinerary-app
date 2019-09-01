@@ -1,5 +1,28 @@
 /* VIEWS'S CSS */
 
+/* LANDING COMPONENT'S CSS */
+.logo {
+  margin-top: 30px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.logo > p {
+  text-align: center;
+}
+
+.companyLogo {
+  width: 80%;
+}
+
+.arrow {
+  height: 80px;
+  margin-bottom: 70px;
+}
+
+
 /* main */
 .title {
     margin-bottom: 40px;
@@ -15,12 +38,15 @@
 }
 
 .otherCity {
-  font-size: 15x;
+  font-size: 17x;
   color: #007bff;
+  text-align: center;
+  width: 100%
 }
 
 .title, .logo, .container, .cities {
   padding-top: 40px; 
+  margin-top: 30px;
 }
 
 a {
@@ -38,6 +64,13 @@ a {
   margin: 15px 20px;
   padding: 10px;
   background-color: lightgoldenrodyellow; 
+}
+
+.bold {
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
 h4 {

@@ -2,10 +2,3 @@
     "mongoURI": "mongodb+srv://Bjoern3:test123@cluster0-o5yth.mongodb.net/mytinerary-app?retryWrites=true&w=majority",
     "jwtSecret": "travel-app_myJwtSecret"
 }
-
-// {
-//     "mongoURI": "mongodb+srv://Bjoern3:test123@cluster0-o5yth.mongodb.net/test?retryWrites=true&w=majority",
-//     "jwtSecret": "travel-app_myJwtSecret"
-// }
-
-

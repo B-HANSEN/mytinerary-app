@@ -3,9 +3,9 @@ import { Redirect } from 'react-router-dom'
 
 // import components & styles
 import Footer from './../components/Footer'
-import './views.css';
 import logo from '../files/images/MYtineraryLogo.png';
 import arrow from '../files/images/circled-right-2.png';
+import './views.css';
 
 class Home extends React.Component {
     state = {

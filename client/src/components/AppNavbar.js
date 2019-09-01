@@ -3,7 +3,6 @@ import {
   Collapse,
   Navbar,
   NavbarToggler,
-  NavbarBrand,
   Nav,
   NavItem,
   // NavLink,
@@ -35,41 +34,57 @@ class AppNavbar extends Component {
 
     const authLinks = (
       <Fragment>
-        <NavItem>
-          <span className='navbar-text mr-3'>
-            <strong>{user ? `Welcome ${user.name}` : ''}</strong>
-          </span>
-        </NavItem>
-        <NavItem>
-          <Logout />
-        </NavItem>
+          <NavItem>
+            <span className='navbar-text mr-3'>
+              <strong>{user ? `Welcome ${user.name}` : ''}</strong>
+            </span>
+          </NavItem>
+          <NavItem>
+            <Logout />
+          </NavItem>
       </Fragment>
     );
 
     const guestLinks = (
       <Fragment>
-        <NavItem>
-          <RegisterModal />
-        </NavItem>
-        <NavItem>
-          <LoginModal />
-        </NavItem>
+          <NavItem>
+            <RegisterModal />
+          </NavItem>
+          <NavItem>
+            <LoginModal />
+          </NavItem>
       </Fragment>
     );
 
     return (
       <div>
-        <Navbar color='dark' dark expand='sm' className='mb-5'>
-          <Container>
-            <NavbarBrand href='/'>ShoppingList</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className='ml-auto' navbar>
-                {isAuthenticated ? authLinks : guestLinks}
-              </Nav>
-            </Collapse>
-          </Container>
-        </Navbar>
+
+          <div className="nav-item dropdown">      
+              <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                User authentication
+              </a>
+              
+              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a className="dropdown-item" >{isAuthenticated ? authLinks : guestLinks} </a>
+              </div>
+          </div>
+
+
+
+          {/* <div>
+              <Navbar color='dark' dark expand='sm' className='mb-5'>
+                <Container>
+                  <NavbarToggler onClick={this.toggle} />
+                  <Collapse isOpen={this.state.isOpen} navbar>
+                    <Nav className='ml-auto' navbar>
+                      {isAuthenticated ? authLinks : guestLinks}
+                    </Nav>
+                  </Collapse>
+                </Container>
+              </Navbar>
+          </div>  
+        */}
+       
       </div>
     );
   }

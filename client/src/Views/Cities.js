@@ -71,11 +71,10 @@ class Cities extends Component {
           </a>
 
         {/* navigation buttons */}
-          <div>
-            {/* <BackHome /> */}
+          <div className="navbuttons">
+            <button className="dummyButton"></button>
             <Footer />
-            <ScrollUpButton AnimationDuration={1000}>
-              </ScrollUpButton> 
+            <ScrollUpButton AnimationDuration={1000} /> 
           </div>
 
       </div>

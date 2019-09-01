@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 
-// import icon
+// import icon & styles
 import home from '../files/images/homeIcon.png';
+import './components.css';
 
 class Footer extends Component { 
   state = { redirect: false }
@@ -19,11 +20,13 @@ class Footer extends Component {
   
   render() {
       return (
-          <button onClick={ this.setRedirect }>
-              <img className="home" src={ home } alt="titlePic" />
+        <div className="footerContainer">
+          <button className="footer" onClick={ this.setRedirect }>
+              <img src={ home } alt="titlePic" />
               { this.renderRedirect() }
               {/* moved the renderRedirect into the button and removed the root-div */}
           </button>
+        </div>
       )
   }
 }

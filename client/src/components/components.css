@@ -83,13 +83,17 @@ body {
 
 /* HEADER COMPONENT'S CSS */
 .headers {
-  /* display: flex;
-  justify-content: space-between; */
   height: 60px;
   z-index: 10;
   background-color: #f5f5f5;
   align-items: center;
   box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2)
+}
+
+.socialMedia {
+  margin: 20px 0px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* search-field */

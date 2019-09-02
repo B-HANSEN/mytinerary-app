@@ -24,11 +24,7 @@ router.post('/', (req, res) => {
     .then(user => {
       if(user) return res.status(400).json({ msg: 'User already exists' });
 
-      const newUser = new User({
-        name,
-        email,
-        password
-      });
+      const newUser = new User({ name, email, password });
 
       // Create salt & hash (salt: create a hash from a plain text password)
       // default is 10, number of rounds to use (the higher, the more secure but longer processing)
@@ -60,6 +56,66 @@ router.post('/', (req, res) => {
         })
       })
     })
+});
+
+
+// @route   POST api/users (for Google)
+// @desc    Register new user
+// @access  Public
+router.post('/social', (req, res) => {
+  console.log("login to google");
+  
+    const { name, email } = req.body;
+
+    // Simple validation
+    if(!name || !email) {
+      return res.status(400).json({ msg: 'Please enter all fields' });
+    }
+
+    // Check for existing user, from mongoose
+    User.findOne({ email })
+      .then(user => {
+        if(user) return (
+          jwt.sign(
+            { id: user.id },
+            config.get('jwtSecret'),
+            { expiresIn: 3600 },
+            (err, token) => {
+              if(err) throw err;
+              res.json({
+                token,
+                user: {
+                  id: user.id,
+                  name: user.name,
+                  email: user.email
+                }
+              });
+            }
+          )
+        )
+
+        const newUser = new User({ name, email });
+
+        newUser.save()
+            .then(user => {
+                jwt.sign(
+                { id: user.id },
+                config.get('jwtSecret'),
+                { expiresIn: 3600 },
+                (err, token) => {
+                  if(err) throw err;
+                  res.json({
+                    token,
+                    user: {
+                      id: user.id,
+                      name: user.name,
+                      email: user.email
+                    }
+                  });
+                }
+              )
+            });
+      });
 });
 
 module.exports = router;

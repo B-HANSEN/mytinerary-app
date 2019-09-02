@@ -15,10 +15,10 @@ import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 import Logout from './auth/Logout';   
 
-
 import GoogleLogin from 'react-google-login';
+import GoogleLogout from 'react-google-login';
 
-
+import { loginSocial } from './../actions/authActions';
 import './components.css';
 
 class AppNavbar extends Component {
@@ -36,11 +36,22 @@ class AppNavbar extends Component {
     });
   }
 
+  responseGoogleSuccess = (response) => {
+    console.log(response);
+    this.props.loginSocial(
+      { email: response.profileObj.email, name: response.profileObj.name }     
+    );
+  }
+
+  responseGoogleFail = (response) => {
+    console.log(response);
+  }
+
+  logOut = (response) => {
+    console.log("logOut",response);
+  }
 
   render() {
-    const responseGoogle = (response) => {
-      console.log(response);
-    }
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
@@ -55,7 +66,6 @@ class AppNavbar extends Component {
           </NavItem>
       </Fragment>
     );
-
     const guestLinks = (
       <Fragment>
           <NavItem>
@@ -68,66 +78,51 @@ class AppNavbar extends Component {
     );
 
     function onSignIn(googleUser) {
-      // retrieve profile information for a user:
-      var profile = googleUser.getBasicProfile();
-      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-      console.log('Name: ' + profile.getName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-     
-      // get the user's ID token:
-      var id_token = googleUser.getAuthResponse().id_token;
-      
-      // send the ID token to your server with an HTTPS POST request
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', 'https://yourbackend.example.com/tokensignin');   // whats the backend URL??
-      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-      xhr.onload = function() {
-        console.log('Signed in as: ' + xhr.responseText);
-      };
-      xhr.send('idtoken=' + id_token);
+     console.log(googleUser);
     }
-
-   
-
 
     return (
       <div >
 
           <Navbar color="light" light>
-              
               <NavbarBrand href="/" className="mr-auto">   MYtinerary travel app
                      </NavbarBrand>
 
-           
               <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                  
-                  <Collapse isOpen={!this.state.collapsed} navbar>
+              <Collapse isOpen={!this.state.collapsed} navbar>
+                  
+                  <DropdownItem divider /> 
+                        <NavLink className="dropdownItem" href="/">Home</NavLink>
               
-              <DropdownItem divider /> 
-                    <NavLink className="dropdownItem" href="/">Home</NavLink>
-          
-              <DropdownItem divider />
-                    <Nav navbar>
-                      <NavItem >{isAuthenticated ? authLinks : guestLinks}</NavItem>
-                    </Nav>
-              <DropdownItem divider />
-        
-              <NavLink className="dropdownItem" href="/cities">Cities</NavLink>
+                  <DropdownItem divider />
+                        <Nav navbar>
+                          <NavItem >{isAuthenticated ? authLinks : guestLinks}</NavItem>
+                        </Nav>
+                  <DropdownItem divider />
+            
+                  <div className="socialMedia">
+                    <GoogleLogin
+                      clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
+                      buttonText="Sign-in"
+                      onSuccess={this.responseGoogleSuccess}
+                      onFailure={this.responseGoogleFail}
+                      cookiePolicy={'single_host_origin'}
+                    />
 
+                    <GoogleLogout
+                      clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
+                      buttonText="Logout"
+                      onSuccess={this.logOut}
+                    />
+                  </div>
 
-        <GoogleLogin
-                    clientId="207436970178-lvb7du75m56c796hqcjgmn1bs1natjmb.apps.googleusercontent.com"
-                    buttonText="Sign-in"
-                    onSuccess={this.responseGoogle}
-                    onFailure={this.responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-        />
-   
+                  <DropdownItem divider />
+                  <NavLink className="dropdownItem" href="/cities">Cities</NavLink>
+      
               </Collapse>
           </Navbar>
-
-
+          
       </div>
     );
   }
@@ -139,5 +134,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  null
+  {loginSocial}
 )(AppNavbar);

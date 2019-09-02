@@ -5,6 +5,11 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+
+    <!-- Specify client ID you created for your app in Google Developers Console with the google-signin-client_id meta element. -->
+    <meta name="google-signin-client_id" content="207436970178-lvb7du75m56c796hqcjgmn1bs1natjmb.apps.googleusercontent.com">
+
+
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -42,6 +47,8 @@
       crossorigin="anonymous"
     />
 
+    <!-- include the Google Platform Library on your web pages that integrate Google Sign-In -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <title>MYtinerary web-app</title>
   </head>

@@ -11,10 +11,13 @@ import {
   NavLink,
   Alert
 } from 'reactstrap';
+
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+
+
 
 class LoginModal extends Component {
   state = {
@@ -77,6 +80,8 @@ class LoginModal extends Component {
   };
 
   render() {
+
+
     return (
       <div>
         <NavLink onClick={this.toggle} href='#'>
@@ -115,8 +120,9 @@ class LoginModal extends Component {
                 </Button>
               </FormGroup>
             </Form>
-          </ModalBody>
+          </ModalBody>  
         </Modal>
+        
       </div>
     );
   }

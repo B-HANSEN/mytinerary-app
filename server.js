@@ -1,30 +1,22 @@
 // require("dotenv").config();
 const config = require('config');
 
+// core Node.js module for building purpose
+const path = require('path');
 
 // BASE SETUP
 const express = require('express');
 // const bodyParser = require('body-parser');  // latest version of express includes the body-parser
-const mongoose = require('mongoose'); 
-const app = express();
-
-
-// core Node.js module for building purpose
-const path = require('path');
-
-// to make the server know to look for this route; import it from routes
-// const cities = require ('./routes/api/cities')
-// const itineraries = require ('./routes/api/itineraries')
-// const activities = require ('./routes/api/activities')
-// const users = require ('./routes/api/users')
-
-// body parser middle ware
-app.use(express.json());
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
+const mongoose = require('mongoose'); 
+const app = express();
+
+// body parser middle ware
+app.use(express.json());
+
 // DB config
-// const db = require('./config/keys').mongoURI;
 // const db = process.env.DATABASE // replace with config.get 
 const db = config.get('mongoURI');
 

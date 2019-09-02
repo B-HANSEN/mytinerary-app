@@ -19,6 +19,7 @@ import GoogleLogin from 'react-google-login';
 import GoogleLogout from 'react-google-login';
 
 import { loginSocial } from './../actions/authActions';
+import { logoutSocial } from './../actions/authActions';
 import './components.css';
 
 class AppNavbar extends Component {
@@ -49,6 +50,9 @@ class AppNavbar extends Component {
 
   logOut = (response) => {
     console.log("logOut",response);
+    this.props.logoutSocial(
+      { email: response.profileObj.email, name: response.profileObj.name }     
+    );
   }
 
   render() {
@@ -122,7 +126,7 @@ class AppNavbar extends Component {
       
               </Collapse>
           </Navbar>
-          
+
       </div>
     );
   }
@@ -134,5 +138,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {loginSocial}
+  { loginSocial, logoutSocial }
 )(AppNavbar);

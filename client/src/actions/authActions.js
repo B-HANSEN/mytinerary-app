@@ -118,12 +118,11 @@ export const logout = () => {
   if (token) {
     config.headers['x-auth-token'] = token;
   }
-
   return config;
 };
 
 
-// Social media login
+// ********** Social media login **********
 // Login User
 export const loginSocial = ({ email, name }) => dispatch => {
   // Headers
@@ -152,4 +151,13 @@ export const loginSocial = ({ email, name }) => dispatch => {
         type: LOGIN_FAIL
       });
     });
+};
+
+// socialMedia log-out
+// Logout User; no need to dispatch... only send action.type of LOGOUT_SUCCESS to reducer
+// that will clear out token and set back the state, no action on server-side
+export const logoutSocial = () => {
+  return {
+    type: LOGOUT_SUCCESS
+  };
 };

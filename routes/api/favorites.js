@@ -3,7 +3,7 @@ const router = express.Router();
 
 // User Model
 const User = require('../../models/User');
-
+const Itinerary = require("../../models/Itinerary")
 
 // @route   POST api/favorites for 1 user (by id)
 // @desc    Add favs
@@ -11,7 +11,7 @@ const User = require('../../models/User');
 router.put('/users/:id', function(req, res){
     User.updateOne({ _id: req.params.id }, { $push: { favorites: [req.body.itinId] }})
       .then(function() {
-       res.send({ msg: "push done" })
+       res.send({ msg:"push done" })
       });
   });
 
@@ -25,7 +25,7 @@ router.delete('/users/:id/:favId', function(req, res) {
         { $pull: { favorites: req.params.favId }}
         )
       .then(function() {
-       res.send({ msg: "delete done" })
+       res.send({ msg:"delete done" })
       });
   });
 
@@ -36,11 +36,12 @@ router.delete('/users/:id/:favId', function(req, res) {
 // @access  Public
 router.get('/users/:id/', (req,res) => {
     User.findById(req.params.id)
-        .then(users => User.find(users.favorites)
-        .then(itineraries => res.json(itineraries),
-        res.send({ msg: "favs retrieved" }))
-        
-        )
+        .then(user => {
+            Itinerary.find(
+                { _id: { $in: user.favorites } }
+                )
+            .then(itineraries => res.json(itineraries))
+        });
 });
-
+ 
 module.exports = router;

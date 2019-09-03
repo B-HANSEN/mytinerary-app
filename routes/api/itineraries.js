@@ -17,7 +17,8 @@ router.get('/:singleCityId', (req,res) => {
     Itinerary.find({cityId: req.params.singleCityId})
     .then(itineraries => {
         console.log(itineraries)
-        res.json(itineraries)})
+        res.json(itineraries)
+    })
 });
 
 // ******************** HTTP: POST ********************

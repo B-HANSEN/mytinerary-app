@@ -17,7 +17,7 @@ class Favorites extends React.Component {
 
       componentDidMount() {
         console.log(this.props);
-          this.props.getItineraries(this.props.match.params.user._id) // get the itineraries by userID
+          this.props.getItineraries(this.props.match.params.userId) // get the itineraries by userID
       }
 
   render () {

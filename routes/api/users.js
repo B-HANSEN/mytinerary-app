@@ -7,6 +7,15 @@ const jwt = require('jsonwebtoken');
 // User Model
 const User = require('../../models/User');
 
+
+// ******************** HTTP: GET ********************
+// fetch all users from db: go into model, find --> res.json
+router.get('/', (req,res) => {
+  User.find()
+  .then(users => res.json(users))
+});
+
+// ******************** HTTP: POST ********************
 // @route   POST api/users
 // @desc    Register new user
 // @access  Public

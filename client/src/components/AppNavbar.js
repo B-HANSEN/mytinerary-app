@@ -10,13 +10,14 @@ import {
   DropdownItem
 } from 'reactstrap';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import RegisterModal from './auth/RegisterModal';
-import LoginModal from './auth/LoginModal';
-import Logout from './auth/Logout';   
-
 import GoogleLogin from 'react-google-login';
 import GoogleLogout from 'react-google-login';
+import PropTypes from 'prop-types';
+
+import RegisterModal from './auth/RegisterModal';
+import LoginModal from './auth/LoginModal';
+// import Logout from './auth/Logout';
+import Favorites from './../Views/Favorites';
 
 import { loginSocial } from './../actions/authActions';
 import { logoutSocial } from './../actions/authActions';
@@ -49,7 +50,7 @@ class AppNavbar extends Component {
   }
 
   logOut = (response) => {
-    console.log("logOut",response);
+    console.log("logOut", response);
     this.props.logoutSocial(
       { email: response.profileObj.email, name: response.profileObj.name }     
     );
@@ -65,8 +66,11 @@ class AppNavbar extends Component {
               <strong>{user ? `Welcome ${user.name}` : ''}</strong>
             </span>
           </NavItem>
-          <NavItem>
+          {/* <NavItem>
             <Logout />
+          </NavItem> */}
+          <NavItem>
+            <Favorites />
           </NavItem>
       </Fragment>
     );
@@ -94,37 +98,40 @@ class AppNavbar extends Component {
 
               <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
                  
-              <Collapse isOpen={!this.state.collapsed} navbar>
-                  
-                  <DropdownItem divider /> 
-                        <NavLink className="dropdownItem" href="/">Home</NavLink>
+                <Collapse isOpen={!this.state.collapsed} navbar>
+                    
+                    <DropdownItem divider /> 
+                          <NavLink className="dropdownItem" href="/">Home</NavLink>
+                
+                    <DropdownItem divider />
+                          <Nav navbar>
+                            <NavItem >{isAuthenticated ? authLinks : guestLinks}</NavItem>
+                          </Nav>
+                    <DropdownItem divider />
               
-                  <DropdownItem divider />
-                        <Nav navbar>
-                          <NavItem >{isAuthenticated ? authLinks : guestLinks}</NavItem>
-                        </Nav>
-                  <DropdownItem divider />
-            
-                  <div className="socialMedia">
-                    <GoogleLogin
-                      clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
-                      buttonText="Sign-in"
-                      onSuccess={this.responseGoogleSuccess}
-                      onFailure={this.responseGoogleFail}
-                      cookiePolicy={'single_host_origin'}
-                    />
+                    <div className="socialMedia">
+                      <GoogleLogin
+                        clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
+                        buttonText="Sign-in"
+                        onSuccess={this.responseGoogleSuccess}
+                        onFailure={this.responseGoogleFail}
+                        cookiePolicy={'single_host_origin'}
+                      />
 
-                    <GoogleLogout
-                      clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
-                      buttonText="Logout"
-                      onSuccess={this.logOut}
-                    />
-                  </div>
+                      <GoogleLogout
+                        icon={false}
+                        clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
+                        buttonText="Logout"
+                        onSuccess={this.logOut}
+                      />
+                    </div>
 
-                  <DropdownItem divider />
-                  <NavLink className="dropdownItem" href="/cities">Cities</NavLink>
-      
-              </Collapse>
+                    <DropdownItem divider />
+                    <NavLink className="dropdownItem" href="/cities">Cities</NavLink>
+                    <NavLink className="dropdownItem" href="/favorites">{isAuthenticated ? authLinks : null}
+                      </NavLink>
+        
+                </Collapse>
           </Navbar>
 
       </div>
@@ -136,7 +143,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(
-  mapStateToProps,
-  { loginSocial, logoutSocial }
-)(AppNavbar);
+export default connect(mapStateToProps, { loginSocial, logoutSocial }) (AppNavbar);

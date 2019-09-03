@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-
 // User Model
 const User = require('../../models/User');
 
@@ -57,7 +56,6 @@ router.post('/', (req, res) => {
       })
     })
 });
-
 
 // @route   POST api/users (for Google)
 // @desc    Register new user
@@ -118,4 +116,17 @@ router.post('/social', (req, res) => {
       });
 });
 
-module.exports = router;
+
+  // @route   DELETE api/users
+  // @desc    Delete user
+  // @access  Public
+  // router.put('/users/:id', function(req,res,next){
+  //   User.findByIdAndRemove({ _id: req.params.id })
+  //     .then(function(user) {
+  //       res.send(user);
+  //     });  
+  // });
+
+  
+
+module.exports = router

@@ -2,7 +2,7 @@ import React from 'react';
 import ActivitySlider from './activitySlider.js';
 import { connect } from 'react-redux';
 import { getItineraries } from '../actions/itActions';
-
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import './singleItin.css';
 import PropTypes from 'prop-types';
 
@@ -42,6 +42,7 @@ class SingleItin extends React.Component {
 
                     <div className="overview">   
                         <h3 className="titleIt">{this.props.itin.title}</h3>
+                        <FavoriteBorderIcon />
                         <div className="details">
                           
                           <ul>

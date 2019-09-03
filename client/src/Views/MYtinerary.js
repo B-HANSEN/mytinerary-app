@@ -75,7 +75,6 @@ class MYtinerary extends React.Component {
   }
 }
 
-
 MYtinerary.propTypes = {
   getItineraries: PropTypes.func.isRequired,
   getCityById: PropTypes.func.isRequired,

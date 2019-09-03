@@ -68,7 +68,6 @@ class RegisterModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-
     const { name, email, password } = this.state;
 
     // Create user object
@@ -85,8 +84,7 @@ class RegisterModal extends Component {
   render() {
     return (
       <div>
-        <NavLink onClick={this.toggle} href='#'>
-          Register
+        <NavLink onClick={this.toggle} href='#'>Register
         </NavLink>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>

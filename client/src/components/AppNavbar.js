@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { Redirect} from 'react-router-dom';
+import { connect } from 'react-redux';
 import {
   Collapse,
   Navbar,
@@ -9,7 +11,6 @@ import {
   NavLink,
   DropdownItem
 } from 'reactstrap';
-import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
 import GoogleLogout from 'react-google-login';
 import PropTypes from 'prop-types';
@@ -17,7 +18,7 @@ import PropTypes from 'prop-types';
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 // import Logout from './auth/Logout';
-import Favorites from './../Views/Favorites';
+// import Favorites from './../Views/Favorites';
 
 import { loginSocial } from './../actions/authActions';
 import { logoutSocial } from './../actions/authActions';
@@ -25,7 +26,8 @@ import './components.css';
 
 class AppNavbar extends Component {
   state = {
-    collapsed: true
+    collapsed: true,
+    redirect: false 
   };
 
   static propTypes = {
@@ -56,6 +58,14 @@ class AppNavbar extends Component {
     );
   }
 
+// link to single users's favorites page
+  setRedirect = () => { this.setState({ redirect: true })
+  }
+  renderRedirect = (id) => { console.log(this.props)
+      this.props.location.push('/favorites/' + id)
+      return <Redirect to={'/favorites/' + id} />
+  }
+
   render() {
     const { isAuthenticated, user } = this.props.auth;
 
@@ -66,14 +76,18 @@ class AppNavbar extends Component {
               <strong>{user ? `Welcome ${user.name}` : ''}</strong>
             </span>
           </NavItem>
-          {/* <NavItem>
-            <Logout />
-          </NavItem> */}
-          <NavItem>
-            <Favorites />
-          </NavItem>
+
+          {/* concept from Cities-View does not work here: */}
+          {/* <NavLink to={ "/favorites/" + user._id }>Favorites
+              </NavLink> */}
+
+             <NavLink href= "/favorites/ + user._id">Favorites
+               </NavLink>
+
+       
       </Fragment>
     );
+
     const guestLinks = (
       <Fragment>
           <NavItem>
@@ -85,9 +99,9 @@ class AppNavbar extends Component {
       </Fragment>
     );
 
-    function onSignIn(googleUser) {
-     console.log(googleUser);
-    }
+    // function onSignIn(googleUser) {
+    //   console.log(googleUser);
+    //  }
 
     return (
       <div >
@@ -128,8 +142,7 @@ class AppNavbar extends Component {
 
                     <DropdownItem divider />
                     <NavLink className="dropdownItem" href="/cities">Cities</NavLink>
-                    <NavLink className="dropdownItem" href="/favorites">{isAuthenticated ? authLinks : null}
-                      </NavLink>
+                    
         
                 </Collapse>
           </Navbar>

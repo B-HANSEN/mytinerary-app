@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Footer from './../components/Footer';
 import SingleItin from '../components/SingleItin'
 
-import { getItineraries } from '../actions/itActions';
+import { getFavorites } from '../actions/favActions';
+import { getUserById } from '../actions/authActions';
 
 import PropTypes from 'prop-types';
 import './views.css';
@@ -16,37 +17,38 @@ class Favorites extends React.Component {
       }
 
       componentDidMount() {
-        console.log(this.props);
-          this.props.getItineraries(this.props.match.params.userId) // get the itineraries by userID
+        this.props.getUserById(this.props.match.params.userId) // get user for title
+        this.props.getFavorites(this.props.match.params.userId) // get the itineraries by userID to show favorites
       }
 
   render () {
     return (
       <div>
         <div className="title">
-            <h3>{ this.user }'s Dashboard</h3>
+            {/* <h3>{ this.props.user.user.name }'s Dashboard</h3> */}
+            <h3>User's Dashboard</h3>
              
-            {this.props.itinerary.itineraries.map((itinerary, index) => 
-                <SingleItin  key={index} itin={ itinerary } />
+            {this.props.favorite.favorites.map((favorite, index) => 
+                <SingleItin  key={index} fav={ favorite } />
             )}
         </div>
       
         <Footer />
-
       </div>
     )
   }
 }
 
 Favorites.propTypes = {
-  getItineraries: PropTypes.func.isRequired,
-  itinerary: PropTypes.object.isRequired,
-  favorite: PropTypes.object.isRequired
+    getUserById: PropTypes.func.isRequired,
+    getFavorites: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    favorite: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
-  itinerary: state.itinerary,
-  favorite: state.favorite
+    favorite: state.favorite,
+    user: state.user  
 })
 
-export default connect (mapStateToProps, { getItineraries }) (Favorites)
+export default connect (mapStateToProps, { getFavorites, getUserById }) (Favorites)

@@ -9,6 +9,11 @@ export const ACTIVITIES_LOADING = 'ACTIVITIES_LOADING';
 
 export const SINGLE_CITY = 'SINGLE_CITY';
 
+export const SINGLE_USER = 'SINGLE_USER';
+
+export const GET_FAVORITES = 'GET_FAVORITES';
+export const FAVORITES_LOADING = 'FAVORITES_LOADING';
+
 
 
 export const USER_LOADING = "USER_LOADING";

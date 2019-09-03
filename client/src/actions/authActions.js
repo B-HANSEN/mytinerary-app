@@ -9,7 +9,8 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  SINGLE_USER
 } from './types';
 
 // Check token & load user
@@ -137,20 +138,20 @@ export const loginSocial = ({ email, name }) => dispatch => {
 
   axios
     .post('/api/users/social', body, config)
-    .then(res =>
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      dispatch(
-        returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
-      );
-      dispatch({
-        type: LOGIN_FAIL
+      .then(res =>
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.data
+        })
+      )
+      .catch(err => {
+        dispatch(
+          returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
+        );
+        dispatch({
+          type: LOGIN_FAIL
+        });
       });
-    });
 };
 
 // socialMedia log-out
@@ -161,3 +162,34 @@ export const logoutSocial = () => {
     type: LOGOUT_SUCCESS
   };
 };
+
+
+
+// export const getUserById = (id) => dispatch => {
+//   // dispatch(setUserLoading());
+//     axios.get("/api/users/" + id)
+//     .then(res => dispatch({
+//             type: SINGLE_USER,
+//             payload: res.data
+//         })
+//     )
+// };
+
+export const getUserById = userId => dispatch => {
+  dispatch(setUserLoading());
+  axios.get("/api/users/" + userId)
+      .then(res =>
+        dispatch({
+          type: SINGLE_USER,
+          payload: res.data
+      })
+  );
+};
+
+
+// load user by ID for favorites
+export const setUserLoading = () => {
+  return {
+      type: USER_LOADING
+  }
+}

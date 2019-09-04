@@ -46,7 +46,7 @@ class MYtinerary extends React.Component {
             
             <div>
               {this.props.itinerary.itineraries.map((itinerary, index) => 
-                <SingleItin  key={index} itin={ itinerary } />
+                <SingleItin  key={ index } itin={ itinerary } />
               )}
 
               {/* <ScrollUpButton ShowAtPosition={50} ToggledStyle={{right: 50}} AnimationDuration={1000} >

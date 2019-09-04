@@ -79,7 +79,7 @@ class AppNavbar extends Component {
               </NavItem>
       
               <NavItem> 
-              {user ? <Link to={'/favorites/' + user._id}>Fav3 </Link> : ""}
+              { user ? <Link to={ '/favorites/' + user._id }>Favorites</Link> : "" }
               </NavItem>
           </Fragment>
       </div>

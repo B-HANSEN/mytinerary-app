@@ -34,7 +34,7 @@ router.delete('/users/:id/:favId', function(req, res) {
 // @route   GET api/favorites 1 favorite (by favId) for 1 user (by id)
 // @desc    Delete favs
 // @access  Public
-router.get('/users/:id/', (req,res) => {
+router.get('/users/:id', (req,res) => {
     User.findById(req.params.id)
         .then(user => {
             Itinerary.find(

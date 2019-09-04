@@ -8,7 +8,7 @@ import axios from "axios";
 // retrieve favorites for specific user from database
 export const getFavorites = userId => dispatch => {
   // dispatch(setFavoritesLoading());
-  axios.get("/api/favorites/" + userId)
+  axios.get("/api/favorites/users/" + userId)
     .then(res =>
       dispatch({
         type: GET_FAVORITES,

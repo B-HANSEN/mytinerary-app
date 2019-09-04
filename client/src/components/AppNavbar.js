@@ -27,7 +27,8 @@ import './components.css';
 class AppNavbar extends Component {
   state = {
     collapsed: true,
-    redirect: false 
+    redirect: false,
+  
   };
 
   static propTypes = {
@@ -51,7 +52,15 @@ class AppNavbar extends Component {
     console.log(response);
   }
 
+test = () => {
+  console.log("Test",this.props);
+  
+}
+
   logOut = (response) => {
+    console.log(this.props);
+    
+
     console.log("logOut", response);
     this.props.logoutSocial(
       { email: response.profileObj.email, name: response.profileObj.name }     
@@ -61,20 +70,23 @@ class AppNavbar extends Component {
 // link to single users's favorites page
   setRedirect = () => { this.setState({ redirect: true })
   }
-  renderRedirect = (id) => { console.log(this.props)
-      this.props.location.push('/favorites/' + id)
-      return <Redirect to={'/favorites/' + id} />
+  renderRedirect = () => {
+    
+      return <Redirect to='/' />
+    
   }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    console.log(this.state      );
+
 
     const authLinks = (
       <div>
           <Fragment>
               <NavItem>
                 <span className='navbar-text mr-3'>
-                  <strong>{user ? `Welcome ${user.name}` : ''}</strong>
+                  <strong>{user ? `Welcome ${user .name}` : ''}</strong>
                 </span>
               </NavItem>
       
@@ -82,6 +94,7 @@ class AppNavbar extends Component {
               { user ? <Link to={ '/favorites/' + user._id }>Favorites</Link> : "" }
               </NavItem>
           </Fragment>
+          {isAuthenticated ? null : this.props  }
       </div>
     );
 
@@ -102,21 +115,21 @@ class AppNavbar extends Component {
 
     return (
       <div >
-
+     
           <Navbar color="light" light>
               <NavbarBrand href="/" className="mr-auto">   MYtinerary travel app
                      </NavbarBrand>
 
-              <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+              <NavbarToggler onClick={ this.toggleNavbar } className="mr-2" />
                  
-                <Collapse isOpen={!this.state.collapsed} navbar>
+                <Collapse isOpen={ !this.state.collapsed } navbar>
                     
                     <DropdownItem divider /> 
                           <NavLink className="dropdownItem" href="/">Home</NavLink>
                 
                     <DropdownItem divider />
                           <Nav navbar>
-                            {isAuthenticated ? authLinks : guestLinks}
+                            { isAuthenticated ? authLinks : guestLinks }
                           </Nav> 
                     <DropdownItem divider />
               
@@ -124,23 +137,26 @@ class AppNavbar extends Component {
                       <GoogleLogin
                         clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
                         buttonText="Sign-in"
-                        onSuccess={this.responseGoogleSuccess}
-                        onFailure={this.responseGoogleFail}
-                        cookiePolicy={'single_host_origin'}
+                        onSuccess={ this.responseGoogleSuccess }
+                        onFailure={ this.responseGoogleFail }
+                        cookiePolicy={ 'single_host_origin' }
                       />
 
                       <GoogleLogout
                         icon={false}
                         clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
                         buttonText="Logout"
-                        onSuccess={this.logOut}
+                      
+                        onSuccess={ this.logOut }
+                     
                       />
                     </div>
 
                     <DropdownItem divider />
-                    <NavLink className="dropdownItem" href="/cities">Cities</NavLink>
+                    <NavLink className="dropdownItem" to="/cities">Cities</NavLink>
                     
                 </Collapse>
+                {isAuthenticated ? null :  this.renderRedirect()} 
           </Navbar>
 
       </div>

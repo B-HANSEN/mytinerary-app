@@ -22,11 +22,13 @@ class Favorites extends React.Component {
       }
 
   render () {
+      const {user} = this.props.auth;
+      
     return (
       <div>
         <div className="title">
-            {/* <h3>{ this.props.user.user.name }'s Dashboard</h3> */}
-            <h3>User's Dashboard</h3>
+            <h3>{user?user.name:"User"}'s Dashboard</h3>
+            {/* <h3>User's Dashboard</h3> */}
              
             {this.props.favorite.favorites.map((favorite, index) => 
                 <SingleItin  key={index} fav={ favorite } />
@@ -34,21 +36,22 @@ class Favorites extends React.Component {
         </div>
       
         <Footer />
-      </div>
-    )
+      </div>)
+    
+                  
   }
 }
 
 Favorites.propTypes = {
     getUserById: PropTypes.func.isRequired,
     getFavorites: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
     favorite: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
     favorite: state.favorite,
-    user: state.user  
+    auth: state.auth  
 })
 
 export default connect (mapStateToProps, { getFavorites, getUserById }) (Favorites)

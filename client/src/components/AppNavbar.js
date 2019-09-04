@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Redirect} from 'react-router-dom';
+import { Redirect, Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   Collapse,
@@ -70,22 +70,19 @@ class AppNavbar extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      <Fragment>
-          <NavItem>
-            <span className='navbar-text mr-3'>
-              <strong>{user ? `Welcome ${user.name}` : ''}</strong>
-            </span>
-          </NavItem>
-
-          {/* concept from Cities-View does not work here: */}
-          {/* <NavLink to={ "/favorites/" + user._id }>Favorites
-              </NavLink> */}
-
-             <NavLink href= "/favorites/ + user._id">Favorites
-               </NavLink>
-
-       
-      </Fragment>
+      <div>
+          <Fragment>
+              <NavItem>
+                <span className='navbar-text mr-3'>
+                  <strong>{user ? `Welcome ${user.name}` : ''}</strong>
+                </span>
+              </NavItem>
+      
+              <NavItem> 
+              {user ? <Link to={'/favorites/' + user._id}>Fav3 </Link> : ""}
+              </NavItem>
+          </Fragment>
+      </div>
     );
 
     const guestLinks = (
@@ -119,8 +116,8 @@ class AppNavbar extends Component {
                 
                     <DropdownItem divider />
                           <Nav navbar>
-                            <NavItem >{isAuthenticated ? authLinks : guestLinks}</NavItem>
-                          </Nav>
+                            {isAuthenticated ? authLinks : guestLinks}
+                          </Nav> 
                     <DropdownItem divider />
               
                     <div className="socialMedia">
@@ -143,7 +140,6 @@ class AppNavbar extends Component {
                     <DropdownItem divider />
                     <NavLink className="dropdownItem" href="/cities">Cities</NavLink>
                     
-        
                 </Collapse>
           </Navbar>
 

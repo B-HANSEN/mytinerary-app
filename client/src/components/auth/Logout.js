@@ -23,36 +23,13 @@ export class Logout extends Component {
     }
   } 
 
-
-  // setRedirect = () => { this.setState({ redirect: true }) }
-  // renderRedirect = () => {
-  //     this.props.location.replace('/') 
-  //     return <Redirect to={ '/' } />
-  // }
-
-  // renderRedirect = () => {
-  //   this.props.history.push("/");
-  // }
-
-test = () => {
-  console.log("iiss");
-  
-}
-
   render() {
     return (
       <Fragment>
 
       { this.renderRedirect() }
-        {/* <NavLink onClick={this.props.logout}> */}
-        <NavLink to={'/'} >
-        
-          Logoutsss
+        <NavLink onClick={this.props.logout} to={'/'}>
         </NavLink>
-
-        {/* <NavItem>
-          <NavLink to={ '/' }></NavLink>
-        </NavItem> */}
 
       </Fragment>
     );

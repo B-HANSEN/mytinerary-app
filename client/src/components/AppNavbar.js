@@ -52,15 +52,8 @@ class AppNavbar extends Component {
     console.log(response);
   }
 
-test = () => {
-  console.log("Test",this.props);
-  
-}
-
   logOut = (response) => {
     console.log(this.props);
-    
-
     console.log("logOut", response);
     this.props.logoutSocial(
       { email: response.profileObj.email, name: response.profileObj.name }     
@@ -71,14 +64,15 @@ test = () => {
   setRedirect = () => { this.setState({ redirect: true })
   }
   renderRedirect = () => {
-    
       return <Redirect to='/' />
-    
   }
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    console.log(this.state      );
+    console.log(this.state);
+
+    console.log(user);
+    
 
 
     const authLinks = (
@@ -86,7 +80,7 @@ test = () => {
           <Fragment>
               <NavItem>
                 <span className='navbar-text mr-3'>
-                  <strong>{user ? `Welcome ${user .name}` : ''}</strong>
+                  <strong>{user ? `Welcome ${user.name}` : ''}</strong>
                 </span>
               </NavItem>
       
@@ -108,10 +102,6 @@ test = () => {
           </NavItem>
       </Fragment>
     );
-
-    // function onSignIn(googleUser) {
-    //   console.log(googleUser);
-    //  }
 
     return (
       <div >
@@ -146,9 +136,7 @@ test = () => {
                         icon={false}
                         clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
                         buttonText="Logout"
-                      
                         onSuccess={ this.logOut }
-                     
                       />
                     </div>
 

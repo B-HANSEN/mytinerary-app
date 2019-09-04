@@ -60,7 +60,7 @@ class MYtinerary extends React.Component {
             { this.renderRedirect() }
                 <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
                 </button>
-        </div> 
+        </div>
 
        
         {/* navigation buttons */}  

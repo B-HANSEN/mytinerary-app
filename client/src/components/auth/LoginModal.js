@@ -95,9 +95,11 @@ class LoginModal extends Component {
             <Modal isOpen={this.state.modal} toggle={this.toggle}>
               <ModalHeader toggle={this.toggle}>Login</ModalHeader>
               <ModalBody>
+                
                 {this.state.msg ? (
                   <Alert color='danger'>{this.state.msg}</Alert>
                 ) : null}
+
                 <Form onSubmit={this.onSubmit}>
                   <FormGroup>
                     <Label for='email'>Email</Label>
@@ -122,8 +124,7 @@ class LoginModal extends Component {
 
                     { this.renderRedirect() }
                     <Button 
-                        to={ '/' } 
-                        // onClick={this.setRedirect} 
+                        to={ '/' }
                         color='dark' style={{ marginTop: '2rem' }} block>
                         Login 
                     </Button>

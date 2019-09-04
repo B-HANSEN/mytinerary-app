@@ -17,9 +17,6 @@ import PropTypes from 'prop-types';
 
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
-// import Logout from './auth/Logout';
-// import Favorites from './../Views/Favorites';
-
 import { loginSocial } from './../actions/authActions';
 import { logoutSocial } from './../actions/authActions';
 import './components.css';
@@ -27,8 +24,7 @@ import './components.css';
 class AppNavbar extends Component {
   state = {
     collapsed: true,
-    redirect: false,
-  
+    redirect: false
   };
 
   static propTypes = {
@@ -60,8 +56,13 @@ class AppNavbar extends Component {
     );
   }
 
+  onClick = e => {
+    this.setState({ collapsed: true });
+  };
+
 // link to single users's favorites page
-  setRedirect = () => { this.setState({ redirect: true })
+  setRedirect = () => {
+    this.setState ({ redirect: true })
   }
   renderRedirect = () => {
       return <Redirect to='/' />
@@ -70,11 +71,8 @@ class AppNavbar extends Component {
   render() {
     const { isAuthenticated, user } = this.props.auth;
     console.log(this.state);
-
     console.log(user);
-    
-
-
+  
     const authLinks = (
       <div>
           <Fragment>
@@ -88,7 +86,7 @@ class AppNavbar extends Component {
               { user ? <Link to={ '/favorites/' + user._id }>Favorites</Link> : "" }
               </NavItem>
           </Fragment>
-          {isAuthenticated ? null : this.props  }
+          {/* {isAuthenticated ? null : this.props  } */}
       </div>
     );
 
@@ -118,7 +116,7 @@ class AppNavbar extends Component {
                           <NavLink className="dropdownItem" href="/">Home</NavLink>
                 
                     <DropdownItem divider />
-                          <Nav navbar>
+                          <Nav onClick={this.onClick} navbar>
                             { isAuthenticated ? authLinks : guestLinks }
                           </Nav> 
                     <DropdownItem divider />
@@ -127,6 +125,7 @@ class AppNavbar extends Component {
                       <GoogleLogin
                         clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
                         buttonText="Sign-in"
+                        onClick={this.onClick}
                         onSuccess={ this.responseGoogleSuccess }
                         onFailure={ this.responseGoogleFail }
                         cookiePolicy={ 'single_host_origin' }
@@ -136,6 +135,7 @@ class AppNavbar extends Component {
                         icon={false}
                         clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
                         buttonText="Logout"
+                        onClick={this.onClick}
                         onSuccess={ this.logOut }
                       />
                     </div>
@@ -144,7 +144,7 @@ class AppNavbar extends Component {
                     <NavLink className="dropdownItem" to="/cities">Cities</NavLink>
                     
                 </Collapse>
-                {isAuthenticated ? null :  this.renderRedirect()} 
+                { isAuthenticated ? null : this.renderRedirect() } 
           </Navbar>
 
       </div>
@@ -152,8 +152,6 @@ class AppNavbar extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
+const mapStateToProps = state => ({ auth: state.auth });
 
 export default connect(mapStateToProps, { loginSocial, logoutSocial }) (AppNavbar);

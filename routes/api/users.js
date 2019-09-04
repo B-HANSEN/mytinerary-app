@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 // User Model
 const User = require('../../models/User');
 
-
 // ******************** HTTP: GET ********************
 // fetch all users from db: go into model, find --> res.json
 router.get('/', (req,res) => {
@@ -92,7 +91,7 @@ router.post('/social', (req, res) => {
               res.json({
                 token,
                 user: {
-                  id: user.id,
+                  _id: user.id,
                   name: user.name,
                   email: user.email
                 }

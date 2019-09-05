@@ -2,9 +2,9 @@ import React from 'react';
 import ActivitySlider from './activitySlider.js';
 import { connect } from 'react-redux';
 import { getItineraries } from '../actions/itActions';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import './singleItin.css';
 import PropTypes from 'prop-types';
+import LikeButton from "./LikeButton";
 
 
 function Activities(props) {
@@ -20,7 +20,8 @@ function Activities(props) {
 
 class SingleItin extends React.Component {
       state = {
-        showActivities: false
+        showActivities: false,
+        liked: false
       };
     
     handleToggleClick = this.handleToggleClick.bind(this);
@@ -30,6 +31,20 @@ class SingleItin extends React.Component {
         showActivities: !state.showActivities
       }));
     }
+
+
+    // handle favorites
+    handleLike = () => {
+      this.setState(prevState => ({
+        likes: prevState.likes + 1,
+      }));
+    }
+
+    toggleLike = () => {
+      this.setState({
+        liked: !this.state.liked
+      });
+    };
 
     render () {
         return (
@@ -41,12 +56,13 @@ class SingleItin extends React.Component {
                     </div>
 
                     <div className="overview">   
-                        <h3 className="titleIt">{this.props.itin.title}</h3>
-                        <FavoriteBorderIcon />
+                        <h5 className="titleIt">{this.props.itin.title}</h5>
+
+                        <LikeButton />
+                               
                         <div className="details">
-                          
                           <ul>
-                            <li className="singleDetails">Rating: {this.props.itin.rating} </li>
+                            <li className="singleDetails">Likes: {this.props.itin.rating} </li>
                             <li className="singleDetails">Duration: {this.props.itin.duration} hrs </li>
                             <li className="singleDetails">Cost category: {this.props.itin.price} </li>
                             <li className="singleDetails"> {this.props.itin.hashtag} </li>

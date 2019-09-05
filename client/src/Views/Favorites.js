@@ -32,6 +32,8 @@ class Favorites extends React.Component {
       <div>
         <div className="title">
             { user ? <h3>{ user.name }'s Dashboard</h3> : "" }
+            <br />
+            <h6>Favorite itineraries:</h6>
 
             {this.props.favorite.favorites.map((itinerary, index) => 
                 <SingleItin  key={ index } itin={ itinerary } />

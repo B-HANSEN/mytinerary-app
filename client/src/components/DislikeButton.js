@@ -6,9 +6,8 @@ import { loadUser } from '../actions/authActions';
 
 class DislikeButton extends Component {
     state = {}
-
     removeFromFavorites = () => {
-        console.log('itinId',this.props.itinId)
+        console.log('itinId', this.props.itinId)
         console.log('user._id', this.props.auth.user._id)
     
      this.props.removeFromFavorites(this.props.itinId, this.props.auth.user._id)
@@ -18,7 +17,7 @@ class DislikeButton extends Component {
         return (
             <button
                 variant="primary"
-                isDisliked={ !this.state.isLiked }
+                disliked={ !this.state.liked }
                 onClick={ this.removeFromFavorites }
             >
             Unlike

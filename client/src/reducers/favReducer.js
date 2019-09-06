@@ -32,10 +32,10 @@ export default function(state = initialState, action) {
             }
 
         case FAVORITE_DEC:
-                return {
-                    ...state,
-                    removeFromFavorites: action.payload
-                }
+            return {
+                ...state,
+                 favorites: state.favorites.filter(favorite =>  favorite._id !== action.payload)
+            }
 
         case FAVORITE_COUNT:
             return {

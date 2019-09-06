@@ -6,7 +6,6 @@ import { loadUser } from '../actions/authActions';
 
 class LikeButton extends Component {
     state = {}
-
     addToFavorites = () => {
         console.log('itinId',this.props.itinId)
         console.log('user._id', this.props.auth.user._id)
@@ -15,11 +14,10 @@ class LikeButton extends Component {
     }
 
     render() {
-
         return (
             <button
                 variant="primary"
-                isLiked={ this.state.isLiked }
+                liked={ this.state.liked }
                 onClick={ this.addToFavorites }
             >
             Like
@@ -27,7 +25,6 @@ class LikeButton extends Component {
         )
     }
 };
-
 
 const mapStateToProps = (state) => ({
     itinerary: state.itinerary,

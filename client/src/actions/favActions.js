@@ -12,11 +12,15 @@ import axios from "axios";
 export const getFavorites = userId => dispatch => {
   dispatch(setFavoritesLoading());
   axios.get("/api/favorites/users/" + userId)
-    .then(res =>
+    .then(res => 
+      {
+        console.log(res.data);
+        
       dispatch({
         type: GET_FAVORITES,
         payload: res.data
       })
+    }
     );
 };
 
@@ -37,10 +41,10 @@ export const removeFromFavorites = (favId, id) => dispatch => {
   console.log(favId, id)
 // const body = { itinId: itinId };
   dispatch(setFavoritesLoading());
-  axios.put("/api/favorites/users/" + id + favId)
+  axios.delete("/api/favorites/users/" + id + "/" + favId)
     .then(res => dispatch({
             type: FAVORITE_DEC,
-            payload: res.data
+            payload: favId
         })
     )
 };

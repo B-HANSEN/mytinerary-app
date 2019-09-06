@@ -22,6 +22,8 @@ router.put('/users/:id', function(req, res){
 // @desc    Delete favs
 // @access  Public
 router.delete('/users/:id/:favId', function(req, res) {
+    console.log(req.params.id, req.params.favId);
+    
     User.updateOne(
         { _id: req.params.id },
         { $pull: { favorites: req.params.favId }}

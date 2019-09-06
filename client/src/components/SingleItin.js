@@ -5,6 +5,7 @@ import { getItineraries } from '../actions/itActions';
 import './singleItin.css';
 import PropTypes from 'prop-types';
 import LikeButton from "./LikeButton";
+import DislikeButton from "./DislikeButton";
 
 
 function Activities(props) {
@@ -58,7 +59,9 @@ class SingleItin extends React.Component {
                     <div className="overview">   
                         <h5 className="titleIt">{this.props.itin.title}</h5>
 
-                        <LikeButton />
+                        <LikeButton itinId={ this.props.itin._id }/>
+                        <DislikeButton itinId={ this.props.itin._id }/>
+
                                
                         <div className="details">
                           <ul>
@@ -78,7 +81,7 @@ class SingleItin extends React.Component {
                   { this.state.showActivities ? 'Close' : 'View all' }
                 </button>
 
-              </div>
+            </div>
         )
     }
 }

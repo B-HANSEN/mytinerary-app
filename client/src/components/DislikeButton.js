@@ -1,33 +1,31 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addToFavorites, getFavorites } from '../actions/favActions';
+import { removeFromFavorites, getFavorites } from '../actions/favActions';
 import { loadUser } from '../actions/authActions';
 
-class LikeButton extends Component {
+class DislikeButton extends Component {
     state = {}
 
-    addToFavorites = () => {
+    removeFromFavorites = () => {
         console.log('itinId',this.props.itinId)
         console.log('user._id', this.props.auth.user._id)
     
-     this.props.addToFavorites(this.props.itinId, this.props.auth.user._id)
+     this.props.removeFromFavorites(this.props.itinId, this.props.auth.user._id)
     }
 
     render() {
-
         return (
             <button
                 variant="primary"
-                isLiked={ this.state.isLiked }
-                onClick={ this.addToFavorites }
+                isDisliked={ !this.state.isLiked }
+                onClick={ this.removeFromFavorites }
             >
-            Like
+            Unlike
             </button>
         )
     }
 };
-
 
 const mapStateToProps = (state) => ({
     itinerary: state.itinerary,
@@ -36,7 +34,7 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect (mapStateToProps, {
-    addToFavorites,
+    removeFromFavorites,
     getFavorites,
     loadUser
-}) (LikeButton)
+}) (DislikeButton)

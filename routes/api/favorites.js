@@ -9,6 +9,8 @@ const Itinerary = require("../../models/Itinerary")
 // @desc    Add favs
 // @access  Public
 router.put('/users/:id', function(req, res){
+    console.log(req.body.itinId, req.params.id);
+    
     User.updateOne({ _id: req.params.id }, { $push: { favorites: [req.body.itinId] }})
       .then(function() {
        res.send({ msg:"push done" })
@@ -32,7 +34,7 @@ router.delete('/users/:id/:favId', function(req, res) {
 
 // ******************** HTTP: GET ********************
 // @route   GET api/favorites 1 favorite (by favId) for 1 user (by id)
-// @desc    Delete favs
+// @desc    Get favs
 // @access  Public
 router.get('/users/:id', (req,res) => {
     User.findById(req.params.id)

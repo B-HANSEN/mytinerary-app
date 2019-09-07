@@ -124,16 +124,4 @@ router.post('/social', (req, res) => {
       });
 });
 
-
-// @route   DELETE api/users
-// @desc    Delete user
-// @access  Public
-  // router.put('/users/:id', function(req,res,next){
-  //   User.findByIdAndRemove({ _id: req.params.id })
-  //     .then(function(user) {
-  //       res.send(user);
-  //     });  
-  // });
-
-
 module.exports = router

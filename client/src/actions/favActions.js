@@ -14,14 +14,12 @@ export const getFavorites = userId => dispatch => {
   axios.get("/api/favorites/users/" + userId)
     .then(res => 
       {
-        console.log(res.data);
-        
+      console.log(res.data); 
       dispatch({
         type: GET_FAVORITES,
         payload: res.data
       })
-    }
-    );
+    });
 };
 
 export const addToFavorites = (itinId, id) => dispatch => {
@@ -34,12 +32,10 @@ const body = { itinId: itinId };
             type: FAVORITE_INC,
             payload: res.data
         })
-    )
-};
+    )};
 
 export const removeFromFavorites = (favId, id) => dispatch => {
   console.log(favId, id)
-// const body = { itinId: itinId };
   dispatch(setFavoritesLoading());
   axios.delete("/api/favorites/users/" + id + "/" + favId)
     .then(res => dispatch({

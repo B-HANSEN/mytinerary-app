@@ -5,7 +5,7 @@ const router = express.Router();
 const User = require('../../models/User');
 const Itinerary = require("../../models/Itinerary")
 
-// @route   POST api/favorites for 1 user (by id)
+// @route   PUT api/favorites for 1 user (by id)
 // @desc    Add favs
 // @access  Public
 router.put('/users/:id', function(req, res){
@@ -16,6 +16,9 @@ router.put('/users/:id', function(req, res){
        res.send({ msg:"push done" })
       });
   });
+
+//   newItem.save().then(item => res.json(item));
+
 
 
 // @route   DELETE api/favorites 1 favorite (by favId) for 1 user (by id)

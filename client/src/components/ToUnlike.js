@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import { removeFromFavorites, getFavorites } from '../actions/favActions';
 import { loadUser } from '../actions/authActions';
 
-class DislikeButton extends Component {
-    state = {}
+class ToUnlike extends Component {
+    state = {
+        liked: false
+    }
     removeFromFavorites = () => {
         console.log('itinId', this.props.itinId)
         console.log('user._id', this.props.auth.user._id)
@@ -20,11 +22,19 @@ class DislikeButton extends Component {
                 disliked={ !this.state.liked }
                 onClick={ this.removeFromFavorites }
             >
-            Unlike
+            To unlike
             </button>
         )
     }
 };
+
+ToUnlike.propTypes = {
+    removeFromFavorites: PropTypes.func.isRequired,
+    getFavorites: PropTypes.func.isRequired,
+    loadUser: PropTypes.func.isRequired,
+    itinerary: PropTypes.object.isRequired,
+    user: PropTypes.object
+  }
 
 const mapStateToProps = (state) => ({
     itinerary: state.itinerary,
@@ -36,4 +46,4 @@ export default connect (mapStateToProps, {
     removeFromFavorites,
     getFavorites,
     loadUser
-}) (DislikeButton)
+}) (ToUnlike)

@@ -86,7 +86,6 @@ class AppNavbar extends Component {
               { user ? <Link to={ '/favorites/' + user._id }>Favorites</Link> : "" }
               </NavItem>
           </Fragment>
-          {/* {isAuthenticated ? null : this.props  } */}
       </div>
     );
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { addToFavorites, getFavorites } from '../actions/favActions';
 import { loadUser } from '../actions/authActions';
 
-class LikeButton extends Component {
+class ToLike extends Component {
     state = {}
     addToFavorites = () => {
         console.log('itinId',this.props.itinId)
@@ -20,11 +20,19 @@ class LikeButton extends Component {
                 liked={ this.state.liked }
                 onClick={ this.addToFavorites }
             >
-            Like
+            to like
             </button>
         )
     }
 };
+
+ToLike.propTypes = {
+    addToFavorites: PropTypes.func.isRequired,
+    getFavorites: PropTypes.func.isRequired,
+    loadUser: PropTypes.func.isRequired,
+    itinerary: PropTypes.object.isRequired,
+    user: PropTypes.object
+  }
 
 const mapStateToProps = (state) => ({
     itinerary: state.itinerary,
@@ -36,4 +44,4 @@ export default connect (mapStateToProps, {
     addToFavorites,
     getFavorites,
     loadUser
-}) (LikeButton)
+}) (ToLike)

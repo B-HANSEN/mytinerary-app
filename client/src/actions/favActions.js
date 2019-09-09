@@ -5,7 +5,9 @@ import {
   FAVORITE_DEC,
   FAVORITE_COUNT
 } from "./types";
+
 import axios from "axios";
+import { loadUser } from './authActions';
 
 
 // retrieve favorites for specific user from database
@@ -28,10 +30,14 @@ export const addToFavorites = (itinId, id) => dispatch => {
 const body = { itinId: itinId };
   dispatch(setFavoritesLoading());
   axios.put("/api/favorites/users/" + id, body)
-    .then(res => dispatch({
+    .then(res => {
+      dispatch({
             type: FAVORITE_INC,
             payload: res.data
         })
+        dispatch(loadUser())
+
+      }
     )};
 
 export const removeFromFavorites = (favId, id) => dispatch => {

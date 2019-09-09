@@ -8,14 +8,17 @@ const Itinerary = require("../../models/Itinerary")
 // @route   PUT api/favorites for 1 user (by id)
 // @desc    Add favs
 // @access  Public
-router.put('/users/:id', function(req, res){
+router.put('/users/:id', function(req, res) {
     console.log(req.body.itinId, req.params.id);
     
-    User.updateOne({ _id: req.params.id }, { $push: { favorites: [req.body.itinId] }})
+    User.updateOne(
+        { _id: req.params.id },
+        { $push: { favorites: [req.body.itinId] }}
+        )
       .then(function() {
        res.send({ msg:"push done" })
       });
-  });
+});
 
 //   newItem.save().then(item => res.json(item));
 

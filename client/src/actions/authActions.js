@@ -15,6 +15,8 @@ import {
 
 // Check token & load user
 export const loadUser = () => (dispatch, getState) => {
+  console.log("Load");
+  
   // User loading: change value from false to true and reaching out to reducer
   dispatch({ type: USER_LOADING });
 

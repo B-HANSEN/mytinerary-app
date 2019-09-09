@@ -54,6 +54,8 @@ router.post('/', (req, res) => {
 // @access  Private (meaning protected)
 // to validate user with the token: auth-file --> so '/user', auth-middleware to apply protection... -password to disregard to password
 router.get('/user', auth, (req, res) => {
+  console.log("LoadUser",req.user.id);
+  
   User.findById(req.user.id)
     .select('-password')
     .then(user => res.json(user));

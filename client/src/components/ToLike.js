@@ -5,7 +5,9 @@ import { addToFavorites, getFavorites } from '../actions/favActions';
 import { loadUser } from '../actions/authActions';
 
 class ToLike extends Component {
-    state = {}
+    state = {
+        liked: false
+    }
     addToFavorites = () => {
         console.log('itinId',this.props.itinId)
         console.log('user._id', this.props.auth.user._id)

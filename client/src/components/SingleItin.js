@@ -48,34 +48,31 @@ class SingleItin extends React.Component {
     //   });
     // };
 
-    ClickToAdd = () => {
-      const addLike = {
-        id: this.props.auth.user._id
-     // as per Traversy: favId created by MongoDB, remove:
-        // favId:  this.props.favorite._id
-      }
-      this.props.addToFavorites(addLike);
-      // window.location.reload(false);
-      this.setState({ reload: true })
-    }
+    // ClickToAdd = () => {
+    //   const addLike = {
+    //     id: this.props.auth.user._id
+    //  // as per Traversy: favId created by MongoDB, remove:
+    //     // favId:  this.props.favorite._id
+    //   }
+    //   this.props.addToFavorites(addLike);
+    //   // window.location.reload(false);
+    //   this.setState({ reload: true })
+    // }
 
-    ClickToRemove = () => {
-      const deleteLike = {
-        id: this.props.auth.user._id,
-        favId:  this.props.favorite._id
-      }
-      this.props.removeFromFavorites(deleteLike);
-      // window.location.reload(false);
-      this.setState({ reload: true })
-    }
-
+    // ClickToRemove = () => {
+    //   const deleteLike = {
+    //     id: this.props.auth.user._id,
+    //     favId:  this.props.favorite._id
+    //   }
+    //   this.props.removeFromFavorites(deleteLike);
+    //   // window.location.reload(false);
+    //   this.setState({ reload: true })
+    // }
 
     render () {
       console.log(this.props)
       // this.ClickToAdd = this.ClickToAdd.bind(this)
       // this.ClickToRemove = this.ClickToRemove.bind(this)
-
-
         return (
             <div className="textAndLink">
                 <div className="allDetailsIt">
@@ -90,12 +87,12 @@ class SingleItin extends React.Component {
                         { this.props.auth.user.favorites.includes(this.props.itin._id)
                         ? (<ToUnlike
                             itinId= { this.props.itin._id }
-                            onClick = { () => this.ClickToRemove() }
+                            //onClick = { () => this.ClickToRemove.bind(this) }
                             />)
-                        : <ToLike
+                        : (<ToLike
                             itinId={ this.props.itin._id }
-                            onClick = { () => this.ClickToAdd() }
-                          />
+                           // onClick = { () => this.ClickToAdd.bind(this) }
+                          />)
                         }
 
                         <div className="details">

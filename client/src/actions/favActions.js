@@ -34,9 +34,8 @@ const body = { itinId: itinId };
       dispatch({
             type: FAVORITE_INC,
             payload: res.data
-        })
-        dispatch(loadUser())
-
+      })
+      dispatch(loadUser())
       }
     )};
 
@@ -44,10 +43,13 @@ export const removeFromFavorites = (favId, id) => dispatch => {
   console.log(favId, id)
   dispatch(setFavoritesLoading());
   axios.delete("/api/favorites/users/" + id + "/" + favId)
-    .then(res => dispatch({
+    .then(res => {
+      dispatch({
             type: FAVORITE_DEC,
             payload: favId
         })
+      dispatch(loadUser())
+      }
     )
 };
 

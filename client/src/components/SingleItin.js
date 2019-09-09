@@ -87,11 +87,9 @@ class SingleItin extends React.Component {
                         { this.props.auth.user.favorites.includes(this.props.itin._id)
                         ? (<ToUnlike
                             itinId= { this.props.itin._id }
-                            //onClick = { () => this.ClickToRemove.bind(this) }
                             />)
                         : (<ToLike
                             itinId={ this.props.itin._id }
-                           // onClick = { () => this.ClickToAdd.bind(this) }
                           />)
                         }
 

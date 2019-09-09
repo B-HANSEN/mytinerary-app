@@ -18,7 +18,6 @@ class ToLike extends Component {
     render() {
         return (
             <button
-                variant="primary"
                 liked={ this.state.liked }
                 onClick={ this.addToFavorites }
             >

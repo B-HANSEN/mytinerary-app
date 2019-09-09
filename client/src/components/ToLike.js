@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addToFavorites, getFavorites } from '../actions/favActions';
+import { getFavorites, addToFavorites, addLikes } from '../actions/favActions';
 import { loadUser } from '../actions/authActions';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -12,20 +12,28 @@ import { MDBIcon } from "mdbreact";
 
 class ToLike extends Component {
     state = {
-        liked: false
+        liked: false,
+        likes: 0
     }
-    addToFavorites = () => {
-        console.log('itinId',this.props.itinId)
-        console.log('user._id', this.props.auth.user._id)
-    
-     this.props.addToFavorites(this.props.itinId, this.props.auth.user._id)
+
+    handleLikes = () => {
+        addToFavorites = () => {
+            console.log('itinId', this.props.itinId)
+            console.log('user._id', this.props)
+            this.props.addToFavorites(this.props.itinId, this.props.auth.user._id)
+        }
+        addLikes = () => {
+            // this.props.addLikes(this.props.itinerary.rating)
+            this.props.addLikes(this.state.likes)
+            this.setState ({ count: this.state.likes + 1 }) 
+        };  
     }
 
     render() {
         return (
             <button 
                 liked={ this.state.liked }
-                onClick={ this.addToFavorites }
+                onClick={ this.handleLikes }
             >
             <MDBIcon far icon="heart" />
             </button>
@@ -36,6 +44,7 @@ class ToLike extends Component {
 ToLike.propTypes = {
     addToFavorites: PropTypes.func.isRequired,
     getFavorites: PropTypes.func.isRequired,
+    addLikes: PropTypes.func,
     loadUser: PropTypes.func.isRequired,
     itinerary: PropTypes.object.isRequired,
     user: PropTypes.object
@@ -44,11 +53,14 @@ ToLike.propTypes = {
 const mapStateToProps = (state) => ({
     itinerary: state.itinerary,
     auth: state.auth,
-    favorite: state.favorite
+    favorite: state.favorite,
+    likes: state.likes,
+    liked: state.liked
 })
 
 export default connect (mapStateToProps, {
     addToFavorites,
     getFavorites,
-    loadUser
+    loadUser,
+    addLikes
 }) (ToLike)

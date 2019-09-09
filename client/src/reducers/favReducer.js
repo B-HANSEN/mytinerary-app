@@ -1,9 +1,11 @@
-import { GET_FAVORITES, FAVORITES_LOADING, FAVORITE_INC, FAVORITE_DEC, FAVORITE_COUNT } from '../actions/types';
+import { GET_FAVORITES, FAVORITES_LOADING, FAVORITE_INC, FAVORITE_DEC, 
+    FAVORITE_COUNT } from '../actions/types';
 
 const initialState = {
     favorites: [],
     favorite: {},
     liked: false,
+    ratings: "",
     favoriteCount: "",
     loading: false, 
     msg:"Hello world (from favorites)"

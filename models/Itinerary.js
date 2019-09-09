@@ -13,7 +13,7 @@ const ItinerarySchema = new Schema ({
         type: String
     },
     rating: {
-        type: Number  
+        type: Number
     },
     duration: {
         type: Number  

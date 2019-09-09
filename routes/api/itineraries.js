@@ -21,6 +21,22 @@ router.get('/:singleCityId', (req,res) => {
     })
 });
 
+
+// ******************** HTTP: PUT ********************
+// @route   PUT api/itineraries
+// @desc    increase/ decrease count of likes
+// @access  Public
+router.put('/:itinId/rating', function(req, res) {
+    Itinerary.updateOne(
+        { _id: req.params.itinId },
+        { $inc: { rating: req.body.amount}}
+        )
+      .then(function(iti) {
+       res.send({ msg:"changed by 1 count", itinerary :  iti})
+      });
+});
+
+
 // ******************** HTTP: POST ********************
 router.post('/', (req,res) => {
    const newItinerary = new Itinerary ({

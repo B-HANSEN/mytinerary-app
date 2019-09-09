@@ -17,6 +17,7 @@ export const FAVORITES_LOADING = 'FAVORITES_LOADING';
 export const FAVORITE_COUNT = "FAVORITE_COUNT";
 export const FAVORITE_INC = "FAVORITE_INC";
 export const FAVORITE_DEC = "FAVORITE_DEC";
+export const GET_RATINGS = "GET_RATINGS";
 
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";

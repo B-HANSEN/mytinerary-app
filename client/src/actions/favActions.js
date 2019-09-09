@@ -8,6 +8,7 @@ import {
 
 import axios from "axios";
 import { loadUser } from './authActions';
+import { getItineraries } from './itActions';
 
 
 // retrieve favorites for specific user from database
@@ -45,21 +46,40 @@ export const removeFromFavorites = (favId, id) => dispatch => {
   axios.delete("/api/favorites/users/" + id + "/" + favId)
     .then(res => {
       dispatch({
-            type: FAVORITE_DEC,
-            payload: favId
+        type: FAVORITE_DEC,
+        payload: favId
         })
       dispatch(loadUser())
       }
     )
 };
 
-export const countFavorites = () => dispatch => {
+
+// revise count of likes (Rating: )
+// re-dispatch getItineraries to show update immediately
+export const addLikes = itinId => dispatch => {
   dispatch(setFavoritesLoading());
-  axios.get("/api/users/favorites")
-    .then(res => dispatch({
-            type: FAVORITE_COUNT,
-            payload: res.data
+  axios.put("/api/itineraries/rating")
+    .then(res => {
+      dispatch({
+        type: FAVORITE_COUNT,
+        payload: itinId
         })
+      dispatch(getItineraries())
+      }
+    )
+};
+
+export const removeLikes = itinId => dispatch => {
+  dispatch(setFavoritesLoading());
+  axios.put("/api/itineraries/rating")
+    .then(res => {
+      dispatch({
+        type: FAVORITE_COUNT,
+        payload: itinId
+        })
+      dispatch(getItineraries())
+      }
     )
 };
 

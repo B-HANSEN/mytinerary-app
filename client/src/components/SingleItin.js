@@ -34,44 +34,9 @@ class SingleItin extends React.Component {
       }));
     }
 
-    // increase favorites
-    // handleLike = () => {
-    //   this.setState(prevState => ({
-    //     likes: prevState.likes + 1,
-    //   }));
-    // }
-
-    // toggleLike = () => {
-    //   this.setState({
-    //     liked: !this.state.liked
-    //   });
-    // };
-
-    // ClickToAdd = () => {
-    //   const addLike = {
-    //     id: this.props.auth.user._id
-    //  // as per Traversy: favId created by MongoDB, remove:
-    //     // favId:  this.props.favorite._id
-    //   }
-    //   this.props.addToFavorites(addLike);
-    //   // window.location.reload(false);
-    //   this.setState({ reload: true })
-    // }
-
-    // ClickToRemove = () => {
-    //   const deleteLike = {
-    //     id: this.props.auth.user._id,
-    //     favId:  this.props.favorite._id
-    //   }
-    //   this.props.removeFromFavorites(deleteLike);
-    //   // window.location.reload(false);
-    //   this.setState({ reload: true })
-    // }
-
     render () {
       console.log(this.props)
-      // this.ClickToAdd = this.ClickToAdd.bind(this)
-      // this.ClickToRemove = this.ClickToRemove.bind(this)
+
         return (
             <div className="textAndLink">
                 <div className="allDetailsIt">
@@ -127,5 +92,4 @@ const mapStateToProps = (state) => ({
   city: state.city
 })
 
-// export SingleItin;
 export default connect (mapStateToProps, { getItineraries, loadUser }) (SingleItin)

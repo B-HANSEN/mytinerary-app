@@ -24,7 +24,6 @@ class SingleItin extends React.Component {
       state = {
         showActivities: false,
         reload: false
-        // liked: false
       };
     
     handleToggleClick = this.handleToggleClick.bind(this);

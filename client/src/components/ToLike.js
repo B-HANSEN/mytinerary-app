@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import { addToFavorites, getFavorites } from '../actions/favActions';
 import { loadUser } from '../actions/authActions';
 
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
+import { MDBIcon } from "mdbreact";
+
+
 class ToLike extends Component {
     state = {
         liked: false
@@ -17,11 +23,11 @@ class ToLike extends Component {
 
     render() {
         return (
-            <button
+            <button 
                 liked={ this.state.liked }
                 onClick={ this.addToFavorites }
             >
-            to like
+            <MDBIcon far icon="heart" />
             </button>
         )
     }

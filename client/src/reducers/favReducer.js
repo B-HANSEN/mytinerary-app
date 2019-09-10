@@ -30,19 +30,20 @@ export default function(state = initialState, action) {
         case FAVORITE_INC:
             return {
                 ...state,
-                addToFavorites: [action.payload, state.favorites]
+                //addToFavorites: [action.payload, state.favorites]
             }       
 
         case FAVORITE_DEC:
             return {
                 ...state,
-                favorites: state.favorites.filter(favorite =>  favorite._id !== action.payload)
+                //favorites: state.favorites.filter(favorite =>  favorite._id !== action.payload)
             }
 
         case FAVORITE_COUNT:
+                console.log(action.payload);
             return {
                 ...state,
-                favoriteCount: action.payload,
+                favorites: action.payload,
                 loading: false
             }
         default:

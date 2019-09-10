@@ -8,6 +8,8 @@ import axios from "axios";
 
 // retrieve itineraries for specific city from database
 export const getItineraries = cityId => dispatch => {
+  console.log(cityId);
+  
   dispatch(setItinerariesLoading());
   axios.get("/api/itineraries/" + cityId).then(res =>
     dispatch({
@@ -16,6 +18,7 @@ export const getItineraries = cityId => dispatch => {
     })
   );
 };
+
 export const setItinerariesLoading = () => {
   return {
     type: ITINERARIES_LOADING
@@ -32,6 +35,7 @@ export const getActivities = itinId => dispatch => {
     })
   );
 };
+
 export const setActivitiesLoading = () => {
   return {
     type: ACTIVITIES_LOADING

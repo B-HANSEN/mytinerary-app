@@ -13,27 +13,26 @@ import { MDBIcon } from "mdbreact";
 class ToLike extends Component {
     state = {
         liked: false,
-        likes: 0
+        // rating: 0
     }
 
-    handleLikes = () => {
-        addToFavorites = () => {
+    increaseFavorites = () => {
+        console.log("ADDDDD LIKE ");
             console.log('itinId', this.props.itinId)
             console.log('user._id', this.props)
+            console.log(this.props.cityId);
+            console.log(this.props);
+            
             this.props.addToFavorites(this.props.itinId, this.props.auth.user._id)
-        }
-        addLikes = () => {
-            // this.props.addLikes(this.props.itinerary.rating)
-            this.props.addLikes(this.state.likes)
-            this.setState ({ count: this.state.likes + 1 }) 
-        };  
+            this.props.addLikes(this.props.itinId, 1, this.props.cityId)
+            // this.setState ({ rating: this.state.rating + 1 }) 
     }
 
     render() {
         return (
             <button 
                 liked={ this.state.liked }
-                onClick={ this.handleLikes }
+                onClick={ this.increaseFavorites }
             >
             <MDBIcon far icon="heart" />
             </button>

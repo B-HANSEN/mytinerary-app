@@ -13,25 +13,22 @@ import { MDBIcon } from "mdbreact";
 class ToUnlike extends Component {
     state = {
         liked: true,
-        likes: 0
+        // rating: 0
     }
 
-    handleDislikes = () => {
-        removeFromFavorites = () => {
+    decreaseFavorites = () => {
             console.log('itinId', this.props.itinId)
             console.log('user._id', this.props.auth.user._id)
             this.props.removeFromFavorites(this.props.itinId, this.props.auth.user._id)
-        }
-        removeLikes = () => {
-            this.props.removeLikes(this.state.likes)
-            this.setState ({ count: this.state.likes - 1 }) 
-        }; 
+            this.props.removeLikes(this.props.itinId, -1, this.props.cityId)
+            // this.setState ({ rating: this.state.rating - 1 }) 
     }
+
     render() {
         return (
             <button
                 liked={ this.state.liked }
-                onClick={ this.handleDislikes }
+                onClick={ this.decreaseFavorites }
             >
             <MDBIcon icon="heart" />
             </button>

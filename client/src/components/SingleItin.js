@@ -48,13 +48,13 @@ class SingleItin extends React.Component {
                     <div className="overview">   
                         <h5 className="titleIt">{this.props.itin.title}</h5>
 
-                        { this.props.auth.user.favorites.includes(this.props.itin._id)
+                        { this.props.auth.user ?  this.props.auth.user.favorites.includes(this.props.itin._id)
                         ? (<ToUnlike
-                            itinId= { this.props.itin._id }
+                            itinId= { this.props.itin._id } cityId={this.props.itin.cityId}
                             />)
                         : (<ToLike
-                            itinId={ this.props.itin._id }
-                          />)
+                            itinId= { this.props.itin._id } cityId={this.props.itin.cityId}  
+                          />) : null 
                         }
 
                         <div className="details">

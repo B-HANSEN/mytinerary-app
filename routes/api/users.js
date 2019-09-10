@@ -54,7 +54,8 @@ router.post('/', (req, res) => {
                     user: {
                       _id: user.id,
                       name: user.name,
-                      email: user.email
+                      email: user.email,
+                      favorites:[]
                     }
                   });
                 }
@@ -80,6 +81,7 @@ router.post('/social', (req, res) => {
 
     // Check for existing user, from mongoose
     User.findOne({ email })
+    .select('-password')
       .then(user => {
         if(user) return (
           jwt.sign(
@@ -90,11 +92,7 @@ router.post('/social', (req, res) => {
               if(err) throw err;
               res.json({
                 token,
-                user: {
-                  _id: user.id,
-                  name: user.name,
-                  email: user.email
-                }
+                user
               });
             }
           )
@@ -115,7 +113,8 @@ router.post('/social', (req, res) => {
                     user: {
                       _id: user.id,
                       name: user.name,
-                      email: user.email
+                      email: user.email,
+                      favorites:[]
                     }
                   });
                 }

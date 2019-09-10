@@ -1,4 +1,4 @@
-import { GET_FAVORITES, FAVORITES_LOADING, FAVORITE_INC, FAVORITE_DEC, 
+import { GET_FAVORITES, FAVORITES_LOADING,
     FAVORITE_COUNT } from '../actions/types';
 
 const initialState = {
@@ -27,24 +27,12 @@ export default function(state = initialState, action) {
                 loading: true
             };
 
-        case FAVORITE_INC:
-            return {
-                ...state,
-                //addToFavorites: [action.payload, state.favorites]
-            }       
-
-        case FAVORITE_DEC:
-            return {
-                ...state,
-                //favorites: state.favorites.filter(favorite =>  favorite._id !== action.payload)
-            }
-
         case FAVORITE_COUNT:
                 console.log(action.payload);
             return {
-                ...state,
-                favorites: action.payload,
-                loading: false
+                 ...state,
+                favorites: state.favorites.filter(fav => fav._id != action.payload),
+                 loading: false
             }
         default:
             return state;

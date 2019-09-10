@@ -48,6 +48,8 @@ class SingleItin extends React.Component {
                     <div className="overview">   
                         <h5 className="titleIt">{this.props.itin.title}</h5>
 
+                {/* if user is authenticated, check if itinerary is included in his favorites,
+                then show the unlike, otherwise enable like button */}
                         { this.props.auth.user ?  this.props.auth.user.favorites.includes(this.props.itin._id)
                         ? (<ToUnlike
                             itinId= { this.props.itin._id } cityId={this.props.itin.cityId}

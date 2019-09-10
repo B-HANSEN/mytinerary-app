@@ -1,8 +1,6 @@
 import {
   GET_FAVORITES,
   FAVORITES_LOADING,
-  FAVORITE_INC,
-  FAVORITE_DEC,
   FAVORITE_COUNT
 } from "./types";
 
@@ -32,8 +30,8 @@ const body = { itinId: itinId };
   dispatch(setFavoritesLoading());
   axios.put("/api/favorites/users/" + id, body)
     .then(res => {
-     
       dispatch(loadUser())
+      
       }
     )};
 
@@ -42,8 +40,13 @@ export const removeFromFavorites = (favId, id) => dispatch => {
   dispatch(setFavoritesLoading());
   axios.delete("/api/favorites/users/" + id + "/" + favId)
     .then(res => {
-      
+
+      dispatch({
+        type: FAVORITE_COUNT,
+        payload: favId
+      })
       dispatch(loadUser())
+
       }
     )
 };

@@ -39,6 +39,7 @@ class Favorites extends React.Component {
                 <SingleItin  key={ index } itin={ itinerary } />
                 )
             }
+
         </div>
       
         <Footer />

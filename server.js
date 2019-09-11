@@ -21,8 +21,9 @@ app.use(express.json());
 const db = config.get('mongoURI');
 
 // connect to Mongo
-mongoose.connect(db, {useNewUrlParser: true,
-useCreateIndex: true
+mongoose.connect(db, {
+  useNewUrlParser: true,
+  useCreateIndex: true
 })
 .then(() => console.log("connection done"))
 .catch(err => console.log(err)); 
@@ -46,7 +47,6 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
   }
-
 
 const port = process.env.PORT || 5000;
 

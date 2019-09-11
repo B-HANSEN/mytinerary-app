@@ -25,8 +25,11 @@ class RegisterModal extends Component {
     msg: null
   };
 
+
+  // With introduction of static keyword in ES6, 
+  // possible to define static methods inside the class definition itself.
   static propTypes = {
-    isAuthenticated: PropTypes.bool,
+    isAuthenticated: PropTypes.bool.isRequired,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired
@@ -88,11 +91,12 @@ class RegisterModal extends Component {
         </NavLink>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Register</ModalHeader>
+          <ModalHeader toggle={this.toggle} >Register</ModalHeader>
           <ModalBody>
-            {this.state.msg ? (
-              <Alert color='danger'>{this.state.msg}</Alert>
-            ) : null}
+            {this.state.msg ?
+              ( <Alert color='danger'>{this.state.msg}</Alert> )
+              : null
+            }
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
                 <Label for='name'>Name</Label>
@@ -137,7 +141,7 @@ class RegisterModal extends Component {
 }
 
 const mapStateToProps = state => ({
-  // from root reducer which gives access to all the stuff within the state or the auth&errorReducer
+  // from reducer which gives access to all parts of the state; component informed where to find data in the store
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error
 });

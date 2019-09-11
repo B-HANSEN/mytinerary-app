@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 
-// User Model
+// define user constant based on model's schema
 const User = require('../../models/User');
 
 // ******************** HTTP: GET ********************

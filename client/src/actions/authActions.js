@@ -166,17 +166,6 @@ export const logoutSocial = () => {
 };
 
 
-
-// export const getUserById = (id) => dispatch => {
-//   // dispatch(setUserLoading());
-//     axios.get("/api/users/" + id)
-//     .then(res => dispatch({
-//             type: SINGLE_USER,
-//             payload: res.data
-//         })
-//     )
-// };
-
 export const getUserById = userId => dispatch => {
   dispatch(setUserLoading());
   axios.get("/api/users/" + userId)
@@ -187,7 +176,6 @@ export const getUserById = userId => dispatch => {
       })
   );
 };
-
 
 // load user by ID for favorites
 export const setUserLoading = () => {

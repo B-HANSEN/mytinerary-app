@@ -28,7 +28,10 @@ export class Logout extends Component {
       <Fragment>
 
       { this.renderRedirect() }
-        <NavLink onClick={this.props.logout} to={'/'}>
+        <NavLink 
+          to={'/'}
+          onClick={this.props.logout}
+        >
         </NavLink>
 
       </Fragment>

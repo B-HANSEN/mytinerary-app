@@ -74,7 +74,6 @@ class AppNavbar extends Component {
     console.log(user);
   
     const authLinks = (
-      <div>
           <Fragment>
               <NavItem>
                 <span className='navbar-text mr-3'>
@@ -86,7 +85,6 @@ class AppNavbar extends Component {
               { user ? <Link to={ '/favorites/' + user._id }>Favorites</Link> : "" }
               </NavItem>
           </Fragment>
-      </div>
     );
 
     const guestLinks = (

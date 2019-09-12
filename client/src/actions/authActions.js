@@ -25,9 +25,7 @@ import {
 
 // ******************** Load User ******************** //
 export const loadUser = () => (dispatch, getState) => {
-  // User loading: change value from false to true and reaching out to reducer
   dispatch({ type: USER_LOADING });
-
   axios
     .get('/api/auth/user', tokenConfig(getState))
     .then(res =>
@@ -46,13 +44,9 @@ export const loadUser = () => (dispatch, getState) => {
 
 // ******************** Register User ******************** //
 export const register = ({ name, email, password }) => dispatch => {
-
-
   // Request body
   const body = JSON.stringify({ name, email, password });
-
   axios
-  // api/users: as per routes -- body: email, pw -- config: that is related to keys which relates to the backend???
     .post('/api/users', body, config)
     .then(res =>
       dispatch({
@@ -74,15 +68,14 @@ export const register = ({ name, email, password }) => dispatch => {
 // ******************** Login User ******************** //
 export const login = ({ email, password }) => dispatch => {
   // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
+  // const config = {
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   }
+  // };
 
   // Request body
   const body = JSON.stringify({ email, password });
-
   axios
     .post('/api/auth', body, config)
     .then(res =>
@@ -156,7 +149,6 @@ export const logoutSocial = () => {
     type: LOGOUT_SUCCESS
   };
 };
-
 
 
 // ******************** LOAD SINGLE USER ******************** //

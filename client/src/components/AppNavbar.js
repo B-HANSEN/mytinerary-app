@@ -61,7 +61,6 @@ class AppNavbar extends Component {
     this.setState({ collapsed: true });
   };
 
-// link to single users's favorites page
   setRedirect = () => {
     this.setState ({ redirect: true })
   }
@@ -70,7 +69,6 @@ class AppNavbar extends Component {
   }
 
   render() {
-// this.props always relates to Redux state?? 
     const { isAuthenticated, user } = this.props.auth;
     console.log(this.state);
     console.log(user);

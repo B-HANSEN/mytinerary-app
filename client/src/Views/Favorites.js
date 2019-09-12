@@ -11,17 +11,17 @@ import './views.css';
 
 
 class Favorites extends React.Component {
-      state = {
-        favorites: [],
-        itineraries: []
-      }
+  state = {
+    favorites: [],
+    itineraries: []
+  }
 
-      componentDidMount() {
-          console.log(this.props.match.params.userId);
-          
-        this.props.getUserById(this.props.match.params.userId) // get user for title
-        this.props.getFavorites(this.props.match.params.userId) // get the itineraries by userID to show favorites
-      }
+  componentDidMount() {
+      console.log(this.props.match.params.userId);
+      
+    this.props.getUserById(this.props.match.params.userId) // get user for title
+    this.props.getFavorites(this.props.match.params.userId) // get the itineraries by userID to show favorites
+  }
 
   render () {
       const { user } = this.props.auth;
@@ -37,9 +37,8 @@ class Favorites extends React.Component {
 
             {this.props.favorite.favorites.map((itinerary, index) => 
                 <SingleItin  key={ index } itin={ itinerary } />
-                )
+              )
             }
-
         </div>
       
         <Footer />

@@ -12,26 +12,26 @@ import PropTypes from 'prop-types';
 import './views.css';
 
 class MYtinerary extends React.Component {
-      state = {
-        itineraries: [],
-        redirect: false
-      }
+    state = {
+      itineraries: [],
+      redirect: false
+    }
 
-      componentDidMount() {
-        console.log(this.props);
-        this.props.getCityById(this.props.match.params.cityId) // load single city page showing cityPic
-        this.props.getItineraries(this.props.match.params.cityId) // load all itineraries related to this city
-      }
+    componentDidMount() {
+      console.log(this.props);
+      this.props.getCityById(this.props.match.params.cityId) // load single city page showing cityPic
+      this.props.getItineraries(this.props.match.params.cityId) // load all itineraries related to this city
+    }
 
-      // link back to Cities page
-      setRedirect = () => {
-        this.setState({ redirect: true })
+    // link back to Cities page
+    setRedirect = () => {
+      this.setState({ redirect: true })
+    }
+    renderRedirect = () => {
+      if (this.state.redirect) {
+        return <Redirect to='/cities'/>
       }
-      renderRedirect = () => {
-        if (this.state.redirect) {
-          return <Redirect to='/cities'/>
-        }
-      } 
+    } 
 
     render () {
       console.log(this.props);
@@ -59,7 +59,6 @@ class MYtinerary extends React.Component {
                   </button>
           </div>
 
-        
           {/* navigation buttons */}  
           <div className="navbuttons">
               <BackButton />
@@ -72,7 +71,6 @@ class MYtinerary extends React.Component {
   };
 };
 
-// all functions activated in other components must be defined here?
 MYtinerary.propTypes = {
   getItineraries: PropTypes.func.isRequired,
   getCityById: PropTypes.func.isRequired,

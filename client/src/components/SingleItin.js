@@ -51,11 +51,14 @@ class SingleItin extends React.Component {
                 {/* if user is authenticated, check if itinerary is included in his favorites */}
                         { this.props.auth.user ? this.props.auth.user.favorites.includes(this.props.itin._id)
                         ? (<ToUnlike
-                            itinId= { this.props.itin._id } cityId={ this.props.itin.cityId } 
+                            itinId= { this.props.itin._id }
+                            cityId={ this.props.itin.cityId } 
                             />)
                         : (<ToLike
-                            itinId= { this.props.itin._id } cityId={ this.props.itin.cityId }  
-                            />) : null 
+                            itinId= { this.props.itin._id }
+                            cityId={ this.props.itin.cityId }  
+                            />)
+                        : null 
                         }
 
                         <div className="details">
@@ -80,16 +83,14 @@ class SingleItin extends React.Component {
     }
 }
 
-// add auth to propTypes as rquired for Lke/ Unlike button??
+
 SingleItin.propTypes = {
   getItineraries: PropTypes.func.isRequired,
-  itinerary: PropTypes.object.isRequired,
-  city: PropTypes.object.isRequired
+  city: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 }
 
-// why define itinerary while receiving itin from parent component?? or does it relate to Redux??
 const mapStateToProps = (state) => ({
-  itinerary: state.itinerary,
   auth: state.auth,
   city: state.city
 })

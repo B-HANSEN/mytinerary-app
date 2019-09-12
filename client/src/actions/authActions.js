@@ -14,6 +14,15 @@ import {
   SINGLE_USER
 } from './types';
 
+ // Headers
+ const config = {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+};
+
+
+
 // ******************** Load User ******************** //
 export const loadUser = () => (dispatch, getState) => {
   // User loading: change value from false to true and reaching out to reducer
@@ -37,12 +46,7 @@ export const loadUser = () => (dispatch, getState) => {
 
 // ******************** Register User ******************** //
 export const register = ({ name, email, password }) => dispatch => {
-  // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
+
 
   // Request body
   const body = JSON.stringify({ name, email, password });
@@ -111,13 +115,6 @@ export const tokenConfig = getState => {
   // Get token from localstorage
   const token = getState().auth.token;
 
-  // Headers
-  const config = {
-    headers: {
-      'Content-type': 'application/json'
-    }
-  };
-
   // If token, add to headers
   if (token) {
     config.headers['x-auth-token'] = token;
@@ -129,13 +126,7 @@ export const tokenConfig = getState => {
 // ****************************** Social media login ****************************** //
 // ******************** Login User ******************** //
 export const loginSocial = ({ email, name }) => dispatch => {
-  // Headers
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
-
+ 
   // Request body
   const body = JSON.stringify({ email, name });
 

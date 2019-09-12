@@ -70,7 +70,7 @@ class AppNavbar extends Component {
   }
 
   render() {
-    // this.props always relates to Redux state?? 
+// this.props always relates to Redux state?? 
     const { isAuthenticated, user } = this.props.auth;
     console.log(this.state);
     console.log(user);

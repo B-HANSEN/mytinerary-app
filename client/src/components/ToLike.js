@@ -10,6 +10,7 @@ import 'mdbreact/dist/css/mdb.css';
 import { MDBIcon } from "mdbreact";
 
 
+// reclassify as functional component??
 class ToLike extends Component {
     state = {}
 
@@ -48,6 +49,7 @@ const mapStateToProps = (state) => ({
 
 export default connect (mapStateToProps, {
     addToFavorites,
+    // remove get Fav and load User
     getFavorites,
     loadUser,
     addLikes

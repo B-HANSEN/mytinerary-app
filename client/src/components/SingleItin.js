@@ -17,9 +17,7 @@ function Activities(props) {
   }
   return (
     <div className="activitySlider">
-{/* Why props.props because nested in SingleItin which receives props from that parent ID*/}
-{/* try this.props */}
-     <ActivitySlider itinID={ props.itinId } />
+     <ActivitySlider itinId={ props.itinId } />
     </div>
   );
 }
@@ -30,10 +28,7 @@ class SingleItin extends React.Component {
         reload: false
       };
     
-// why required to bind(this) when using arrow function??
-    handleToggleClick = this.handleToggleClick.bind(this);
-
-    handleToggleClick() {
+    handleToggleClick = () => {
       this.setState(state => ({
         showActivities: !state.showActivities
       }));
@@ -47,20 +42,16 @@ class SingleItin extends React.Component {
                 <div className="allDetailsIt">
                     <div className="profilePic">
                         <img className="prof" src= { this.props.itin.profilePic } alt="prof1" />
-{/* why not this.props.itinerary.itinerary.username?? */}
                         <h6 className="username"> { this.props.itin.username }</h6>
                     </div>
 
                     <div className="overview">   
                         <h5 className="titleIt">{this.props.itin.title}</h5>
 
-                {/* if user is authenticated, check if itinerary is included in his favorites,
-                then show the unlike, otherwise enable like button */}
+                {/* if user is authenticated, check if itinerary is included in his favorites */}
                         { this.props.auth.user ? this.props.auth.user.favorites.includes(this.props.itin._id)
                         ? (<ToUnlike
-// is this destructuring, using a short form by declaring new variable?
-// receiving itin from parent component   <SingleItin itin={ itinerary }?? but matching with Redux state />
-                            itinId= { this.props.itin._id } cityId={ this.props.itin.cityId }
+                            itinId= { this.props.itin._id } cityId={ this.props.itin.cityId } 
                             />)
                         : (<ToLike
                             itinId= { this.props.itin._id } cityId={ this.props.itin.cityId }  
@@ -78,8 +69,7 @@ class SingleItin extends React.Component {
                       </div>
                     </div>
                 </div>
- 
- {/* why props ={this.props}?? */}
+
                 <Activities more={ this.state.showActivities } itinId={this.props.itin._id}/>
                 <button className="view_close" onClick={ this.handleToggleClick }>
                   { this.state.showActivities ? 'Close' : 'View activities' }
@@ -94,14 +84,12 @@ class SingleItin extends React.Component {
 SingleItin.propTypes = {
   getItineraries: PropTypes.func.isRequired,
   itinerary: PropTypes.object.isRequired,
-  // itin: PropTypes.object.isRequired,
   city: PropTypes.object.isRequired
 }
 
 // why define itinerary while receiving itin from parent component?? or does it relate to Redux??
 const mapStateToProps = (state) => ({
   itinerary: state.itinerary,
-  // itin: state.itin,
   auth: state.auth,
   city: state.city
 })

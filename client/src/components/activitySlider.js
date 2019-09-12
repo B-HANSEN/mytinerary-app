@@ -47,7 +47,7 @@ class ActivitySlider extends React.Component {
   }
 
   componentDidMount() {
-          this.props.getActivities(this.props.itinID) // load single city and all its activities related to all itinIds
+          this.props.getActivities(this.props.itinId) // load single city and all its activities related to all itinIds
       }
   
   render() {

@@ -4,8 +4,7 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
 const auth = require('../../middleware/auth');
-
-// User Model
+// import user model
 const User = require('../../models/User');
 
 // @route   POST api/auth
@@ -22,7 +21,7 @@ router.post('/', (req, res) => {
   // Check for existing user
   User.findOne({ email })
     .then(user => {
-      if(!user) return res.status(400).json({ msg: 'User Does not exist' });
+      if(!user) return res.status(400).json({ msg: 'User does not exist' });
 
       // Validate password
       bcrypt.compare(password, user.password)  // compare plain text pw with hashed pw in db

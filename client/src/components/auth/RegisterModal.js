@@ -29,7 +29,7 @@ class RegisterModal extends Component {
   // With introduction of static keyword in ES6, 
   // possible to define static methods inside the class definition itself.
   static propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
+    isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     register: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired

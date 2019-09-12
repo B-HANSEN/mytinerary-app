@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { returnErrors } from './errorActions';
 
 import {
@@ -13,10 +14,8 @@ import {
   SINGLE_USER
 } from './types';
 
-// Check token & load user
+// ******************** Load User ******************** //
 export const loadUser = () => (dispatch, getState) => {
-  console.log("Load");
-  
   // User loading: change value from false to true and reaching out to reducer
   dispatch({ type: USER_LOADING });
 
@@ -36,7 +35,7 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
-// Register User
+// ******************** Register User ******************** //
 export const register = ({ name, email, password }) => dispatch => {
   // Headers
   const config = {
@@ -67,7 +66,7 @@ export const register = ({ name, email, password }) => dispatch => {
     });
 };
 
-// Login User
+// ******************** Login User ******************** //
 export const login = ({ email, password }) => dispatch => {
   // Headers
   const config = {
@@ -97,7 +96,8 @@ export const login = ({ email, password }) => dispatch => {
     });
 };
 
-// Logout User; no need to dispatch... only send action.type of LOGOUT_SUCCESS to reducer
+// ******************** Logout User ******************** //
+// no need to dispatch... only send action.type of LOGOUT_SUCCESS to reducer
 // that will clear out token and set back the state, no action on server-side
 export const logout = () => {
   return {
@@ -105,10 +105,10 @@ export const logout = () => {
   };
 };
 
-// Setup config/headers and token
-  export const tokenConfig = getState => {
-    // Get token from localstorage
-    const token = getState().auth.token;
+// **************************************** Setup config/headers and token **************************************** //
+export const tokenConfig = getState => {
+  // Get token from localstorage
+  const token = getState().auth.token;
 
   // Headers
   const config = {
@@ -125,8 +125,8 @@ export const logout = () => {
 };
 
 
-// ********** Social media login **********
-// Login User
+// ****************************** Social media login ****************************** //
+// ******************** Login User ******************** //
 export const loginSocial = ({ email, name }) => dispatch => {
   // Headers
   const config = {
@@ -156,8 +156,8 @@ export const loginSocial = ({ email, name }) => dispatch => {
       });
 };
 
-// socialMedia log-out
-// Logout User; no need to dispatch... only send action.type of LOGOUT_SUCCESS to reducer
+// ******************** Social Media Logout ******************** //
+// no need to dispatch... only send action.type of LOGOUT_SUCCESS to reducer
 // that will clear out token and set back the state, no action on server-side
 export const logoutSocial = () => {
   return {
@@ -166,6 +166,8 @@ export const logoutSocial = () => {
 };
 
 
+
+// ******************** LOAD SINGLE USER ******************** //
 export const getUserById = userId => dispatch => {
   dispatch(setUserLoading());
   axios.get("/api/users/" + userId)
@@ -177,7 +179,7 @@ export const getUserById = userId => dispatch => {
   );
 };
 
-// load user by ID for favorites
+// change loading state
 export const setUserLoading = () => {
   return {
       type: USER_LOADING

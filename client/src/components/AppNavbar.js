@@ -40,8 +40,9 @@ class AppNavbar extends Component {
   responseGoogleSuccess = (response) => {
     console.log(response);
     this.props.loginSocial(
-      { email: response.profileObj.email, name: response.profileObj.name }     
+      { email: response.profileObj.email, name: response.profileObj.name }  
     );
+    this.toggleNavbar()  
   }
 
   responseGoogleFail = (response) => {
@@ -49,11 +50,11 @@ class AppNavbar extends Component {
   }
 
   logOut = (response) => {
-    console.log(this.props);
     console.log("logOut", response);
     this.props.logoutSocial(
       { email: response.profileObj.email, name: response.profileObj.name }     
     );
+    this.toggleNavbar()  
   }
 
   onClick = e => {
@@ -102,7 +103,7 @@ class AppNavbar extends Component {
       <div >
      
           <Navbar color="light" light>
-              <NavbarBrand href="/" className="mr-auto">   MYtinerary travel app
+              <NavbarBrand href="/" className="mr-auto">MYtinerary travel app
                      </NavbarBrand>
 
               <NavbarToggler onClick={ this.toggleNavbar } className="mr-2" />
@@ -118,27 +119,28 @@ class AppNavbar extends Component {
                           </Nav> 
                     <DropdownItem divider />
               
-                    <div className="socialMedia">
-                      <GoogleLogin
+                    <div>
+                      { isAuthenticated ? 
+                        null
+                        :
+                        <GoogleLogin
                         clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
-                        buttonText="Sign-in"
-                        onClick={this.onClick}
+                        buttonText="... or login with Google"
                         onSuccess={ this.responseGoogleSuccess }
                         onFailure={ this.responseGoogleFail }
                         cookiePolicy={ 'single_host_origin' }
-                      />
+                      /> }
 
                       <GoogleLogout
                         icon={false}
                         clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
                         buttonText="Logout"
-                        onClick={this.onClick}
                         onSuccess={ this.logOut }
                       />
                     </div>
 
                     <DropdownItem divider />
-                    <NavLink className="dropdownItem" to="/cities">Cities</NavLink>
+                    <Link className="dropdownItem" to="/cities" onClick={ this.toggleNavbar }>Cities</Link>
                     
                 </Collapse>
                 { isAuthenticated ? null : this.renderRedirect() } 

@@ -33,9 +33,6 @@ class ToUnlike extends Component {
 
 
 ToUnlike.propTypes = {
-    removeFromFavorites: PropTypes.func.isRequired,
-    getFavorites: PropTypes.func.isRequired,
-    removeLikes: PropTypes.func,
     loadUser: PropTypes.func.isRequired,
     itinerary: PropTypes.object.isRequired,
     user: PropTypes.object
@@ -44,9 +41,8 @@ ToUnlike.propTypes = {
 const mapStateToProps = (state) => ({
     itinerary: state.itinerary,
     auth: state.auth,
-    favorite: state.favorite,
-    likes: state.likes,
-    liked: state.liked
+    favorite: state.favorite
+
 })
 
 export default connect (mapStateToProps, {

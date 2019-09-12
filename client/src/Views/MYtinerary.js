@@ -29,7 +29,7 @@ class MYtinerary extends React.Component {
       }
       renderRedirect = () => {
         if (this.state.redirect) {
-          return <Redirect to='/cities' />
+          return <Redirect to='/cities'/>
         }
       } 
 
@@ -72,6 +72,7 @@ class MYtinerary extends React.Component {
   };
 };
 
+// all functions activated in other components must be defined here?
 MYtinerary.propTypes = {
   getItineraries: PropTypes.func.isRequired,
   getCityById: PropTypes.func.isRequired,

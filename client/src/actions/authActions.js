@@ -48,6 +48,7 @@ export const register = ({ name, email, password }) => dispatch => {
   const body = JSON.stringify({ name, email, password });
 
   axios
+  // api/users: as per routes -- body: email, pw -- config: that is related to keys which relates to the backend???
     .post('/api/users', body, config)
     .then(res =>
       dispatch({

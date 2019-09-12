@@ -8,6 +8,7 @@ function Search (props) {
         <div className="search">
             <p>Filter our current cities:</p>
             <input
+            // means execute handleInput-function in parent component??
                 onChange={ props.handleInput }
                 type="text" 
                 placeholder="Search by city..."
@@ -16,4 +17,5 @@ function Search (props) {
     )
 }
 
+// why no subscription to props mapStateToProps??   
 export default Search;

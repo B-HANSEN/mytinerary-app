@@ -31,7 +31,6 @@ const body = { itinId: itinId };
   axios.put("/api/favorites/users/" + id, body)
     .then(res => {
       dispatch(loadUser())
-      
       }
     )};
 

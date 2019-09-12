@@ -35,13 +35,13 @@ class RegisterModal extends Component {
     clearErrors: PropTypes.func.isRequired
   };
 
+  // why use of prevProps?
   componentDidUpdate(prevProps) {
-    // deconstructed from mapStateToProps below
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {
-        // msg.msg as defined in back-end
+// WHY msg.msg???
         this.setState({ msg: error.msg.msg });
       } else {
         this.setState({ msg: null });

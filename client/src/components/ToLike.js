@@ -35,9 +35,6 @@ class ToLike extends Component {
 };
 
 ToLike.propTypes = {
-    addToFavorites: PropTypes.func.isRequired,
-    getFavorites: PropTypes.func.isRequired,
-    addLikes: PropTypes.func,
     loadUser: PropTypes.func.isRequired,
     itinerary: PropTypes.object.isRequired,
     user: PropTypes.object
@@ -46,9 +43,7 @@ ToLike.propTypes = {
 const mapStateToProps = (state) => ({
     itinerary: state.itinerary,
     auth: state.auth,
-    favorite: state.favorite,
-    likes: state.likes,
-    liked: state.liked
+    favorite: state.favorite
 })
 
 export default connect (mapStateToProps, {

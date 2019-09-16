@@ -14,19 +14,9 @@ import './views.css';
 
 class Home extends React.Component {
     state = {
-      redirectLogin: false,
       redirectCities: false
     }
 
-    // Redirect for Login page
-    setRedirectLogin = () => {
-      this.setState({ redirectLogin: true })
-    }
-    renderRedirectLogin = () => {
-      if (this.state.redirectLogin) {
-        return <Redirect to='/login' />
-      }
-    }
     // Redirect for Cities page
     setRedirectCities = () => {
       this.setState({ redirectCities: true })

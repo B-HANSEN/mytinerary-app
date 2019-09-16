@@ -4,9 +4,9 @@ import { GET_FAVORITES, FAVORITES_LOADING,
 const initialState = {
     favorites: [],
     favorite: {},
-    liked: false,
+    // liked: false,
     ratings: "",
-    favoriteCount: "",
+    // favoriteCount: "",
     loading: false, 
     msg:"Hello world (from favorites)"
 };

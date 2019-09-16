@@ -6,6 +6,7 @@ import './singleItin.css';
 import PropTypes from 'prop-types';
 import ToLike from "./ToLike";
 import ToUnlike from "./ToUnlike";
+import Comments from "./Comments";
 import { loadUser } from '../actions/authActions';
 
 
@@ -25,12 +26,19 @@ function Activities(props) {
 class SingleItin extends React.Component {
       state = {
         showActivities: false,
+        showComments: false,
         reload: false
       };
     
-    handleToggleClick = () => {
+    handleToggleActivities = () => {
       this.setState(state => ({
         showActivities: !state.showActivities
+      }));
+    }
+
+    handleToggleComments = () => {
+      this.setState(state => ({
+        showComments: !state.showComments
       }));
     }
 
@@ -73,9 +81,22 @@ class SingleItin extends React.Component {
                     </div>
                 </div>
 
-                <Activities more={ this.state.showActivities } itinId={this.props.itin._id}/>
-                <button className="view_close" onClick={ this.handleToggleClick }>
-                  { this.state.showActivities ? 'Close' : 'View activities' }
+                <Activities more={ this.state.showActivities } itinId={this.props.itin._id} />
+
+
+{/* only when showActivities is true, show comments */}
+
+                <Comments user={this.props.auth.user} />
+                { this.state.showActivities
+                  ? (<button className="view_close" onClick={ this.handleToggleComments }>
+                      { this.state.showComments ? 'Hide comments' : 'View comments' }
+                    </button>)
+                  : null
+                }
+                
+
+                <button className="view_close" onClick={ this.handleToggleActivities }>
+                    { this.state.showActivities ? 'Close' : 'View activities' }
                 </button>
 
             </div>
@@ -85,7 +106,8 @@ class SingleItin extends React.Component {
 
 
 SingleItin.propTypes = {
-  getItineraries: PropTypes.func.isRequired,
+// TODO: check if getItineraries can be removed
+  // getItineraries: PropTypes.func.isRequired,
   city: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 }

@@ -6,6 +6,7 @@ import actReducer from './actReducer';
 import errorReducer from './errorReducer';
 import authReducer from './authReducer';
 import favReducer from './favReducer';
+import comReducer from './comReducer';
 
 export default combineReducers ({
     city: cityReducer,
@@ -13,5 +14,6 @@ export default combineReducers ({
     activity: actReducer,
     error: errorReducer,
     auth: authReducer,
-    favorite: favReducer
+    favorite: favReducer,
+    comments: comReducer
 })

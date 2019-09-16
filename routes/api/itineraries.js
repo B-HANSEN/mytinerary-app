@@ -6,10 +6,10 @@ const Itinerary = require ('../../models/Itinerary');
 
 // ******************** HTTP: GET ********************
 // fetch all items from db: go into model, find --> res.json
-router.get('/', (req,res) => {
-    Itinerary.find()
-    .then(itineraries => res.json(itineraries))
-});
+// router.get('/', (req,res) => {
+//     Itinerary.find()
+//     .then(itineraries => res.json(itineraries))
+// });
     
 // fetch itineraries only for selected city
 router.get('/:singleCityId', (req,res) => {

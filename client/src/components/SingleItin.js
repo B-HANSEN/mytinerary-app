@@ -7,7 +7,6 @@ import ToLike from "./ToLike";
 import ToUnlike from "./ToUnlike";
 import Comments from "./Comments";
 import ActivitySlider from './activitySlider';
-// import { getItineraries } from '../actions/itActions';  getItineraries already loaded in parent component from which props passed down
 import { loadUser } from '../actions/authActions';
 
 
@@ -79,23 +78,16 @@ class SingleItin extends React.Component {
                 </div>
 
                 <Activities more={ this.state.showActivities } itinId={this.props.itin._id} />
+
+                { this.state.showActivities               
+                    ? <Comments itinId={ this.props.itin._id }  />
+                    : null
+                }
+
                 <button className="view_close" onClick={ this.handleToggleActivities }>
                     { this.state.showActivities ? 'Close' : 'View activities' }
                 </button>
-              
-              {/* TODO: move before the Activity button */}
-                <Comments itinId={ this.props.itin._id }  />
-
-
-
-                {/* <Comments user={this.props.auth.user} />
-                { this.state.showActivities
-                  ? (<button className="view_close" onClick={ this.handleToggleComments }>
-                      { this.state.showComments ? 'Hide comments' : 'View comments' }
-                    </button>)
-                  : null
-                } */}
-                
+                           
             </div>
         )
     }

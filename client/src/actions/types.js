@@ -32,3 +32,4 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 export const GET_COMMENTS = "GET_COMMENTS";
 export const COMMENTS_LOADING = "COMMENTS_LOADING";
+export const ADD_COMMENT = "ADD_COMMENTS";

@@ -19,6 +19,7 @@ router.get('/', (req,res) => {
 // @access  Public
 router.post('/', (req, res) => {
   const { name, email, password } = req.body;
+  // add avatar here too
 
   // Simple validation
   if(!name || !email || !password) {

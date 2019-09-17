@@ -1,37 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { getComments } from '../actions/commentsActions';
 
-// import icon & styles
+import PropTypes from 'prop-types';
+import { getComments } from '../actions/itActions';
 import './components.css';
 
 class Comments extends Component { 
     state = {
         comments: [],
-        comment: {},
-        users: [],
-        user: {}
+        comment: {}
     }
 
     componentDidMount() {
-        this.props.getComments(this.props.userId) // load comments related to userId; but need it for all users
+      console.log(this.props)
+// relates to routes.api: router.get('/:singleItinId', (req,res) => ...
+// relates to itActions: axios.get("/api/comments/" + itinId)
+        this.props.getComments(this.props.itinId)   // load comments related to itinId
     }
 
     // TODO: put into a form component from Material UI...
     render() {
       console.log(this.props)
-      console.log(this.props.auth)
-      console.log(this.props.username)
       return (
 
-        <div className="">
-            <h6 className="username"> { this.props.username }</h6>
-            <p className=""> { this.props.comments }</p>
+        <div>
+          {this.props.comment.comments.map((comment, index) =>
+            <div key= { index }>
+              <p className="">{ comment.user.username }</p>
+              <img className=""  src={ comment.user.profilePic } alt="actPic" />
+              <p className="">{ comment.text }</p>
+            </div>
+          )}
         </div>
-    
       )
-  }
+    }
 }
 
 Comments.propTypes = {

@@ -1,16 +1,16 @@
 import React from 'react';
-import ActivitySlider from './activitySlider.js';
 import { connect } from 'react-redux';
-import { getItineraries } from '../actions/itActions';
 import './singleItin.css';
 import PropTypes from 'prop-types';
+
 import ToLike from "./ToLike";
 import ToUnlike from "./ToUnlike";
 import Comments from "./Comments";
+import ActivitySlider from './activitySlider';
+// import { getItineraries } from '../actions/itActions';  getItineraries already loaded in parent component from which props passed down
 import { loadUser } from '../actions/authActions';
 
 
-// Why !props, should be other way around??
 // stateless comp always receive props
 function Activities(props) {
   if (!props.more) {
@@ -26,19 +26,16 @@ function Activities(props) {
 class SingleItin extends React.Component {
       state = {
         showActivities: false,
-        showComments: false,
+        itineraries: [],
+        itinerary: {},
+        comments: [],
+        comment: {},
         reload: false
       };
-    
+
     handleToggleActivities = () => {
       this.setState(state => ({
         showActivities: !state.showActivities
-      }));
-    }
-
-    handleToggleComments = () => {
-      this.setState(state => ({
-        showComments: !state.showComments
       }));
     }
 
@@ -82,39 +79,38 @@ class SingleItin extends React.Component {
                 </div>
 
                 <Activities more={ this.state.showActivities } itinId={this.props.itin._id} />
+                <button className="view_close" onClick={ this.handleToggleActivities }>
+                    { this.state.showActivities ? 'Close' : 'View activities' }
+                </button>
+              
+              {/* TODO: move before the Activity button */}
+                <Comments itinId={ this.props.itin._id }  />
 
 
-{/* only when showActivities is true, show comments */}
 
-                <Comments user={this.props.auth.user} />
+                {/* <Comments user={this.props.auth.user} />
                 { this.state.showActivities
                   ? (<button className="view_close" onClick={ this.handleToggleComments }>
                       { this.state.showComments ? 'Hide comments' : 'View comments' }
                     </button>)
                   : null
-                }
+                } */}
                 
-
-                <button className="view_close" onClick={ this.handleToggleActivities }>
-                    { this.state.showActivities ? 'Close' : 'View activities' }
-                </button>
-
             </div>
         )
     }
 }
 
-
 SingleItin.propTypes = {
-// TODO: check if getItineraries can be removed
-  // getItineraries: PropTypes.func.isRequired,
   city: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
+  itinerary: state.itinerary,
   auth: state.auth,
   city: state.city
 })
 
-export default connect (mapStateToProps, { getItineraries, loadUser }) (SingleItin)
+export default connect (mapStateToProps, {
+  loadUser }) (SingleItin)

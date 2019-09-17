@@ -31,10 +31,10 @@ mongoose.connect(db, {
 // use routes
 app.use('/api/cities', require('./routes/api/cities'));
 app.use('/api/itineraries', require('./routes/api/itineraries'));
-app.use('/api/activities', require('./routes/api/activities'));
 app.use('/api/favorites', require('./routes/api/favorites'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/activities', require('./routes/api/activities'));
 app.use('/api/comments', require('./routes/api/comments'));
 
 

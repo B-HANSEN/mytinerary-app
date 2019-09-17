@@ -15,5 +15,5 @@ export default combineReducers ({
     error: errorReducer,
     auth: authReducer,
     favorite: favReducer,
-    comments: comReducer
+    comment: comReducer
 })

@@ -6,8 +6,13 @@ const CommentSchema = new Schema ({
     itinId: {
         type: String
     },
-    userId: {
+    user: {
+       username:{
         type: String
+       },
+       profilePic:{
+        type: String
+       }
     },
     text: {
         type: String

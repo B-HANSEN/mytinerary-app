@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from 'react-redux';
 import Slider from "react-slick";
 
-import { getActivities } from '../actions/itActions';
 import PropTypes from 'prop-types';
+import { getActivities } from '../actions/itActions';
 import './components.css';
 
 function SampleNextArrow(props) {
@@ -47,9 +47,12 @@ class ActivitySlider extends React.Component {
   }
 
   componentDidMount() {
+    console.log("acttivity", this.props)
+    // relates to routes/api: router.get('/:singleItinId', (req,res) => ...
+    // relates to itActions: axios.get("/api/activities/" + itinId)
           this.props.getActivities(this.props.itinId) // load activities related to itinId
       }
-  
+                                 
   render() {
     console.log(this.props);
     return (

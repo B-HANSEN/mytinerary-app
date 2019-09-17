@@ -2,7 +2,9 @@ import {
   GET_ITINERARIES,
   ITINERARIES_LOADING,
   GET_ACTIVITIES,
-  ACTIVITIES_LOADING
+  ACTIVITIES_LOADING,
+  GET_COMMENTS,
+  COMMENTS_LOADING
 } from "./types";
 import axios from "axios";
 
@@ -41,3 +43,20 @@ export const setActivitiesLoading = () => {
     type: ACTIVITIES_LOADING
   };
 };
+
+// retrieve comments for specific itinId from database
+  export const getComments = itinId => dispatch => {
+    dispatch(setCommentsLoading());
+    axios.get("/api/comments/" + itinId).then(res => 
+        dispatch({
+          type: GET_COMMENTS,
+          payload: res.data
+        })
+      );
+  };
+
+  export const setCommentsLoading = () => {
+    return {
+      type: COMMENTS_LOADING
+    };
+  };

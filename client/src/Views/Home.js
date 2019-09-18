@@ -52,7 +52,7 @@ class Home extends React.Component {
 
              <button onClick={ () => this.setState({ showModal: true }) }>
                 { isAuthenticated 
-                  ? <Link to="/CreateItinerary">Create your own itinerary here...</Link>
+                  ? <Link to="/CreateItinerary" className="bluehighlight">Create your own itinerary here...</Link>
                   : <LoginModal open={this.state.showModal}></LoginModal> 
                 }
              </button>

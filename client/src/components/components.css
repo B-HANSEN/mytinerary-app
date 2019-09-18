@@ -90,6 +90,14 @@ body {
   box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2)
 }
 
+.headerpic {
+  margin: 0px 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+
 /* search-field */
 .search {
   display: flex;
@@ -142,10 +150,13 @@ h2, .actPlace {
 button {
   height: 40px;
   font-size: 15px;
-  color: blue;
   text-decoration: none;
 }
 
 .dropdownItem {
   padding: 0;
+}
+
+.profileButton {
+  width: 30px;
 }

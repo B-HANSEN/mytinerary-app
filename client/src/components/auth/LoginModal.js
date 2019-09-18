@@ -17,8 +17,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
-
-
+import './auth.css';
 
 class LoginModal extends Component {
   state = {
@@ -90,7 +89,7 @@ class LoginModal extends Component {
 
     return (
       <div>
-        <NavLink onClick={this.toggle} href='#'>Login</NavLink>
+        <NavLink onClick={this.toggle} href='#' className="bluehighlight">Login</NavLink>
 
             <Modal isOpen={this.state.modal} toggle={this.toggle}>
               <ModalHeader toggle={this.toggle}>Login</ModalHeader>
@@ -123,9 +122,7 @@ class LoginModal extends Component {
                     />
 
                     { this.renderRedirect() }
-                    <Button 
-                        to={ '/' }
-                        color='dark' style={{ marginTop: '2rem' }} block>
+                    <Button to={ '/' } color='dark' style={{ marginTop: '2rem' }} block>
                         Login 
                     </Button>
                     

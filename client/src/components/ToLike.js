@@ -26,7 +26,7 @@ class ToLike extends Component {
             <button
                 onClick={ this.increaseFavorites }
             >
-            <MDBIcon far icon="heart" />
+            <MDBIcon far icon="heart" className="bluehighlight"/>
             </button>
         )
     }

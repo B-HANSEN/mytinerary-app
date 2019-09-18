@@ -101,3 +101,7 @@ ul {
     margin: 20px 20px;
     font-style: italic;
 }
+
+.commentsText {
+    font-size: 14px;
+}

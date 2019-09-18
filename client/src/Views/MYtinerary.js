@@ -59,7 +59,7 @@ class MYtinerary extends React.Component {
                   </button>
           </div>
 
-          {/* navigation buttons */}  
+          {/* TODO: fix the back button */}
           <div className="navbuttons">
               <BackButton />
               <Footer />

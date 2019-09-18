@@ -16,12 +16,51 @@ import PropTypes from 'prop-types';
 import { register } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
+
+class UploadPreview extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { file: null };
+    this.onChange = this.onChange.bind(this);
+    this.resetFile = this.resetFile.bind(this);
+  }
+  onChange(event) {
+    this.setState({
+      file: URL.createObjectURL(event.target.files[0])
+    });
+  }
+
+  resetFile(event) {
+    event.preventDefault();
+    this.setState({ file: null });
+  }
+  render() {
+    return (
+      <div>
+        <input type="file" onChange={this.onChange} />
+        {this.state.file && (
+          <div style={{ textAlign: "center" }}>
+            <button onClick={this.resetFile}>Remove File</button>
+          </div>
+        )}
+        <img style={{ width: "100%" }} src={this.state.file} alt="profilePic" />
+      </div>
+    );
+  }
+}
+
+
+
+
+
+
 class RegisterModal extends Component {
   state = {
     modal: false,
     name: '',
     email: '',
     password: '',
+    avatar: '',
     msg: null
   };
 
@@ -71,13 +110,14 @@ class RegisterModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, email, password } = this.state;
+    const { name, email, password, avatar } = this.state;
 
     // Create user object
     const newUser = {
       name,
       email,
-      password
+      password,
+      avatar
     };
 
     // Attempt to register
@@ -128,6 +168,9 @@ class RegisterModal extends Component {
                   className='mb-3'
                   onChange={this.onChange}
                 />
+
+                <UploadPreview />
+
                 <Button color='dark' style={{ marginTop: '2rem' }} block>
                   Register
                 </Button>
@@ -147,6 +190,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps,
-  { register, clearErrors }
-)(RegisterModal);
+  mapStateToProps, { register, clearErrors }) (RegisterModal);

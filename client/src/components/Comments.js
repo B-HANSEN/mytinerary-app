@@ -13,9 +13,7 @@ class Comments extends Component {
 
     componentDidMount() {
       console.log(this.props)
-// relates to routes.api: router.get('/:singleItinId', (req,res) => ...
-// relates to itActions: axios.get("/api/comments/" + itinId)
-        this.props.getComments(this.props.itinId)   // load comments related to itinId
+        this.props.getComments(this.props.itinId)   // load comments related to itinId, receive props from SingleItin-component
     }
 
     // TODO: put into a form component from Material UI...
@@ -31,7 +29,7 @@ class Comments extends Component {
                   <img className="profForComments"  src={ comment.user.profilePic } alt="actPic" />
                   <p>{ comment.user.username }</p>
                 </div>
-                <p>{ comment.text }</p>
+                <p className="commentsText">{ comment.text }</p>
             </div>
           )}
         </div>

@@ -37,6 +37,8 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/activities', require('./routes/api/activities'));
 app.use('/api/comments', require('./routes/api/comments'));
 
+// makes a folder publicly available; parse only requests targeted at /uploads and then apply middleware which will then ignore the partt that is parsed
+app.use('/uploads', express.static('uploads'));
 
 
 // Serve static assets if in production

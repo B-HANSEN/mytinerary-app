@@ -48,9 +48,7 @@ class ActivitySlider extends React.Component {
 
   componentDidMount() {
     console.log("acttivity", this.props)
-    // relates to routes/api: router.get('/:singleItinId', (req,res) => ...
-    // relates to itActions: axios.get("/api/activities/" + itinId)
-          this.props.getActivities(this.props.itinId) // load activities related to itinId
+          this.props.getActivities(this.props.itinId) // load activities related to itinId received from parent component
       }
                                  
   render() {
@@ -83,5 +81,4 @@ const mapStateToProps = (state) => ({
   activity: state.activity
 })
 
-// export ActivitySlider;
 export default connect (mapStateToProps, { getActivities }) (ActivitySlider)

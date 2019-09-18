@@ -18,7 +18,6 @@ import MYtinerary from './Views/MYtinerary'
 import Cities from './Views/Cities'
 import Favorites from './Views/Favorites'
 
-
 // Enzyme.configure({ adapter: new Adapter() });
 
 class App extends Component {

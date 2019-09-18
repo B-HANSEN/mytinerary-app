@@ -6,6 +6,9 @@ const ItinerarySchema = new Schema ({
     title: {
         type: String
     },
+    // itinPic: {
+    //     type: String
+    // },
     username: {
         type: String
     },

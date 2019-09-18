@@ -1,16 +1,15 @@
-const express = require ('express');
+const express = require('express');
 const router = express.Router();
+
+// import multer and initialise it (define a folder for ulter to store incoming files):
+// const multer = require('multer');
+// const upload = multer({ dest: 'uploads/' });
 
 // import itinerary model
 const Itinerary = require ('../../models/Itinerary');
 
+
 // ******************** HTTP: GET ********************
-// fetch all items from db: go into model, find --> res.json
-// router.get('/', (req,res) => {
-//     Itinerary.find()
-//     .then(itineraries => res.json(itineraries))
-// });
-    
 // fetch itineraries only for selected city
 router.get('/:singleCityId', (req,res) => {
     console.log(req.params.singleCityId)
@@ -20,7 +19,6 @@ router.get('/:singleCityId', (req,res) => {
         res.json(itineraries)
     })
 });
-
 
 // ******************** HTTP: PUT ********************
 // @route   PUT api/itineraries
@@ -38,8 +36,13 @@ router.put('/:itinId/rating', function(req, res) {
 
 
 // ******************** HTTP: POST ********************
-router.post('/', (req,res) => {
-   const newItinerary = new Itinerary ({
+// upload only one file with upload.single()-method
+router.post('/', 
+// upload.single('avatar'), 
+(req,res) => {
+    console.log(req.file)
+    
+    const newItinerary = new Itinerary ({
     title: req.body.title,
     profilePic: req.body.profilePic,
     username: req.body.username,

@@ -13,7 +13,8 @@ const UserSchema = new Schema({
     unique: true
   },
   password: {
-    type: String
+    type: String,
+    required: true
   },
   register_date: {
     type: Date,

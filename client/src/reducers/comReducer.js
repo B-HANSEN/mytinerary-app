@@ -3,8 +3,7 @@ import { GET_COMMENTS, COMMENTS_LOADING, ADD_COMMENT } from '../actions/types';
 const initialState = {
     comments: [],
     comment: {},
-    loading: false, 
-    msg:"Hello world (from CommentsReducer)"
+    loading: false
 };
 
 export default function(state = initialState, action) {
@@ -17,6 +16,7 @@ export default function(state = initialState, action) {
                 loading: false
             };
 
+            // to add item, send new comment and all old ones
         case ADD_COMMENT:
             return {
                 ...state,

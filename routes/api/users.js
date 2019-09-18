@@ -54,6 +54,8 @@ router.post('/', upload.single('avatar'), (req, res) => {
     const { name, email, password
       // , avatar
      } = req.body;
+     console.log(req.body);
+     
     // const { avatar } = req.file.path;
     console.log(req.file);
     // TODO: reconfirm that avatar does not have to be considered here but in constant newUser()-method!!
@@ -66,7 +68,7 @@ router.post('/', upload.single('avatar'), (req, res) => {
     // Check for existing user, from mongoose
     User.findOne({ email })
       .then(user => {
-        
+
                 // Existing validation:
                 if(user) return res.status(400).json({ msg: 'User already exists' });
 

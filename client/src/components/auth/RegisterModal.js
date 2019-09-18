@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+// import { log } from 'util';
 
 
 class UploadPreview extends React.Component {
@@ -27,12 +28,14 @@ class UploadPreview extends React.Component {
   onChange(event) {
     this.setState({
       file: URL.createObjectURL(event.target.files[0])
-    });
+    })
+    this.props.handleFileInput(event.target.files[0]);
   }
 
   resetFile(event) {
     event.preventDefault();
     this.setState({ file: null });
+    this.props.handleFileInput(null);
   }
   render() {
     return (
@@ -43,7 +46,7 @@ class UploadPreview extends React.Component {
             <button onClick={this.resetFile}>Remove File</button>
           </div>
         )}
-        <img style={{ width: "100%" }} src={this.state.file} alt="profilePic" />
+        <img style={{ width: "100%" }} src={this.state.file} alt="avatar" />
       </div>
     );
   }
@@ -61,7 +64,9 @@ class RegisterModal extends Component {
     email: '',
     password: '',
     avatar: '',
-    msg: null
+    msg: null,
+    value: null,
+    fileInputElement: null
   };
 
 
@@ -95,6 +100,11 @@ class RegisterModal extends Component {
     }
   }
 
+  handleFileInput = (file) => {
+    console.log(file)
+    this.setState({ fileInputElement: file })
+  } 
+
   // open/ close the modal
   toggle = () => {
     // Clear errors
@@ -112,16 +122,30 @@ class RegisterModal extends Component {
     e.preventDefault();
     const { name, email, password, avatar } = this.state;
 
-    // Create user object
-    const newUser = {
-      name,
-      email,
-      password,
-      avatar
-    };
 
-    // Attempt to register
-    this.props.register(newUser);
+    // create FormData-constructor:
+        let newUser = new FormData();
+        newUser.append("name", name);
+        newUser.append("email", email);
+        newUser.append("password",password);
+   
+   // HTML file input, chosen by user
+  //  fileInputElement.files[0] represent the input of an input type="file" element:
+
+        newUser.append("avatar", this.state.fileInputElement);
+   
+
+
+      // Create user object
+    //  newUser = {
+    //     name,
+    //     email,
+    //     password,
+    //     avatar
+    //   };
+
+      // Attempt to register
+        this.props.register(newUser);
   };
 
   render() {
@@ -169,7 +193,7 @@ class RegisterModal extends Component {
                   onChange={this.onChange}
                 />
 
-                <UploadPreview />
+                <UploadPreview handleFileInput = { this.handleFileInput }  />
 
                 <Button color='dark' style={{ marginTop: '2rem' }} block>
                   Register

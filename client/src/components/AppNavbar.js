@@ -110,10 +110,10 @@ class AppNavbar extends Component {
               
               {/* show only profile avatar when user is not logged in */}
               { isAuthenticated
-              ? <img className="headerpic" src= { user.avatar } alt="" />
-              : <button >
-                  <MDBIcon icon="user-circle" size="2x"/>
-                </button>
+                ? <img className="headerpic" src= { user.avatar } alt="" />
+                : <button >
+                    <MDBIcon icon="user-circle" size="2x"/>
+                  </button>
               }
 
               <NavbarBrand href="/" m-0>MYtinerary travel app

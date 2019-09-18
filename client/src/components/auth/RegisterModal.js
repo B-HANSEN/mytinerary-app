@@ -44,7 +44,7 @@ class UploadPreview extends React.Component {
             <button onClick={this.resetFile}>Remove File</button>
           </div>
         )}
-        <img style={{ width: "100%" }} src={this.state.file} alt="avatar" />
+        <img style={{ width: "100%" }} src={this.state.file} alt="" />
       </div>
     );
   }
@@ -57,8 +57,7 @@ class RegisterModal extends Component {
     name: '',
     email: '',
     password: '',
-    msg: null,
-    // fileInputElement: null
+    msg: null
   };
 
 

@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import { returnErrors } from './errorActions';
 
 import {
@@ -15,13 +14,7 @@ import {
 } from './types';
 
  // Headers
- const config = {
-  headers: {
-    'Content-Type': 'application/json'
-  }
-};
-
-
+ const config = { headers: { 'Content-Type': 'application/json' } };
 
 // ******************** Load User ******************** //
 export const loadUser = () => (dispatch, getState) => {
@@ -36,16 +29,13 @@ export const loadUser = () => (dispatch, getState) => {
     )
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: AUTH_ERROR
-      });
+      dispatch({ type: AUTH_ERROR });
     });
 };
 
 // ******************** Register User ******************** //
 export const register = (user) => dispatch => {
-  // Request body
-  //const body = JSON.stringify({ name, email, password });
+  
   axios
     .post('/api/users', user, config)
     .then(res =>
@@ -59,20 +49,12 @@ export const register = (user) => dispatch => {
       dispatch(
         returnErrors(err.response.data, err.response.status, 'REGISTER_FAIL')
       );
-      dispatch({
-        type: REGISTER_FAIL
-      });
+      dispatch({ type: REGISTER_FAIL });
     });
 };
 
 // ******************** Login User ******************** //
 export const login = ({ email, password }) => dispatch => {
-  // Headers
-  // const config = {
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   }
-  // };
 
   // Request body
   const body = JSON.stringify({ email, password });
@@ -88,9 +70,7 @@ export const login = ({ email, password }) => dispatch => {
       dispatch(
         returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
       );
-      dispatch({
-        type: LOGIN_FAIL
-      });
+      dispatch({ type: LOGIN_FAIL });
     });
 };
 
@@ -98,9 +78,7 @@ export const login = ({ email, password }) => dispatch => {
 // no need to dispatch... only send action.type of LOGOUT_SUCCESS to reducer
 // that will clear out token and set back the state, no action on server-side
 export const logout = () => {
-  return {
-    type: LOGOUT_SUCCESS
-  };
+  return { type: LOGOUT_SUCCESS };
 };
 
 // **************************************** Setup config/headers and token **************************************** //
@@ -135,9 +113,7 @@ export const loginSocial = ({ email, name }) => dispatch => {
         dispatch(
           returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
         );
-        dispatch({
-          type: LOGIN_FAIL
-        });
+        dispatch({ type: LOGIN_FAIL });
       });
 };
 
@@ -145,9 +121,7 @@ export const loginSocial = ({ email, name }) => dispatch => {
 // no need to dispatch... only send action.type of LOGOUT_SUCCESS to reducer
 // that will clear out token and set back the state, no action on server-side
 export const logoutSocial = () => {
-  return {
-    type: LOGOUT_SUCCESS
-  };
+  return { type: LOGOUT_SUCCESS };
 };
 
 
@@ -165,7 +139,5 @@ export const getUserById = userId => dispatch => {
 
 // change loading state
 export const setUserLoading = () => {
-  return {
-      type: USER_LOADING
-  }
+  return { type: USER_LOADING }
 }

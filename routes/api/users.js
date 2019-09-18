@@ -51,35 +51,25 @@ router.get('/', (req,res) => {
 // @desc    Register new user
 // @access  Public
 router.post('/', upload.single('avatar'), (req, res) => {
-    const { name, email, password
-      // , avatar
-     } = req.body;
-     console.log(req.body);
+    const { name, email, password } = req.body;
      
-    // const { avatar } = req.file.path;
-    console.log(req.file);
-    // TODO: reconfirm that avatar does not have to be considered here but in constant newUser()-method!!
-
-                // Completeness validation:
+        // Completeness validation:
                 if(!name || !email || !password) {
                   return res.status(400).json({ msg: 'Please enter all fields' });
                 }
 
-    // Check for existing user, from mongoose
+        // Check for existing user, from mongoose
     User.findOne({ email })
       .then(user => {
 
-                // Existing validation:
+        // Existing validation:
                 if(user) return res.status(400).json({ msg: 'User already exists' });
 
         // storing new information:
         const newUser = new User({
-            // _id: new mongoose.Types.ObjectId(), 
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
-            ,
-            // avatar: req.body.path
+            password: req.body.password,
             avatar: req.file.path
         });
 

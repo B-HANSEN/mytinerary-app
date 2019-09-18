@@ -15,7 +15,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
-// import { log } from 'util';
 
 
 class UploadPreview extends React.Component {
@@ -26,17 +25,15 @@ class UploadPreview extends React.Component {
     this.resetFile = this.resetFile.bind(this);
   }
   onChange(event) {
-    this.setState({
-      file: URL.createObjectURL(event.target.files[0])
-    })
+    this.setState({ file: URL.createObjectURL(event.target.files[0]) })
     this.props.handleFileInput(event.target.files[0]);
   }
-
   resetFile(event) {
     event.preventDefault();
     this.setState({ file: null });
     this.props.handleFileInput(null);
   }
+
   render() {
     return (
       <div>
@@ -53,20 +50,14 @@ class UploadPreview extends React.Component {
 }
 
 
-
-
-
-
 class RegisterModal extends Component {
   state = {
     modal: false,
     name: '',
     email: '',
     password: '',
-    avatar: '',
     msg: null,
-    value: null,
-    fileInputElement: null
+    // fileInputElement: null
   };
 
 
@@ -79,7 +70,7 @@ class RegisterModal extends Component {
     clearErrors: PropTypes.func.isRequired
   };
 
-  // why use of prevProps?
+// why use of prevProps?
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
@@ -120,8 +111,7 @@ class RegisterModal extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const { name, email, password, avatar } = this.state;
-
+    const { name, email, password } = this.state;
 
     // create FormData-constructor:
         let newUser = new FormData();
@@ -129,20 +119,9 @@ class RegisterModal extends Component {
         newUser.append("email", email);
         newUser.append("password",password);
    
-   // HTML file input, chosen by user
-  //  fileInputElement.files[0] represent the input of an input type="file" element:
-
+    // HTML file input, chosen by user
+    //  fileInputElement.files[0] represent the input of an input type="file" element:
         newUser.append("avatar", this.state.fileInputElement);
-   
-
-
-      // Create user object
-    //  newUser = {
-    //     name,
-    //     email,
-    //     password,
-    //     avatar
-    //   };
 
       // Attempt to register
         this.props.register(newUser);

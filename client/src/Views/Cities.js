@@ -8,6 +8,8 @@ import { getCities } from '../actions/citiesActions';
 import Search from '../components/Search';
 import Footer from './../components/Footer'
 
+import { Container, Row, Col } from 'reactstrap';
+import { Button } from 'reactstrap';
 import './views.css';
 
 class Cities extends Component { 
@@ -48,13 +50,27 @@ class Cities extends Component {
     )
 
 // loop through filteredCities and show each city from DB
-    let mappedCities = filteredCities.map(city =>
-        <p key = { city._id }>
-          <Link to={ "/itineraries/" + city._id }>
-            { city.city }
-          </Link> 
-        </p>
-    ) 
+    // let mappedCities = filteredCities.map(city =>
+    //     <p key = { city._id }>
+    //       <Link to={ "/itineraries/" + city._id }>
+    //         { city.city }
+    //       </Link> 
+    //     </p>
+    // ) 
+
+    let mappedCities = filteredCities.map(city => {
+      return (
+        <Col xs="6" md="4">
+          <h5   key={ city._id } >
+            <Button color="warning" block>
+              <Link to={ "/itineraries/" + city._id }>
+                { city.city }
+              </Link> 
+            </Button>
+          </h5>
+        </Col>
+      )
+    })
 
     return (
 
@@ -65,9 +81,17 @@ class Cities extends Component {
           <Search handleInput={ this.handleInput }/>
           
         {/* list of cities */}
-          <div className="cityList"> 
+          {/* <div className="cityList"> 
             { mappedCities }
-          </div>
+          </div> */}
+
+        <Container fluid>
+          <Row>
+            { mappedCities }
+          </Row>
+        </Container>
+
+
 
         {/* navigation buttons */}
           <div className="navbuttons">

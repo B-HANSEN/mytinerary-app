@@ -158,7 +158,6 @@ class AppNavbar extends Component {
                 </Collapse>
                 { isAuthenticated ? null : this.renderRedirect() } 
 
-               
           </Navbar>
 
       </div>

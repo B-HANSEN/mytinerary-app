@@ -53,16 +53,18 @@ class SingleItin extends React.Component {
                         <h5 className="titleIt">{this.props.itin.title}</h5>
 
                 {/* if user is authenticated, check if itinerary is included in his favorites */}
-                        { this.props.auth.user ? this.props.auth.user.favorites.includes(this.props.itin._id)
-                        ? (<ToUnlike
-                            itinId= { this.props.itin._id }
-                            cityId={ this.props.itin.cityId } 
-                            />)
-                        : (<ToLike
-                            itinId= { this.props.itin._id }
-                            cityId={ this.props.itin.cityId }  
-                            />)
-                        : null 
+                        { this.props.auth.user 
+                          ? this.props.auth.user.favorites
+                              .includes(this.props.itin._id)
+                                ? (<ToUnlike
+                                    itinId= { this.props.itin._id }
+                                    cityId= { this.props.itin.cityId } 
+                                    />)
+                                : (<ToLike
+                                    itinId= { this.props.itin._id }
+                                    cityId= { this.props.itin.cityId }  
+                                    />)
+                          : null 
                         }
 
                         <div className="details">

@@ -50,33 +50,30 @@ class Home extends React.Component {
             <p className="bold">Want to build your own itinerary?</p>
             <div className="links">
 
-             <button onClick={ () => this.setState({ showModal: true }) }>
-                { isAuthenticated 
+              <button onClick={ () => this.setState({ showModal: true }) }>
+                { isAuthenticated
                   ? <Link to="/CreateItinerary" className="bluehighlight">Create your own itinerary here...</Link>
                   : <LoginModal open={this.state.showModal}></LoginModal> 
                 }
-             </button>
+              </button>
 
-             <button onClick={ () => this.setState({ showModal: true }) }>
+              <button onClick={ () => this.setState({ showModal: true }) }>
                 { isAuthenticated
                   ? null
                   : <RegisterModal open={this.state.showModal}></RegisterModal>
                 }
-              </button> 
-
+              </button>
 
             </div>
           
             <div>
-            <Footer />
+              <Footer />
             </div>
 
           </div>
-         
       )
     }
 }
-
 
 const mapStateToProps = state => ({ auth: state.auth });
 

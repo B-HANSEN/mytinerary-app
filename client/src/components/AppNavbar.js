@@ -138,23 +138,24 @@ class AppNavbar extends Component {
                     <DropdownItem divider />
               
                     <div>
-                      { isAuthenticated ? 
-                        null
-                        :
-                        <GoogleLogin
+                      { isAuthenticated
+                        ? null
+                        : <GoogleLogin
                         clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
                         buttonText="... or login with Google"
                         onSuccess={ this.responseGoogleSuccess }
                         onFailure={ this.responseGoogleFail }
                         cookiePolicy={ 'single_host_origin' }
-                      /> }
+                        /> }
 
-                      <GoogleLogout
-                        icon={false}
-                        clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
-                        buttonText="Logout"
-                        onSuccess={ this.logOut }
-                      />
+                      { isAuthenticated
+                        ? <GoogleLogout
+                          icon={false}
+                          clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
+                          buttonText="Logout"
+                          onSuccess={ this.logOut }
+                          />
+                        : null }
                     </div>
 
                     <DropdownItem divider />

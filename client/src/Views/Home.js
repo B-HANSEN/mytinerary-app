@@ -5,16 +5,34 @@ import { connect } from 'react-redux';
 // import components & styles
 import RegisterModal from './../components/auth/RegisterModal';
 import LoginModal from './../components/auth/LoginModal';
-// import CreateItinerary from  './CreateItinerary';
+import { loginSocial } from './../actions/authActions';
 import Footer from './../components/Footer'
 import logo from '../files/images/MYtineraryLogo.png';
 import arrow from '../files/images/circled-right-2.png';
 import './views.css';
+import GoogleLogin from 'react-google-login';
+import PropTypes from 'prop-types';
 
 
 class Home extends React.Component {
     state = {
       redirectCities: false
+    }
+
+    static propTypes = {
+      auth: PropTypes.object.isRequired
+    };
+  
+
+    responseGoogleSuccess = (response) => {
+      console.log(response);
+      this.props.loginSocial(
+        { email: response.profileObj.email, name: response.profileObj.name }  
+      );
+    }
+  
+    responseGoogleFail = (response) => {
+      console.log(response);
     }
 
     // Redirect for Cities page
@@ -52,17 +70,31 @@ class Home extends React.Component {
 
               <button onClick={ () => this.setState({ showModal: true }) }>
                 { isAuthenticated
-                  ? <Link to="/CreateItinerary" className="bluehighlight">Create your own itinerary here...</Link>
-                  : <LoginModal open={this.state.showModal}></LoginModal> 
-                }
-              </button>
-
-              <button onClick={ () => this.setState({ showModal: true }) }>
-                { isAuthenticated
                   ? null
                   : <RegisterModal open={this.state.showModal}></RegisterModal>
                 }
               </button>
+
+              <div className="login_section">
+                  <button onClick={ () => this.setState({ showModal: true }) }>
+                    { isAuthenticated
+                      ? <Link to="/CreateItinerary" className="bluehighlight">Create your own itinerary here...</Link>
+                      : <LoginModal open={this.state.showModal}></LoginModal> 
+                    }
+                  </button>
+
+                    { isAuthenticated
+                      ? null
+                      : <GoogleLogin
+                          clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
+                          buttonText="Login with Google"
+                          icon={true}
+                          onSuccess={ this.responseGoogleSuccess }
+                          onFailure={ this.responseGoogleFail }
+                          cookiePolicy={ 'single_host_origin' }
+                    /> }
+                
+              </div>
 
             </div>
           
@@ -77,4 +109,4 @@ class Home extends React.Component {
 
 const mapStateToProps = state => ({ auth: state.auth });
 
-export default connect(mapStateToProps, {  }) (Home);
+export default connect(mapStateToProps, { loginSocial }) (Home);

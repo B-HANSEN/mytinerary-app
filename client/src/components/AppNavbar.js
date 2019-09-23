@@ -11,13 +11,11 @@ import {
   NavLink,
   DropdownItem
 } from 'reactstrap';
-import GoogleLogin from 'react-google-login';
 import GoogleLogout from 'react-google-login';
 import PropTypes from 'prop-types';
 
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
-import { loginSocial } from './../actions/authActions';
 import { logoutSocial } from './../actions/authActions';
 import './components.css';
 
@@ -42,17 +40,17 @@ class AppNavbar extends Component {
     });
   }
 
-  responseGoogleSuccess = (response) => {
-    console.log(response);
-    this.props.loginSocial(
-      { email: response.profileObj.email, name: response.profileObj.name }  
-    );
-    this.toggleNavbar()  
-  }
+  // responseGoogleSuccess = (response) => {
+  //   console.log(response);
+  //   this.props.loginSocial(
+  //     { email: response.profileObj.email, name: response.profileObj.name }  
+  //   );
+  //   this.toggleNavbar()  
+  // }
 
-  responseGoogleFail = (response) => {
-    console.log(response);
-  }
+  // responseGoogleFail = (response) => {
+  //   console.log(response);
+  // }
 
   logOut = (response) => {
     console.log("logOut", response);
@@ -112,9 +110,7 @@ class AppNavbar extends Component {
     return (
       <div >
      
-          <Navbar style={{backgroundColor: '#f5f5f5'}}
-          light
-          >
+          <Navbar style={{backgroundColor: '#f5f5f5'}} light>
               
               {/* show only profile avatar when user is not logged in */}
               { isAuthenticated
@@ -135,29 +131,16 @@ class AppNavbar extends Component {
                           <Nav onClick={this.onClick} navbar>
                             { isAuthenticated ? authLinks : guestLinks }
                           </Nav> 
-                    <DropdownItem divider />
-              
-                    <div>
-                      { isAuthenticated
-                        ? null
-                        : <GoogleLogin
+
+                    { isAuthenticated
+                      ? <GoogleLogout
+                        icon={false}
                         clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
-                        buttonText="... or login with Google"
-                        onSuccess={ this.responseGoogleSuccess }
-                        onFailure={ this.responseGoogleFail }
-                        cookiePolicy={ 'single_host_origin' }
-                        /> }
-
-                      { isAuthenticated
-                        ? <GoogleLogout
-                          icon={false}
-                          clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
-                          buttonText="Logout"
-                          onSuccess={ this.logOut }
-                          />
-                        : null }
-                    </div>
-
+                        buttonText="Logout"
+                        onSuccess={ this.logOut }
+                        />
+                      : null }
+                    
                     <DropdownItem divider />
                     <Link className="dropdownItem" to="/cities" onClick={ this.toggleNavbar }>Cities</Link>
                     
@@ -173,4 +156,4 @@ class AppNavbar extends Component {
 
 const mapStateToProps = state => ({ auth: state.auth });
 
-export default connect(mapStateToProps, { loginSocial, logoutSocial }) (AppNavbar);
+export default connect(mapStateToProps, { logoutSocial }) (AppNavbar);

@@ -89,15 +89,16 @@ class LoginModal extends Component {
 
     return (
       <div>
-        <NavLink onClick={this.toggle} href='#' className="bluehighlight">Login</NavLink>
+        <NavLink onClick={this.toggle} href='#' className="bluehighlight">Login with email</NavLink>
 
             <Modal isOpen={this.state.modal} toggle={this.toggle}>
-              <ModalHeader toggle={this.toggle}>Login</ModalHeader>
+              <ModalHeader toggle={this.toggle}>Login with email and password</ModalHeader>
               <ModalBody>
                 
-                {this.state.msg ? (
-                  <Alert color='danger'>{this.state.msg}</Alert>
-                ) : null}
+                {this.state.msg
+                  ? <Alert color='danger'>{this.state.msg}</Alert>
+                  : null
+                }
 
                 <Form onSubmit={this.onSubmit}>
                   <FormGroup>
@@ -123,7 +124,7 @@ class LoginModal extends Component {
 
                     { this.renderRedirect() }
                     <Button to={ '/' } color='dark' style={{ marginTop: '2rem' }} block>
-                        Login 
+                        Login
                     </Button>
                     
                   </FormGroup>

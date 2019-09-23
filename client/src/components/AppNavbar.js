@@ -80,20 +80,26 @@ class AppNavbar extends Component {
   
     const authLinks = (
           <Fragment>
+              <NavLink className="dropdownItem" href="/"  style={{color: 'black'}}>Home
+              </NavLink>
+              <DropdownItem divider />
               <NavItem>
                 <span className='navbar-text mr-3'>
-                  <strong>{user ? `Welcome ${user.name}` : ''}</strong>
+                  <strong>{user ? `Welcome ${user.name}!` : ''}</strong>
                 </span>
               </NavItem>
       
               <NavItem> 
-              { user ? <Link to={ '/favorites/' + user._id }>Favorites</Link> : "" }
+              { user ? <Link to={ '/favorites/' + user._id }>Your Favorites</Link> : "" }
               </NavItem>
           </Fragment>
     );
 
     const guestLinks = (
       <Fragment>
+          <NavLink className="dropdownItem" href="/"  style={{color: 'black'}}>Home
+          </NavLink>
+          <DropdownItem divider />
           <NavItem>
             <RegisterModal />
           </NavItem>
@@ -106,7 +112,9 @@ class AppNavbar extends Component {
     return (
       <div >
      
-          <Navbar color="light" light>
+          <Navbar style={{backgroundColor: '#f5f5f5'}}
+          light
+          >
               
               {/* show only profile avatar when user is not logged in */}
               { isAuthenticated
@@ -123,9 +131,6 @@ class AppNavbar extends Component {
                  
                 <Collapse isOpen={ !this.state.collapsed } navbar>
                     
-                    <DropdownItem divider /> 
-                          <NavLink className="dropdownItem" href="/">Home</NavLink>
-                
                     <DropdownItem divider />
                           <Nav onClick={this.onClick} navbar>
                             { isAuthenticated ? authLinks : guestLinks }

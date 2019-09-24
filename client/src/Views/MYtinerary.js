@@ -2,6 +2,7 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Footer from './../components/Footer'
+import { TinyButton as ScrollUpButton } from "react-scroll-up-button";
 
 import SingleItin from '../components/SingleItin'
 import { getItineraries } from '../actions/itActions';
@@ -44,7 +45,7 @@ class MYtinerary extends React.Component {
               { this.props.itinerary.itineraries.length === 0 
                 ? <p>There is no itineraries yet. <br /> Please check back later or create your own itinerary.</p>
                 : ( <div>
-                    <h3>Available MYtineraries:</h3>
+                    <h5>Available MYtineraries:</h5>
                         {this.props.itinerary.itineraries.map((itinerary, index) =>
                           <SingleItin
                               key={ index }
@@ -53,20 +54,19 @@ class MYtinerary extends React.Component {
                         )}
                     </div> )
               }
-          </div>
+   
                  
-          {/* link back to Cities page */}  
-          <div className="center">     
-              { this.renderRedirect() }
-                  <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
-                  </button>
+              {/* link back to Cities page */}  
+              <div className="center">     
+                  { this.renderRedirect() }
+                      <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
+                      </button>
+              </div>
+              <ScrollUpButton AnimationDuration={1000} /> 
           </div>
 
-          <div
-            //  className="navbuttons"
-            >
-                <Footer />
-          </div>
+         
+          <Footer />
 
         </div>
       );

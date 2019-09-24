@@ -1,7 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
-// import BackButton from './../components/BackButton.js';
 import Footer from './../components/Footer'
 
 import SingleItin from '../components/SingleItin'
@@ -41,17 +40,21 @@ class MYtinerary extends React.Component {
           <div className="title">
               <img className="titlePic" src={ this.props.city.city.img } alt="titlePic" />
               <h3>{ this.props.city.city.city }</h3>
-              <h3>Available MYtineraries:</h3>
-              <div>
-                {this.props.itinerary.itineraries.map((itinerary, index) =>
-                  <SingleItin
-                      key={ index }
-                      itin={ itinerary }
-                    />
-                )}
-              </div>
+              
+              { this.props.itinerary.itineraries.length === 0 
+                ? <p>There is no itineraries yet. <br /> Please check back later or create your own itinerary.</p>
+                : ( <div>
+                    <h3>Available MYtineraries:</h3>
+                        {this.props.itinerary.itineraries.map((itinerary, index) =>
+                          <SingleItin
+                              key={ index }
+                              itin={ itinerary }
+                            />
+                        )}
+                    </div> )
+              }
           </div>
-        
+                 
           {/* link back to Cities page */}  
           <div className="center">     
               { this.renderRedirect() }
@@ -59,11 +62,10 @@ class MYtinerary extends React.Component {
                   </button>
           </div>
 
-          {/* TODO: fix the back button */}
-          <div className="navbuttons">
-              {/* <BackButton /> */}
-              <Footer />
-              {/* <button className="dummyButton"></button> */}
+          <div
+            //  className="navbuttons"
+            >
+                <Footer />
           </div>
 
         </div>

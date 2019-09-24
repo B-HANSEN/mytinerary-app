@@ -120,7 +120,7 @@ class AppNavbar extends Component {
                   </button>
               }
 
-              <NavbarBrand href="/" m-0>MYtinerary travel app
+              <NavbarBrand href="/">MYtinerary travel app
               </NavbarBrand>
 
               <NavbarToggler onClick={ this.toggleNavbar } className="mr-2" />

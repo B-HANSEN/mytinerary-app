@@ -60,8 +60,8 @@ class Cities extends Component {
 
     let mappedCities = filteredCities.map(city => {
       return (
-        <Col xs="6" md="4">
-          <h5   key={ city._id } >
+        <Col key={ city._id } xs="6" md="4">
+          <h5>
             <Button color="warning" block>
               <Link to={ "/itineraries/" + city._id }>
                 { city.city }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
-import BackButton from './../components/BackButton.js';
+// import BackButton from './../components/BackButton.js';
 import Footer from './../components/Footer'
 
 import SingleItin from '../components/SingleItin'
@@ -61,9 +61,9 @@ class MYtinerary extends React.Component {
 
           {/* TODO: fix the back button */}
           <div className="navbuttons">
-              <BackButton />
+              {/* <BackButton /> */}
               <Footer />
-              <button className="dummyButton"></button>
+              {/* <button className="dummyButton"></button> */}
           </div>
 
         </div>

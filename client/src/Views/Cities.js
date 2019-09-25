@@ -91,13 +91,13 @@ class Cities extends Component {
           </Row>
         </Container>
 
-
+        <ScrollUpButton AnimationDuration={1000} /> 
 
         {/* navigation buttons */}
           <div className="navbuttons">
             <button className="dummyButton"></button>
             <Footer />
-            <ScrollUpButton AnimationDuration={1000} /> 
+          
           </div>
 
       </div>

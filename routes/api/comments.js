@@ -22,4 +22,17 @@ router.get('/:singleItinId', (req,res) => {
     .then(comments => res.json(comments))
 });
 
+
+// ******************** HTTP: POST ********************
+router.post('/', (req,res) => {
+       
+    const newComment = new Comment ({
+        itinId: req.body.itinId,
+        text: req.body.text,
+        user: req.body.user
+    })
+    newComment.save().then(comment => res.json(comment));
+});
+
+
 module.exports = router;

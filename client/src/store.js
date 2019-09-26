@@ -14,8 +14,8 @@ const store = createStore(
   compose(
     applyMiddleware(...middleware)
     // comment devtools out when for production:
-    ,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // ,
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
 

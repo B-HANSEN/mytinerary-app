@@ -22,12 +22,13 @@ class Comments extends Component {
       return (
 
         <div>
-          <h5 className="comments">User comments:</h5>
+          <h5 className="commentsTitle">User comments:</h5>
+          {/* TODO: add ternary: No user comments yet or show somments */}
           {this.props.comment.comments.map((comment, index) =>
-            <div key= { index }>
-                <div className="floatleft">
+            <div key= { index } className="commentsBlock">
+                <div className="userNamePic">
                   <img className="profForComments"  src={ comment.user.profilePic } alt="actPic" />
-                  <p>{ comment.user.username }</p>
+                  <p className="usernameForComments">{ comment.user.username }</p>
                 </div>
                 <p className="commentsText">{ comment.text }</p>
             </div>

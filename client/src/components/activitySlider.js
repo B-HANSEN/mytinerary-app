@@ -47,24 +47,25 @@ class ActivitySlider extends React.Component {
   }
 
   componentDidMount() {
-    console.log("acttivity", this.props)
+    console.log("activity", this.props)
           this.props.getActivities(this.props.itinId) // load activities related to itinId received from parent component
       }
-                                 
+
+
   render() {
     console.log(this.props);
     return (
       <div>
       
         <h2>Activities</h2>
-        <Slider {...this.state.settings} style={ this.state.style }>
+        <Slider {...this.state.settings} style={ this.state.style } >
                 
-      {this.props.activity.activities.map((activity, index) => 
-        <div className="actPicnPlace" key={ index }>
-            <img className="actPic"  src={ activity.actPic } alt="actPic" />
-            <p className="actPlace">{ activity.actPlace }</p>
-        </div>   
-      )}
+          {this.props.activity.activities.map((activity, index) => 
+            <div className="actPicnPlace" key={ index }>
+                <img className="actPic"  src={ activity.actPic } alt="actPic" />
+                <p className="actPlace">{ activity.actPlace }</p>
+            </div>   
+          )}
 
         </Slider>
       </div>

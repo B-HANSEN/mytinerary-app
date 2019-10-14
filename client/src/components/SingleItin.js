@@ -12,7 +12,7 @@ import { loadUser } from '../actions/authActions';
 
 // stateless comp always receive props
 function Activities(props) {
-  if (!props.more) {
+  if (props.more !== props.itinId) {
     return null;
   }
   return (
@@ -33,6 +33,8 @@ class SingleItin extends React.Component {
       };
 
     handleToggleActivities = () => {
+      console.log(this.props.itin._id);
+      this.props.handleSelection(this.props.itin._id)
       this.setState(state => ({
         showActivities: !state.showActivities
       }));
@@ -79,15 +81,15 @@ class SingleItin extends React.Component {
                     </div>
                 </div>
 
-                <Activities more={ this.state.showActivities } itinId={this.props.itin._id} />
+                <Activities more={ this.props.selectedItin } itinId={ this.props.itin._id } />
 
-                { this.state.showActivities               
+                { this.props.selectedItin === this.props.itin._id             
                     ? <Comments itinId={ this.props.itin._id }  />
                     : null
                 }
 
                 <button className="view_close" onClick={ this.handleToggleActivities }>
-                    { this.state.showActivities ? 'Close' : 'View activities' }
+                    { this.props.selectedItin === this.props.itin._id ? 'Close' : 'View activities' }
                 </button>
                            
             </div>

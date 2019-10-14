@@ -24,15 +24,14 @@ export const getFavorites = userId => dispatch => {
 };
 
 export const addToFavorites = (itinId, id) => dispatch => {
-  console.log(itinId, id)
   // Request body for adding favs
-const body = { itinId: itinId };
-  dispatch(setFavoritesLoading());
-  axios.put("/api/favorites/users/" + id, body)
-    .then(res => {
-      dispatch(loadUser())
-      }
-    )};
+  const body = { itinId: itinId };
+    dispatch(setFavoritesLoading());
+    axios.put("/api/favorites/users/" + id, body)
+      .then(res => {
+        dispatch(loadUser())
+        }
+      )};
 
 export const removeFromFavorites = (favId, id) => dispatch => {
   console.log(favId, id)

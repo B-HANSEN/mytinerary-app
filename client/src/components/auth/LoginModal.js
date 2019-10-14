@@ -89,7 +89,7 @@ class LoginModal extends Component {
 
     return (
       <div>
-        <NavLink onClick={this.toggle} href='#' className="bluehighlight">Login with email</NavLink>
+        <NavLink onClick={this.toggle} className="bluehighlight">Login with email</NavLink>
 
             <Modal isOpen={this.state.modal} toggle={this.toggle}>
               <ModalHeader toggle={this.toggle}>Login with email and password</ModalHeader>

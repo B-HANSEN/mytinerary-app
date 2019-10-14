@@ -70,13 +70,11 @@ class RegisterModal extends Component {
     clearErrors: PropTypes.func.isRequired
   };
 
-// why use of prevProps?
   componentDidUpdate(prevProps) {
     const { error, isAuthenticated } = this.props;
     if (error !== prevProps.error) {
       // Check for register error
       if (error.id === 'REGISTER_FAIL') {
-// WHY msg.msg???
         this.setState({ msg: error.msg.msg });
       } else {
         this.setState({ msg: null });
@@ -96,7 +94,7 @@ class RegisterModal extends Component {
     this.setState({ fileInputElement: file })
   } 
 
-  // open/ close the modal
+  // opemn & close the modal
   toggle = () => {
     // Clear errors
     this.props.clearErrors();
@@ -130,7 +128,7 @@ class RegisterModal extends Component {
   render() {
     return (
       <div>
-        <NavLink onClick={this.toggle} href='#' className="bluehighlight">Register here
+        <NavLink onClick={this.toggle} className="bluehighlight">Register here
         </NavLink>
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>

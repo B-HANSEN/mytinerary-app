@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Footer from './../components/Footer'
 import { TinyButton as ScrollUpButton } from "react-scroll-up-button";
@@ -14,13 +14,20 @@ import './views.css';
 class MYtinerary extends React.Component {
     state = {
       itineraries: [],
-      redirect: false
+      redirect: false,
+      selectedItin: ""
     }
 
     componentDidMount() {
       console.log(this.props);
       this.props.getCityById(this.props.match.params.cityId) // load single city page showing cityPic
       this.props.getItineraries(this.props.match.params.cityId) // load all itineraries related to this city
+    }
+
+    handleSelection = (id) => {
+// console.log(id);
+
+      this.setState({ selectedItin: id })
     }
 
     // link back to Cities page
@@ -50,8 +57,11 @@ class MYtinerary extends React.Component {
                           <SingleItin
                               key={ index }
                               itin={ itinerary }
+                              selectedItin= { this.state.selectedItin }
+                              handleSelection={ this.handleSelection }
                             />
-                        )}
+                        )
+                        }
                     </div> )
               }
    
@@ -59,6 +69,7 @@ class MYtinerary extends React.Component {
               {/* link back to Cities page */}  
               <div className="center">     
                   { this.renderRedirect() }
+                      {/* <button className="otherCity" onClick={ this.setRedirect }>Choose another city... */}
                       <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
                       </button>
               </div>

@@ -13,7 +13,8 @@ import './views.css';
 class Favorites extends React.Component {
   state = {
     favorites: [],
-    itineraries: []
+    itineraries: [],
+    selectedItin: ""
   }
 
   componentDidMount() {
@@ -21,6 +22,10 @@ class Favorites extends React.Component {
       
     this.props.getUserById(this.props.match.params.userId) // get user for title
     this.props.getFavorites(this.props.match.params.userId) // get the itineraries by userID to show favorites
+  }
+
+  handleSelection = (id) => {
+    this.setState({ selectedItin: id })
   }
 
   render () {
@@ -36,7 +41,12 @@ class Favorites extends React.Component {
             <h6>Favorite itineraries:</h6>
 
             {this.props.favorite.favorites.map((itinerary, index) => 
-                <SingleItin  key={ index } itin={ itinerary } />
+                <SingleItin
+                  key={ index }
+                  itin={ itinerary }
+                  selectedItin= { this.state.selectedItin }
+                  handleSelection={ this.handleSelection }
+                />
               )
             }
         </div>

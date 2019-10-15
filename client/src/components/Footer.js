@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 // import icon & styles
 import home from '../files/images/homeIcon.png';
@@ -21,10 +21,11 @@ class Footer extends Component {
   render() {
       return (
         <div className="footerContainer">
-          <button className="footer" onClick={ this.setRedirect }>
+          <Link className="footer" onClick={ this.setRedirect }>
+          {/* <Link className="footer" onClick={ this.setRedirect }> */}
               <img src={ home } alt="titlePic" />
               { this.renderRedirect() }
-          </button>
+          </Link>
         </div>
       )
   }

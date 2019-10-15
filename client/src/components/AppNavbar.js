@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Redirect, Link} from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   Collapse,
@@ -115,9 +115,10 @@ class AppNavbar extends Component {
               {/* show only profile avatar when user is not logged in */}
               { isAuthenticated
                 ? <img className="headerpic" src= { user.avatar } alt="" />
-                : <button >
+                : 
+                // <button >
                     <MDBIcon icon="user-circle" size="2x"/>
-                  </button>
+                  // </button>
               }
 
               <NavbarBrand href="/">MYtinerary travel app

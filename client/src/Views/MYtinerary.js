@@ -25,8 +25,6 @@ class MYtinerary extends React.Component {
     }
 
     handleSelection = (id) => {
-// console.log(id);
-
       this.setState({ selectedItin: id })
     }
 
@@ -69,9 +67,9 @@ class MYtinerary extends React.Component {
               {/* link back to Cities page */}  
               <div className="center">     
                   { this.renderRedirect() }
-                      {/* <button className="otherCity" onClick={ this.setRedirect }>Choose another city... */}
-                      <button className="otherCity" onClick={ this.setRedirect }>Choose another city...
-                      </button>
+                      <Link className="otherCity" onClick={ this.setRedirect }>Choose another city...
+                      {/* <Link className="otherCity" onClick={ this.setRedirect }>Choose another city... */}
+                      </Link>
               </div>
               <ScrollUpButton AnimationDuration={1000} /> 
           </div>

@@ -21,7 +21,7 @@ class Footer extends Component {
   render() {
       return (
         <div className="footerContainer">
-          <Link className="footer" onClick={ this.setRedirect }>
+          <Link className="footer" onClick={ this.setRedirect }  to='#' >
               <img src={ home } alt="titlePic" />
               { this.renderRedirect() }
           </Link>

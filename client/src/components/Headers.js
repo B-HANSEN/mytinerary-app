@@ -3,7 +3,6 @@ import 'react-sticky-header/styles.css';
 import StickyHeader from 'react-sticky-header';
 import AppNavbar from './AppNavbar'
 
-// import components & styles
 import './components.css';
 
 const Headers = () => (

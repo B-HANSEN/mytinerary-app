@@ -59,32 +59,23 @@ class Home extends React.Component {
             
             <div>
               { this.renderRedirectCities() }
-                  {/* <button  */}
-                  <Link  to='/cities' 
-                    onClick={ this.setRedirectCities }>
+                  <Link to='/cities' onClick={ this.setRedirectCities }>
                       <img className="arrow" src={arrow}  alt="arrow" />
-                  {/* </button> */}
                   </Link>
             </div>
             
             <p className="bold">Want to build your own itinerary?</p>
             <div className="links">
 
-              {/* <button onClick={ () => this.setState({ showModal: true }) }> */}
-              <Link 
-                to='/cities' 
-                onClick={ () => this.setState({ showModal: true }) }>
+              <Link to='#' onClick={ () => this.setState({ showModal: true }) }>
                     { isAuthenticated
                       ? null
                       : <RegisterModal open={this.state.showModal}></RegisterModal>
                     }
               </Link>
-              {/* </button> */}
 
               <div className="login_section">
-                  {/* <button onClick={ () => this.setState({ showModal: true }) }> */}
-              <Link 
-                onClick={ () => this.setState({ showModal: true }) }>
+              <Link to='#' onClick={ () => this.setState({ showModal: true }) }>
                     { isAuthenticated
                       ? <Link to="/CreateItinerary" className="bluehighlight">Create your own itinerary here...</Link>
                       : <LoginModal open={this.state.showModal}></LoginModal> 

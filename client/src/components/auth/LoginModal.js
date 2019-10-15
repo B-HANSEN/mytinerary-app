@@ -89,48 +89,49 @@ class LoginModal extends Component {
 
     return (
       <div>
-        <NavLink onClick={this.toggle} className="bluehighlight">Login with email</NavLink>
+        <NavLink onClick={ this.toggle } className="bluehighlight">Login with email</NavLink>
 
-            <Modal isOpen={this.state.modal} toggle={this.toggle}>
-              <ModalHeader toggle={this.toggle}>Login with email and password</ModalHeader>
-              <ModalBody>
+        <Modal isOpen={ this.state.modal } toggle={ this.toggle }>
+        <ModalHeader toggle={ this.toggle }>Login with email and password</ModalHeader>
+          
+          <ModalBody>
+            {this.state.msg
+              ? <Alert color='danger'>{this.state.msg}</Alert>
+              : null
+            }
+
+            <Form onSubmit={this.onSubmit}>
+              <FormGroup>
+                <Label for='email'>Email</Label>
+                <Input
+                  type='email'
+                  name='email'
+                  id='email'
+                  placeholder='Email'
+                  className='mb-3'
+                  onChange={this.onChange}
+                />
+
+                <Label for='password'>Password</Label>
+                <Input
+                  type='password'
+                  name='password'
+                  id='password'
+                  placeholder='Password'
+                  className='mb-3'
+                  onChange={this.onChange}
+                />
+
+                { this.renderRedirect() }
+                <Button to={ '/' } color='dark' style={{ marginTop: '2rem' }} block>
+                    Login
+                </Button>
                 
-                {this.state.msg
-                  ? <Alert color='danger'>{this.state.msg}</Alert>
-                  : null
-                }
+              </FormGroup>
+            </Form>
+          </ModalBody>  
 
-                <Form onSubmit={this.onSubmit}>
-                  <FormGroup>
-                    <Label for='email'>Email</Label>
-                    <Input
-                      type='email'
-                      name='email'
-                      id='email'
-                      placeholder='Email'
-                      className='mb-3'
-                      onChange={this.onChange}
-                    />
-
-                    <Label for='password'>Password</Label>
-                    <Input
-                      type='password'
-                      name='password'
-                      id='password'
-                      placeholder='Password'
-                      className='mb-3'
-                      onChange={this.onChange}
-                    />
-
-                    { this.renderRedirect() }
-                    <Button to={ '/' } color='dark' style={{ marginTop: '2rem' }} block>
-                        Login
-                    </Button>
-                    
-                  </FormGroup>
-                </Form>
-              </ModalBody>  
-            </Modal>
+        </Modal>
   
       </div>
     );

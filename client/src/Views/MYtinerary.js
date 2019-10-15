@@ -67,8 +67,7 @@ class MYtinerary extends React.Component {
               {/* link back to Cities page */}  
               <div className="center">     
                   { this.renderRedirect() }
-                      <Link className="otherCity" onClick={ this.setRedirect }>Choose another city...
-                      {/* <Link className="otherCity" onClick={ this.setRedirect }>Choose another city... */}
+                      <Link className="otherCity" onClick={ this.setRedirect } to={ "/cities" }>Choose another city...
                       </Link>
               </div>
               <ScrollUpButton AnimationDuration={1000} /> 

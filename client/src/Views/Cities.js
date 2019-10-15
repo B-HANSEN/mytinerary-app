@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { VerticleButton as ScrollUpButton } from "react-scroll-up-button";
 
 import { getCities } from '../actions/citiesActions';
 import Search from '../components/Search';
@@ -69,21 +68,19 @@ class Cities extends Component {
         <h4>Cities</h4>
         
         {/* pass down to component */}
-          <Search handleInput={ this.handleInput }/>
+        <Search handleInput={ this.handleInput }/>
 
-        <Container fluid>
+        <Container fluid className="cityList">
           <Row>
             { mappedCities }
           </Row>
         </Container>
 
-        <ScrollUpButton AnimationDuration={1000} /> 
-
         {/* navigation buttons */}
-          <div className="navbuttons">
-            <button className="dummyButton"></button>
+          {/* <div className="navbuttons"> */}
+            {/* <button className="dummyButton"></button> */}
             <Footer />
-          </div>
+          {/* </div> */}
 
       </div>
     )

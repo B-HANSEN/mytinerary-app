@@ -40,7 +40,8 @@
 .otherCity {
   color: #007bff;
   text-align: center;
-  width: 100%
+  width: 100%;
+  padding-bottom: 70px;
 }
 
 .title, .account, .container, .cities {
@@ -55,18 +56,6 @@ a {
 
 .cityList {
   margin-bottom: 70px;
-}
-
-.cityList >p {
-  display: block;
-  text-align: center;
-  font-size: 25px;
-  text-decoration: none;
-  border: 1px solid lightslategray;
-  border-radius: 4px;
-  margin: 15px 20px;
-  padding: 10px;
-  background-color: lightgoldenrodyellow; 
 }
 
 .bold {
@@ -86,11 +75,6 @@ h5 {
   text-align: center;
 }
 
-/* .navbuttons {
-  display: flex;
-  justify-content: center;
-} */
-
 .links {
   width: 100%;
   display: flex;
@@ -109,8 +93,4 @@ h5 {
 
 .bluehighlight {
   color: blue;
-}
-
-.citycontainer {
-  background-color:  red;
 }

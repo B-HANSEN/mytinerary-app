@@ -24,11 +24,8 @@ class ToLike extends Component {
 
     render() {
         return (
-            // <button
-            <Link
-                onClick={ this.increaseFavorites }
-            >
-            <MDBIcon far icon="heart" className="bluehighlight"/>
+            <Link onClick={ this.increaseFavorites }>
+                <MDBIcon far icon="heart" className="bluehighlight"/>
             </Link>
         )
     }

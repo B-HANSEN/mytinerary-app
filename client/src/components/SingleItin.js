@@ -33,12 +33,12 @@ class SingleItin extends React.Component {
       };
 
     handleToggleActivities = () => {
-      console.log(this.props.itin._id);
       this.props.handleSelection(this.props.itin._id)
-      this.setState(state => ({
-        showActivities: !state.showActivities
-      }));
+      this.setState({
+        showActivities: !this.state.showActivities
+      });
     }
+
 
     render () {
       console.log(this.props)
@@ -89,9 +89,13 @@ class SingleItin extends React.Component {
                 }
 
                 <button className="view_close" onClick={ this.handleToggleActivities }>
-                    { this.props.selectedItin === this.props.itin._id ? 'Close' : 'View activities' }
+                    { this.props.selectedItin === this.props.itin._id
+                      ? 'Check another itinerary'
+                      : 'View activities'
+                    }
                 </button>
-                           
+
+                   
             </div>
         )
     }

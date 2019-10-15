@@ -47,16 +47,7 @@ class Cities extends Component {
     let filteredCities = this.props.city.cities.filter((city) => {
       return city.city.toLowerCase().includes(this.state.searchfield.toLowerCase())
       }
-    )
-
-// loop through filteredCities and show each city from DB
-    // let mappedCities = filteredCities.map(city =>
-    //     <p key = { city._id }>
-    //       <Link to={ "/itineraries/" + city._id }>
-    //         { city.city }
-    //       </Link> 
-    //     </p>
-    // ) 
+    ) 
 
     let mappedCities = filteredCities.map(city => {
       return (
@@ -79,11 +70,6 @@ class Cities extends Component {
         
         {/* pass down to component */}
           <Search handleInput={ this.handleInput }/>
-          
-        {/* list of cities */}
-          {/* <div className="cityList"> 
-            { mappedCities }
-          </div> */}
 
         <Container fluid>
           <Row>
@@ -97,7 +83,6 @@ class Cities extends Component {
           <div className="navbuttons">
             <button className="dummyButton"></button>
             <Footer />
-          
           </div>
 
       </div>

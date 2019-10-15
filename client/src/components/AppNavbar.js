@@ -40,18 +40,6 @@ class AppNavbar extends Component {
     });
   }
 
-  // responseGoogleSuccess = (response) => {
-  //   console.log(response);
-  //   this.props.loginSocial(
-  //     { email: response.profileObj.email, name: response.profileObj.name }  
-  //   );
-  //   this.toggleNavbar()  
-  // }
-
-  // responseGoogleFail = (response) => {
-  //   console.log(response);
-  // }
-
   logOut = (response) => {
     console.log("logOut", response);
     this.props.logoutSocial(

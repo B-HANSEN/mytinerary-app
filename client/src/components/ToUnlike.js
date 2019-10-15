@@ -22,7 +22,6 @@ class ToUnlike extends Component {
     
     render() {
         return (
-            // <button onClick={ this.decreaseFavorites } >
             <Link onClick={ this.decreaseFavorites } >
                 <MDBIcon icon="heart" className="bluehighlight" />
             </Link>

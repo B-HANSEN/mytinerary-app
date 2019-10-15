@@ -22,7 +22,6 @@ class Footer extends Component {
       return (
         <div className="footerContainer">
           <Link className="footer" onClick={ this.setRedirect }>
-          {/* <Link className="footer" onClick={ this.setRedirect }> */}
               <img src={ home } alt="titlePic" />
               { this.renderRedirect() }
           </Link>

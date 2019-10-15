@@ -72,23 +72,24 @@ class Home extends React.Component {
 
               {/* <button onClick={ () => this.setState({ showModal: true }) }> */}
               <Link 
-               to='/cities' 
-              onClick={ () => this.setState({ showModal: true }) }>
-                { isAuthenticated
-                  ? null
-                  : <RegisterModal open={this.state.showModal}></RegisterModal>
-                }
-                </Link>
+                to='/cities' 
+                onClick={ () => this.setState({ showModal: true }) }>
+                    { isAuthenticated
+                      ? null
+                      : <RegisterModal open={this.state.showModal}></RegisterModal>
+                    }
+              </Link>
               {/* </button> */}
 
               <div className="login_section">
                   {/* <button onClick={ () => this.setState({ showModal: true }) }> */}
-                  <Link onClick={ () => this.setState({ showModal: true }) }>
+              <Link 
+                onClick={ () => this.setState({ showModal: true }) }>
                     { isAuthenticated
                       ? <Link to="/CreateItinerary" className="bluehighlight">Create your own itinerary here...</Link>
                       : <LoginModal open={this.state.showModal}></LoginModal> 
                     }
-                  </Link>
+              </Link>
 
                     { isAuthenticated
                       ? null

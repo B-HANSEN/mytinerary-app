@@ -16,14 +16,12 @@ class Comments extends Component {
         this.props.getComments(this.props.itinId)   // load comments related to itinId, receive props from SingleItin-component
     }
 
-    // TODO: put into a form component from Material UI...
     render() {
       console.log(this.props)
       return (
 
         <div>
           <h5 className="commentsTitle">User comments:</h5>
-          {/* TODO: add ternary: No user comments yet or show somments */}
           {this.props.comment.comments.map((comment, index) =>
             <div key= { index } className="commentsBlock">
                 <div className="userNamePic">

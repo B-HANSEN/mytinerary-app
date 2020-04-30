@@ -60,7 +60,7 @@
   "devDependencies": {
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "jquery": "^3.4.1"
+    "jquery": "^3.5.0"
   },
   "proxy": "http://localhost:5000/"
 }

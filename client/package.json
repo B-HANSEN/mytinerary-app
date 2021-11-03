@@ -31,7 +31,7 @@
     "shortid": "^2.2.14",
     "slick-carousel": "^1.8.1",
     "typescript": "^3.5.3",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   },
   "peerDependencies": {
     "react": "^15.5.0"

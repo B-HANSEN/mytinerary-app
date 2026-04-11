@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import { connect } from 'react-redux';
-import Slider from "react-slick";
+import Slider from 'react-slick';
 
 import PropTypes from 'prop-types';
 import { getActivities } from '../actions/itActions';
@@ -11,7 +11,7 @@ function SampleNextArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "lightgrey" }}
+      style={{ ...style, display: 'block', background: 'lightgrey' }}
       onClick={onClick}
     />
   );
@@ -22,13 +22,13 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "lightgrey" }}
+      style={{ ...style, display: 'block', background: 'lightgrey' }}
       onClick={onClick}
     />
   );
 }
 
-class ActivitySlider extends React.Component { 
+class ActivitySlider extends React.Component {
   state = {
     settings: {
       dots: true,
@@ -37,36 +37,32 @@ class ActivitySlider extends React.Component {
       slidesToShow: 2,
       slidesToScroll: 2,
       nextArrow: <SampleNextArrow />,
-      prevArrow: <SamplePrevArrow />
+      prevArrow: <SamplePrevArrow />,
     },
     activities: [],
     activity: {},
     style: {
-      width: '300px'
-    }
-  }
+      width: '300px',
+    },
+  };
 
   componentDidMount() {
-    console.log("activity", this.props)
-          this.props.getActivities(this.props.itinId) // load activities related to itinId received from parent component
-      }
-
+    console.log('activity', this.props);
+    this.props.getActivities(this.props.itinId); // load activities related to itinId received from parent component
+  }
 
   render() {
     console.log(this.props);
     return (
       <div>
-      
         <h2>Activities</h2>
-        <Slider {...this.state.settings} style={ this.state.style } >
-                
-          {this.props.activity.activities.map((activity, index) => 
-            <div className="actPicnPlace" key={ index }>
-                <img className="actPic"  src={ activity.actPic } alt="actPic" />
-                <p className="actPlace">{ activity.actPlace }</p>
-            </div>   
-          )}
-
+        <Slider {...this.state.settings} style={this.state.style}>
+          {this.props.activity.activities.map((activity, index) => (
+            <div className='actPicnPlace' key={index}>
+              <img className='actPic' src={activity.actPic} alt='actPic' />
+              <p className='actPlace'>{activity.actPlace}</p>
+            </div>
+          ))}
         </Slider>
       </div>
     );
@@ -75,11 +71,11 @@ class ActivitySlider extends React.Component {
 
 ActivitySlider.propTypes = {
   getActivities: PropTypes.func.isRequired,
-  activity: PropTypes.object.isRequired
-}
+  activity: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = (state) => ({
-  activity: state.activity
-})
+  activity: state.activity,
+});
 
-export default connect (mapStateToProps, { getActivities }) (ActivitySlider)
+export default connect(mapStateToProps, { getActivities })(ActivitySlider);

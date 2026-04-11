@@ -6,7 +6,7 @@
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
 }
 
 .logo > p {
@@ -22,19 +22,18 @@
   margin-bottom: 70px;
 }
 
-
 /* main */
 .title {
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: scroll;
-  }
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
 
 .titlePic {
-    width: 70%;
-    margin-top: 50px;
+  width: 70%;
+  margin-top: 50px;
 }
 
 .otherCity {
@@ -44,15 +43,18 @@
   padding-bottom: 70px;
 }
 
-.title, .account, .container, .cities {
-  padding-top: 40px; 
+.title,
+.account,
+.container,
+.cities {
+  padding-top: 40px;
   margin-top: 30px;
 }
 
 a {
   text-decoration: none;
   color: #000;
-  }
+}
 
 .cityList {
   margin-bottom: 70px;
@@ -62,7 +64,7 @@ a {
   font-weight: bold;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   margin-top: 40px;
 }
 
@@ -87,7 +89,7 @@ h5 {
   flex-direction: column;
 }
 
-.account >p {
+.account > p {
   margin-left: 30px;
 }
 

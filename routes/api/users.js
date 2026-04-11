@@ -37,7 +37,10 @@ router.post('/', async (c) => {
     }
     const filename = Date.now() + '-' + file.name;
     avatarPath = `uploads/${filename}`;
-    await fs.promises.writeFile(path.join('./uploads', filename), Buffer.from(await file.arrayBuffer()));
+    await fs.promises.writeFile(
+      path.join('./uploads', filename),
+      Buffer.from(await file.arrayBuffer())
+    );
   }
 
   const newUser = new User({ name, email, password, avatar: avatarPath });
@@ -47,7 +50,10 @@ router.post('/', async (c) => {
   const user = await newUser.save();
 
   const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
-  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [], avatar: user.avatar } });
+  return c.json({
+    token,
+    user: { _id: user.id, name: user.name, email: user.email, favorites: [], avatar: user.avatar },
+  });
 });
 
 // @route   POST api/users/social
@@ -61,14 +67,19 @@ router.post('/social', async (c) => {
 
   const existing = await User.findOne({ email }).select('-password');
   if (existing) {
-    const token = await signAsync({ id: existing.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+    const token = await signAsync({ id: existing.id }, config.get('jwtSecret'), {
+      expiresIn: 3600,
+    });
     return c.json({ token, user: existing });
   }
 
   const newUser = new User({ name, email });
   const user = await newUser.save();
   const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
-  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [] } });
+  return c.json({
+    token,
+    user: { _id: user.id, name: user.name, email: user.email, favorites: [] },
+  });
 });
 
 // GET user by id

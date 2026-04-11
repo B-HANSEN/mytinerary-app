@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^4.2.1",
     "@material-ui/icons": "^4.2.1",
+    "@react-oauth/google": "^0.12.1",
     "axios": "^1.7.0",
     "bootstrap": "^4.3.1",
     "google-auth-library": "^5.2.0",
@@ -15,7 +16,6 @@
     "react-bootstrap": "^1.0.0-beta.12",
     "react-burger-menu": "^2.6.11",
     "react-dom": "^16.9.0",
-    "@react-oauth/google": "^0.12.1",
     "react-redux": "^7.1.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
@@ -54,6 +54,7 @@
   "devDependencies": {
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
+    "eslint-config-prettier": "^10.1.8",
     "jquery": "^3.4.1"
   }
 }

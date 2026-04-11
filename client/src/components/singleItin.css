@@ -5,112 +5,111 @@ body {
 }
 
 .textAndLink {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    width: 90%;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
-    margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  margin: 30px auto;
 }
 
 .allDetailsIt {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .overview {
-    width: 80%;
-    padding-right: 5px;
-    display: flex;
-    flex-direction: column;
+  width: 80%;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .details {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .singleDetails {
-    padding-bottom: 5px; 
-    width: 100%;
+  padding-bottom: 5px;
+  width: 100%;
 }
 
-ul { 
-    list-style-type: none; 
-    padding-left: 0px;
+ul {
+  list-style-type: none;
+  padding-left: 0px;
 }
 
 .profilePic {
-    width: 40%;
+  width: 40%;
 }
 
 .prof {
-    margin: 40px 40px 0px 40px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+  margin: 40px 40px 0px 40px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
 
 .view_close {
-    background-color: lightgrey;
-    color: rgba(0, 0, 0, 0.54);
-    font-size: 25px;
-    text-decoration: none;
-    width: 100%;
+  background-color: lightgrey;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 25px;
+  text-decoration: none;
+  width: 100%;
 }
 
 .activitySlider {
-    margin: 10px 10px 30px 10px;
-    display: flex;
-    justify-content: center;
+  margin: 10px 10px 30px 10px;
+  display: flex;
+  justify-content: center;
 }
 
-
 .material-icons {
-    font-family: 'Material Icons';
-    font-weight: bolder;
-    color: black;
-    font-size: 40px;
-    display: inline-block;
+  font-family: 'Material Icons';
+  font-weight: bolder;
+  color: black;
+  font-size: 40px;
+  display: inline-block;
 }
 
 .username {
-    text-align: center;
-    word-wrap: break-word;
+  text-align: center;
+  word-wrap: break-word;
 }
 
 /* ***** for comments section ***** */
 .commentsTitle {
-    align-items: center;
-    margin-bottom: 30px;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .profForComments {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
 
 .commentsBlock {
-    margin: 5px 10px;
-    display: flex;
-    align-items: left;
-    font-style: italic;
+  margin: 5px 10px;
+  display: flex;
+  align-items: left;
+  font-style: italic;
 }
 
 .userNamePic {
-    display: flex;
-    flex-direction: column;
-    margin-right: 20px;
-    width: 80px;
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+  width: 80px;
 }
 
 .usernameForComments {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .commentsText {
-    font-size: 14px;
+  font-size: 14px;
 }

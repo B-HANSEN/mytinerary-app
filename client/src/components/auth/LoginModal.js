@@ -10,7 +10,7 @@ import {
   Label,
   Input,
   NavLink,
-  Alert
+  Alert,
 } from 'reactstrap';
 
 import { connect } from 'react-redux';
@@ -25,14 +25,14 @@ class LoginModal extends Component {
     email: '',
     password: '',
     msg: null,
-    redirect: false
+    redirect: false,
   };
 
   static propTypes = {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
     login: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired
+    clearErrors: PropTypes.func.isRequired,
   };
 
   componentDidUpdate(prevProps) {
@@ -58,15 +58,15 @@ class LoginModal extends Component {
     // Clear errors
     this.props.clearErrors();
     this.setState({
-      modal: !this.state.modal
+      modal: !this.state.modal,
     });
   };
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
     const user = { email, password };
@@ -75,30 +75,27 @@ class LoginModal extends Component {
     this.props.login(user);
   };
 
-
   setRedirect = () => {
-    this.setState({ redirect: true })
-  }
+    this.setState({ redirect: true });
+  };
   renderRedirect = () => {
-    if(this.state.redirect) {
-      return <Redirect to='/' />
+    if (this.state.redirect) {
+      return <Redirect to='/' />;
     }
-  } 
+  };
 
   render() {
-
     return (
       <div>
-        <NavLink onClick={ this.toggle } className="bluehighlight">Login with email</NavLink>
+        <NavLink onClick={this.toggle} className='bluehighlight'>
+          Login with email
+        </NavLink>
 
-        <Modal isOpen={ this.state.modal } toggle={ this.toggle }>
-        <ModalHeader toggle={ this.toggle }>Login with email and password</ModalHeader>
-          
+        <Modal isOpen={this.state.modal} toggle={this.toggle}>
+          <ModalHeader toggle={this.toggle}>Login with email and password</ModalHeader>
+
           <ModalBody>
-            {this.state.msg
-              ? <Alert color='danger'>{this.state.msg}</Alert>
-              : null
-            }
+            {this.state.msg ? <Alert color='danger'>{this.state.msg}</Alert> : null}
 
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
@@ -122,25 +119,22 @@ class LoginModal extends Component {
                   onChange={this.onChange}
                 />
 
-                { this.renderRedirect() }
-                <Button to={ '/' } color='dark' style={{ marginTop: '2rem' }} block>
-                    Login
+                {this.renderRedirect()}
+                <Button to={'/'} color='dark' style={{ marginTop: '2rem' }} block>
+                  Login
                 </Button>
-                
               </FormGroup>
             </Form>
-          </ModalBody>  
-
+          </ModalBody>
         </Modal>
-  
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  error: state.error,
 });
 
-export default connect(mapStateToProps, { login, clearErrors }) (LoginModal);
+export default connect(mapStateToProps, { login, clearErrors })(LoginModal);

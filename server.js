@@ -10,9 +10,10 @@ const app = new Hono();
 
 // DB config
 const db = config.get('mongoURI');
-mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
+mongoose
+  .connect(db, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log('connection done'))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Allow Google OAuth popup to communicate back
 app.use('*', async (c, next) => {

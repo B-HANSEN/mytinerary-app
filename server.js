@@ -1,63 +1,45 @@
-// require("dotenv").config();
 const config = require('config');
-
-// core Node.js module for building purpose
 const path = require('path');
+const fs = require('fs');
+const { Hono } = require('hono');
+const { serve } = require('@hono/node-server');
+const { serveStatic } = require('@hono/node-server/serve-static');
+const mongoose = require('mongoose');
 
-// BASE SETUP
-const express = require('express');
-// const bodyParser = require('body-parser');  // latest version of express includes the body-parser
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
-
-const mongoose = require('mongoose'); 
-const app = express();
-
-// body parser middle ware
-app.use(express.json());
-
-// Allow Google OAuth popup to communicate back
-app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
-  next();
-});
+const app = new Hono();
 
 // DB config
-// const db = process.env.DATABASE // replace with config.get 
 const db = config.get('mongoURI');
+mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
+  .then(() => console.log('connection done'))
+  .catch(err => console.log(err));
 
-// connect to Mongo
-mongoose.connect(db, {
-  useNewUrlParser: true,
-  useCreateIndex: true
-})
-.then(() => console.log("connection done"))
-.catch(err => console.log(err)); 
+// Allow Google OAuth popup to communicate back
+app.use('*', async (c, next) => {
+  await next();
+  c.header('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+});
 
-// use routes
-app.use('/api/cities', require('./routes/api/cities'));
-app.use('/api/itineraries', require('./routes/api/itineraries'));
-app.use('/api/favorites', require('./routes/api/favorites'));
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/activities', require('./routes/api/activities'));
-app.use('/api/comments', require('./routes/api/comments'));
+// Routes
+app.route('/api/cities', require('./routes/api/cities'));
+app.route('/api/itineraries', require('./routes/api/itineraries'));
+app.route('/api/favorites', require('./routes/api/favorites'));
+app.route('/api/users', require('./routes/api/users'));
+app.route('/api/auth', require('./routes/api/auth'));
+app.route('/api/activities', require('./routes/api/activities'));
+app.route('/api/comments', require('./routes/api/comments'));
 
-// makes a folder publicly available; parse only requests targeted at /uploads and then apply middleware which will then ignore the partt that is parsed
-app.use('/uploads', express.static('uploads'));
+// Static uploads
+app.use('/uploads/*', serveStatic({ root: './' }));
 
-
-// Serve static assets if in production
+// Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
-    // Set static folder
-    app.use(express.static('client/build'));
-  
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-  }
+  app.use('/*', serveStatic({ root: './client/build' }));
+  app.get('*', async (c) => {
+    const html = await fs.promises.readFile(path.resolve('./client/build/index.html'), 'utf8');
+    return c.html(html);
+  });
+}
 
 const port = process.env.PORT || 5001;
-
-// START THE SERVER
-app.listen(port, () => console.log(`Listening on port ${port}`));
+serve({ fetch: app.fetch, port }, (info) => console.log(`Listening on port ${info.port}`));

@@ -1,68 +1,36 @@
-const express = require('express');
-const router = express.Router();
+const { Hono } = require('hono');
+const Itinerary = require('../../models/Itinerary');
 
-// import multer and initialise it (define a folder for ulter to store incoming files):
-// const multer = require('multer');
-// const upload = multer({ dest: 'uploads/' });
+const router = new Hono();
 
-// import itinerary model
-const Itinerary = require ('../../models/Itinerary');
-
-
-// ******************** HTTP: GET ********************
-// fetch itineraries only for selected city
-router.get('/:singleCityId', (req,res) => {
-    console.log(req.params.singleCityId)
-    Itinerary.find({cityId: req.params.singleCityId})
-    .then(itineraries => {
-        console.log(itineraries)
-        res.json(itineraries)
-    })
+router.get('/:singleCityId', async (c) => {
+  console.log(c.req.param('singleCityId'));
+  const itineraries = await Itinerary.find({ cityId: c.req.param('singleCityId') });
+  console.log(itineraries);
+  return c.json(itineraries);
 });
 
-// ******************** HTTP: PUT ********************
-// @route   PUT api/itineraries
-// @desc    increase/ decrease count of likes
-// @access  Public
-router.put('/:itinId/rating', function(req, res) {
-    Itinerary.updateOne(
-        { _id: req.params.itinId },
-        { $inc: { rating: req.body.amount }}
-        )
-      .then(function(iti) {
-       res.send({ msg:"changed by 1 count", itinerary :  iti })
-      });
+router.put('/:itinId/rating', async (c) => {
+  const { amount } = await c.req.json();
+  const iti = await Itinerary.updateOne({ _id: c.req.param('itinId') }, { $inc: { rating: amount } });
+  return c.json({ msg: 'changed by 1 count', itinerary: iti });
 });
 
-
-// ******************** HTTP: POST ********************
-// upload only one file with upload.single()-method
-router.post('/', 
-// upload.single('avatar'), 
-(req,res) => {
-    console.log(req.file)
-    
-    const newItinerary = new Itinerary ({
-    title: req.body.title,
-    profilePic: req.body.profilePic,
-    username: req.body.username,
-    rating: req.body.rating,
-    duration: req.body.duration,
-    price: req.body.price,
-    hashtag: req.body.hashtag,
-    cityId: req.body.cityId
-})
-    newItinerary.save()
-    .then(itinerary => res.json(itinerary));
+router.post('/', async (c) => {
+  const { title, profilePic, username, rating, duration, price, hashtag, cityId } = await c.req.json();
+  const newItinerary = new Itinerary({ title, profilePic, username, rating, duration, price, hashtag, cityId });
+  const itinerary = await newItinerary.save();
+  return c.json(itinerary);
 });
 
-// ******************** HTTP: DELETE ********************
-router.delete('/:id', (req,res) => {
-   Itinerary.findById(req.params.id)
-   .then(itinerary => itinerary.remove()
-     .then( () => res.json({ success: true })))
-     .catch(err => res.status(404).json({ success: false }))
- })
- 
-// to export router, not in ES6!
-module.exports =  router
+router.delete('/:id', async (c) => {
+  try {
+    const itinerary = await Itinerary.findById(c.req.param('id'));
+    await itinerary.remove();
+    return c.json({ success: true });
+  } catch (err) {
+    return c.json({ success: false }, 404);
+  }
+});
+
+module.exports = router;

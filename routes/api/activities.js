@@ -1,41 +1,33 @@
-const express = require ('express');
-const router = express.Router();
+const { Hono } = require('hono');
+const Activity = require('../../models/Activity');
 
-// import itinerary model
-const Activity = require ('../../models/Activity');
+const router = new Hono();
 
-
-// ******************** HTTP: GET ********************
-// fetch all items from db: go into model, find, jsonAPI --> res.json
-router.get('/', (req,res) => {
-    Activity.find()
-    .then(activities => res.json(activities))
+router.get('/', async (c) => {
+  const activities = await Activity.find();
+  return c.json(activities);
 });
 
-// ******************** HTTP: GET ********************
-// fetch activities only for selected itinerary
-router.get('/:singleItinId', (req,res) => {
-    Activity.find({itinId: req.params.singleItinId})
-    .then(activities => res.json(activities))
+router.get('/:singleItinId', async (c) => {
+  const activities = await Activity.find({ itinId: c.req.param('singleItinId') });
+  return c.json(activities);
 });
 
-// ******************** HTTP: POST ********************
-router.post('/', (req,res) => {
-   const newActivity = new Activity ({
-    actPic: req.body.actPic,
-    actPlace: req.body.actPlace,
-    itinId: req.body.itinId
-})
-    newActivity.save().then(activity => res.json(activity));
+router.post('/', async (c) => {
+  const { actPic, actPlace, itinId } = await c.req.json();
+  const newActivity = new Activity({ actPic, actPlace, itinId });
+  const activity = await newActivity.save();
+  return c.json(activity);
 });
 
-// ******************** HTTP: DELETE ********************
-router.delete('/:id', (req,res) => {
-   Activity.findById(req.params.id)
-   .then(activity => activity.remove()
-     .then( () => res.json({ success: true })))
-     .catch(err => res.status(404).json({ success: false }))
- })
- 
-// to export router, not in ES6!
-module.exports =  router
+router.delete('/:id', async (c) => {
+  try {
+    const activity = await Activity.findById(c.req.param('id'));
+    await activity.remove();
+    return c.json({ success: true });
+  } catch (err) {
+    return c.json({ success: false }, 404);
+  }
+});
+
+module.exports = router;

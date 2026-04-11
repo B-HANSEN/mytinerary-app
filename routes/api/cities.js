@@ -1,42 +1,33 @@
-const express = require ('express');
-const router = express.Router();
+const { Hono } = require('hono');
+const City = require('../../models/City');
 
-// import city model
-const City = require ('../../models/City');
+const router = new Hono();
 
-// ******************** HTTP: GET ********************
-// @route   GET api/cities
-// '/' represents end point api/cities
-// fetch all items from db: go into model, find --> res.json
-router.get('/', (req,res) => {
-    City.find()
-    .then(cities => res.json(cities))
+router.get('/', async (c) => {
+  const cities = await City.find();
+  return c.json(cities);
 });
 
-// ******************** HTTP: POST ********************
-// @route   POST api/cities
-router.post('/', (req,res) => {
-   const newCity = new City ({
-    name: req.body.name
-   })
-    newCity.save()
-    .then(city => res.json(city));
+router.post('/', async (c) => {
+  const { name } = await c.req.json();
+  const newCity = new City({ name });
+  const city = await newCity.save();
+  return c.json(city);
 });
 
-// ******************** HTTP: DELETE ********************
-// @route   DELETE api/cities/:id
-router.delete('/:id', (req,res) => {
-   City.findById(req.params.id)
-   .then(city => city.remove()
-     .then( () => res.json({ success: true })))
-     .catch(err => res.status(404).json({ success: false }))
- })
+router.delete('/:id', async (c) => {
+  try {
+    const city = await City.findById(c.req.param('id'));
+    await city.remove();
+    return c.json({ success: true });
+  } catch (err) {
+    return c.json({ success: false }, 404);
+  }
+});
 
-// for MYtinerary page title picture
- router.get('/:id', (req,res) => {
-    City.findById(req.params.id)
-    .then(city => res.json(city))
-  })
- 
-// to export router, not in ES6!
-module.exports =  router
+router.get('/:id', async (c) => {
+  const city = await City.findById(c.req.param('id'));
+  return c.json(city);
+});
+
+module.exports = router;

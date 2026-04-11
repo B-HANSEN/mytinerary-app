@@ -1,167 +1,80 @@
-const express = require('express');
-const router = express.Router();
+const { Hono } = require('hono');
+const { promisify } = require('util');
+const fs = require('fs');
+const path = require('path');
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const jwt = require('jsonwebtoken');
-
-// import multer and initialise it (define a folder for multer to store incoming files):
-const multer = require('multer');
-
-const storage = multer.diskStorage({ 
-    destination: function(req, file, cb) {
-      cb(null, './uploads/');
-    },
-    filename: function(req, file, cb) {
-      cb(null, new Date().toISOString() + file.originalname);
-    }
-});
-
-const fileFilter = (req, file, cb) => {
-  if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') { 
-    // reject a file
-    cb(null, true);
-  } else {
-    // accept and store the file
-    cb(null, false);
-  }
-};
-
-// maximise filesize to <5mb
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 1024 * 1024 * 5 },
-  fileFilter: fileFilter
-});
-
-// define user constant based on model's schema
 const User = require('../../models/User');
 
+const router = new Hono();
+const signAsync = promisify(jwt.sign);
 
-// ******************** HTTP: GET ********************
-// fetch all users from db: go into model, find --> res.json
-router.get('/', (req,res) => {
-  User.find()
-  .select("-password")
-  .exec()
-  .then(users => res.json(users))
+// GET all users
+router.get('/', async (c) => {
+  const users = await User.find().select('-password');
+  return c.json(users);
 });
 
-// ******************** HTTP: POST ********************
 // @route   POST api/users
 // @desc    Register new user
 // @access  Public
-router.post('/', upload.single('avatar'), (req, res) => {
-    const { name, email, password } = req.body;
-     
-        // Completeness validation:
-                if(!name || !email || !password) {
-                  return res.status(400).json({ msg: 'Please enter all fields' });
-                }
+router.post('/', async (c) => {
+  const body = await c.req.parseBody();
+  const { name, email, password } = body;
 
-        // Check for existing user, from mongoose
-    User.findOne({ email })
-      .then(user => {
+  if (!name || !email || !password) return c.json({ msg: 'Please enter all fields' }, 400);
 
-        // Existing validation:
-                if(user) return res.status(400).json({ msg: 'User already exists' });
+  const existing = await User.findOne({ email });
+  if (existing) return c.json({ msg: 'User already exists' }, 400);
 
-        // storing new information:
-        const newUser = new User({
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password,
-            avatar: req.file.path
-        });
-
-        // Create salt & hash (salt: create a hash from a plain text password)
-        // default is 10, number of rounds to use (the higher, the more secure but longer processing)
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-                if(err) throw err;
-            newUser.password = hash;
-            newUser.save()
-              .then(user => {
-                // sign the token with first parameter 'payload' and second parameter secret, expiration optional (e.g. 1hr = 3600 sec)
-                jwt.sign(
-                  { id: user.id },
-                  config.get('jwtSecret'),
-                  { expiresIn: 3600 },
-                  // then callback:
-                  (err, token) => {
-                    if(err) throw err;
-                    res.json({
-                      token,
-                      user: {
-                        _id: user.id,
-                        name: user.name,
-                        email: user.email,
-                        favorites: [],
-                        avatar: user.avatar
-                      }
-                    });
-                  }
-                )
-              });
-          })
-      })
-    })
-});
-
-// @route   POST api/users (for Google)
-// @desc    Register new user
-// @access  Public
-router.post('/social', (req, res) => {
-  console.log("login to google");
-  
-    const { name, email } = req.body;
-
-    // Simple validation
-    if(!name || !email) {
-      return res.status(400).json({ msg: 'Please enter all fields' });
+  // Handle avatar upload
+  let avatarPath;
+  const file = body['avatar'];
+  if (file && file instanceof File) {
+    if (file.type !== 'image/jpeg' && file.type !== 'image/png') {
+      return c.json({ msg: 'Invalid file type' }, 400);
     }
+    const filename = Date.now() + '-' + file.name;
+    avatarPath = `uploads/${filename}`;
+    await fs.promises.writeFile(path.join('./uploads', filename), Buffer.from(await file.arrayBuffer()));
+  }
 
-    // Check for existing user, from mongoose
-    User.findOne({ email })
-    .select('-password')
-      .then(user => {
-        if(user) return (
-          jwt.sign(
-            { id: user.id },
-            config.get('jwtSecret'),
-            { expiresIn: 3600 },
-            (err, token) => {
-              if(err) throw err;
-              res.json({
-                token,
-                user
-              });
-            }
-          )
-        )
+  const newUser = new User({ name, email, password, avatar: avatarPath });
 
-        const newUser = new User({ name, email });
+  const salt = await bcrypt.genSalt(10);
+  newUser.password = await bcrypt.hash(newUser.password, salt);
+  const user = await newUser.save();
 
-        newUser.save()
-            .then(user => {
-                jwt.sign(
-                { id: user.id },
-                config.get('jwtSecret'),
-                { expiresIn: 3600 },
-                (err, token) => {
-                  if(err) throw err;
-                  res.json({
-                    token,
-                    user: {
-                      _id: user.id,
-                      name: user.name,
-                      email: user.email,
-                      favorites:[]
-                    }
-                  });
-                }
-              )
-            });
-      });
+  const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [], avatar: user.avatar } });
 });
 
-module.exports = router
+// @route   POST api/users/social
+// @desc    Register/login via Google
+// @access  Public
+router.post('/social', async (c) => {
+  console.log('login to google');
+  const { name, email } = await c.req.json();
+
+  if (!name || !email) return c.json({ msg: 'Please enter all fields' }, 400);
+
+  const existing = await User.findOne({ email }).select('-password');
+  if (existing) {
+    const token = await signAsync({ id: existing.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+    return c.json({ token, user: existing });
+  }
+
+  const newUser = new User({ name, email });
+  const user = await newUser.save();
+  const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [] } });
+});
+
+// GET user by id
+router.get('/:userId', async (c) => {
+  const user = await User.findById(c.req.param('userId'));
+  return c.json(user);
+});
+
+module.exports = router;

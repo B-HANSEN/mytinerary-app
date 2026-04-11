@@ -1,38 +1,23 @@
-const express = require ('express');
-const router = express.Router();
+const { Hono } = require('hono');
+const Comment = require('../../models/Comment');
 
-// User Model
-const Comment = require("../../models/Comment")
+const router = new Hono();
 
-// ******************** HTTP: GET ********************
-// @route   GET api/comments
-// @desc    Get comments
-// @access  Public
-router.get('/', (req,res) => {
-    Comment.find()
-    .then(comments => res.json(comments))
+router.get('/', async (c) => {
+  const comments = await Comment.find();
+  return c.json(comments);
 });
 
-
-// @route   GET api/comments/singleItinId
-// @desc    Get comments for one itinerary
-// @access  Public
-router.get('/:singleItinId', (req,res) => {
-    Comment.find({ itinId: req.params.singleItinId })
-    .then(comments => res.json(comments))
+router.get('/:singleItinId', async (c) => {
+  const comments = await Comment.find({ itinId: c.req.param('singleItinId') });
+  return c.json(comments);
 });
 
-
-// ******************** HTTP: POST ********************
-router.post('/', (req,res) => {
-       
-    const newComment = new Comment ({
-        itinId: req.body.itinId,
-        text: req.body.text,
-        user: req.body.user
-    })
-    newComment.save().then(comment => res.json(comment));
+router.post('/', async (c) => {
+  const { itinId, text, user } = await c.req.json();
+  const newComment = new Comment({ itinId, text, user });
+  const comment = await newComment.save();
+  return c.json(comment);
 });
-
 
 module.exports = router;

@@ -1,68 +1,138 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MYtinerary
 
-## Available Scripts
+A travel itinerary platform where users can browse cities, explore curated itineraries created by local insiders, and save their favourites.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Browse and search cities
+- View itineraries per city with ratings, duration, price, and hashtags
+- Activities and comments per itinerary
+- User registration and login (email/password or Google OAuth)
+- Authenticated users can create itineraries and manage favourites
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tech Stack
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+**Backend**
+- [Hono](https://hono.dev/) — lightweight web framework
+- [Mongoose 8](https://mongoosejs.com/) + MongoDB Atlas
+- JWT authentication via `jsonwebtoken`
+- Password hashing via `bcryptjs`
+- ESM modules throughout
 
-### `npm test`
+**Frontend**
+- React 16.14 + Redux Toolkit
+- React Router 5
+- Material-UI v4 + Bootstrap 4
+- Google OAuth via `@react-oauth/google`
+- Axios for API requests
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Prerequisites
 
-### `npm run build`
+- Node.js >= 22
+- npm >= 10
+- MongoDB Atlas account
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Getting Started
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+### 1. Clone and install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone https://github.com/B-HANSEN/mytinerary-app.git
+cd mytinerary-app
+npm run setup
+```
 
-### `npm run eject`
+### 2. Configure environment
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Create `config/default.json` (not committed):
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```json
+{
+  "mongoURI": "mongodb+srv://<user>:<password>@<cluster>.mongodb.net/mytinerary-app?retryWrites=true&w=majority",
+  "jwtSecret": "your_jwt_secret"
+}
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Create `client/.env` (not committed):
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id
+```
 
-## Learn More
+### 3. Run in development
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run dev
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Backend: `http://localhost:5001`
+- Frontend: `http://localhost:3000`
 
-### Code Splitting
+### 4. Build for production
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+```bash
+npm run build
+npm start
+```
 
-### Analyzing the Bundle Size
+## Scripts
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+| Command | Description |
+|---------|-------------|
+| `npm run setup` | Install all dependencies (root + client) |
+| `npm run dev` | Run backend and frontend concurrently |
+| `npm start` | Start production server |
+| `npm run build` | Build React client |
+| `npm run lint` | Run ESLint |
+| `npm run format` | Format code with Prettier |
 
-### Making a Progressive Web App
+## API Routes
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+All routes are prefixed with `/api`.
 
-### Advanced Configuration
+| Method | Route | Description | Auth |
+|--------|-------|-------------|------|
+| POST | `/auth` | Login with email/password | — |
+| GET | `/auth/user` | Get current user | ✓ |
+| GET | `/users` | List all users | — |
+| POST | `/users` | Register new user | — |
+| POST | `/users/social` | Register/login via Google | — |
+| GET | `/cities` | List all cities | — |
+| POST | `/cities` | Create city | — |
+| GET | `/cities/:id` | Get single city | — |
+| DELETE | `/cities/:id` | Delete city | — |
+| GET | `/itineraries/:cityId` | Get itineraries for a city | — |
+| POST | `/itineraries` | Create itinerary | — |
+| PUT | `/itineraries/:id/rating` | Update rating | — |
+| DELETE | `/itineraries/:id` | Delete itinerary | — |
+| GET | `/activities/:itinId` | Get activities for itinerary | — |
+| POST | `/activities` | Create activity | — |
+| GET | `/comments/:itinId` | Get comments for itinerary | — |
+| POST | `/comments` | Add comment | — |
+| GET | `/favorites/users/:id` | Get user favourites | — |
+| PUT | `/favorites/users/:id` | Add favourite | — |
+| DELETE | `/favorites/users/:id/:favId` | Remove favourite | — |
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+## Project Structure
 
-### Deployment
+```
+mytinerary-app/
+├── server.js               # Entry point
+├── config/                 # Credentials (not committed)
+├── middleware/             # JWT auth middleware
+├── models/                 # Mongoose schemas
+├── routes/api/             # API route handlers
+├── uploads/                # Avatar uploads
+└── client/
+    └── src/
+        ├── Views/          # Page components
+        ├── components/     # Reusable components
+        ├── actions/        # Redux actions
+        ├── reducers/       # Redux reducers
+        └── store.js        # Redux store
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Authentication
 
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- **JWT** — issued on login/register, expires in 1 hour, sent via `x-auth-token` header
+- **Google OAuth 2.0** — handled client-side via `@react-oauth/google`, verified server-side by email lookup

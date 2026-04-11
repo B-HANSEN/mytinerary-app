@@ -1,16 +1,15 @@
-const { Hono } = require('hono');
-const { promisify } = require('util');
-const fs = require('fs');
-const path = require('path');
-const bcrypt = require('bcryptjs');
-const config = require('config');
-const jwt = require('jsonwebtoken');
-const User = require('../../models/User');
+import { Hono } from 'hono';
+import { promisify } from 'util';
+import fs from 'fs';
+import path from 'path';
+import bcrypt from 'bcryptjs';
+import config from 'config';
+import jwt from 'jsonwebtoken';
+import User from '../../models/User.js';
 
 const router = new Hono();
 const signAsync = promisify(jwt.sign);
 
-// GET all users
 router.get('/', async (c) => {
   const users = await User.find().select('-password');
   return c.json(users);
@@ -28,7 +27,6 @@ router.post('/', async (c) => {
   const existing = await User.findOne({ email });
   if (existing) return c.json({ msg: 'User already exists' }, 400);
 
-  // Handle avatar upload
   let avatarPath;
   const file = body['avatar'];
   if (file && file instanceof File) {
@@ -37,23 +35,16 @@ router.post('/', async (c) => {
     }
     const filename = Date.now() + '-' + file.name;
     avatarPath = `uploads/${filename}`;
-    await fs.promises.writeFile(
-      path.join('./uploads', filename),
-      Buffer.from(await file.arrayBuffer())
-    );
+    await fs.promises.writeFile(path.join('./uploads', filename), Buffer.from(await file.arrayBuffer()));
   }
 
   const newUser = new User({ name, email, password, avatar: avatarPath });
-
   const salt = await bcrypt.genSalt(10);
   newUser.password = await bcrypt.hash(newUser.password, salt);
   const user = await newUser.save();
 
   const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
-  return c.json({
-    token,
-    user: { _id: user.id, name: user.name, email: user.email, favorites: [], avatar: user.avatar },
-  });
+  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [], avatar: user.avatar } });
 });
 
 // @route   POST api/users/social
@@ -67,25 +58,19 @@ router.post('/social', async (c) => {
 
   const existing = await User.findOne({ email }).select('-password');
   if (existing) {
-    const token = await signAsync({ id: existing.id }, config.get('jwtSecret'), {
-      expiresIn: 3600,
-    });
+    const token = await signAsync({ id: existing.id }, config.get('jwtSecret'), { expiresIn: 3600 });
     return c.json({ token, user: existing });
   }
 
   const newUser = new User({ name, email });
   const user = await newUser.save();
   const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
-  return c.json({
-    token,
-    user: { _id: user.id, name: user.name, email: user.email, favorites: [] },
-  });
+  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [] } });
 });
 
-// GET user by id
 router.get('/:userId', async (c) => {
   const user = await User.findById(c.req.param('userId'));
   return c.json(user);
 });
 
-module.exports = router;
+export default router;

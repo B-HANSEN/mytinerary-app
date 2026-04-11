@@ -1,5 +1,5 @@
-const { Hono } = require('hono');
-const Itinerary = require('../../models/Itinerary');
+import { Hono } from 'hono';
+import Itinerary from '../../models/Itinerary.js';
 
 const router = new Hono();
 
@@ -12,26 +12,13 @@ router.get('/:singleCityId', async (c) => {
 
 router.put('/:itinId/rating', async (c) => {
   const { amount } = await c.req.json();
-  const iti = await Itinerary.updateOne(
-    { _id: c.req.param('itinId') },
-    { $inc: { rating: amount } }
-  );
+  const iti = await Itinerary.updateOne({ _id: c.req.param('itinId') }, { $inc: { rating: amount } });
   return c.json({ msg: 'changed by 1 count', itinerary: iti });
 });
 
 router.post('/', async (c) => {
-  const { title, profilePic, username, rating, duration, price, hashtag, cityId } =
-    await c.req.json();
-  const newItinerary = new Itinerary({
-    title,
-    profilePic,
-    username,
-    rating,
-    duration,
-    price,
-    hashtag,
-    cityId,
-  });
+  const { title, profilePic, username, rating, duration, price, hashtag, cityId } = await c.req.json();
+  const newItinerary = new Itinerary({ title, profilePic, username, rating, duration, price, hashtag, cityId });
   const itinerary = await newItinerary.save();
   return c.json(itinerary);
 });
@@ -46,4 +33,4 @@ router.delete('/:id', async (c) => {
   }
 });
 
-module.exports = router;
+export default router;

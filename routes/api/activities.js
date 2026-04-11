@@ -1,5 +1,5 @@
-const { Hono } = require('hono');
-const Activity = require('../../models/Activity');
+import { Hono } from 'hono';
+import Activity from '../../models/Activity.js';
 
 const router = new Hono();
 
@@ -30,4 +30,4 @@ router.delete('/:id', async (c) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -1,10 +1,10 @@
-const { Hono } = require('hono');
-const { promisify } = require('util');
-const bcrypt = require('bcryptjs');
-const config = require('config');
-const jwt = require('jsonwebtoken');
-const auth = require('../../middleware/auth');
-const User = require('../../models/User');
+import { Hono } from 'hono';
+import { promisify } from 'util';
+import bcrypt from 'bcryptjs';
+import config from 'config';
+import jwt from 'jsonwebtoken';
+import auth from '../../middleware/auth.js';
+import User from '../../models/User.js';
 
 const router = new Hono();
 const signAsync = promisify(jwt.sign);
@@ -24,10 +24,7 @@ router.post('/', async (c) => {
   if (!isMatch) return c.json({ msg: 'Invalid credentials' }, 400);
 
   const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
-  return c.json({
-    token,
-    user: { _id: user.id, name: user.name, email: user.email, favorites: user.favorites },
-  });
+  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: user.favorites } });
 });
 
 // @route   GET api/auth/user
@@ -39,4 +36,4 @@ router.get('/user', auth, async (c) => {
   return c.json(user);
 });
 
-module.exports = router;
+export default router;

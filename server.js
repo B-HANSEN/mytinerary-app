@@ -1,10 +1,18 @@
-const config = require('config');
-const path = require('path');
-const fs = require('fs');
-const { Hono } = require('hono');
-const { serve } = require('@hono/node-server');
-const { serveStatic } = require('@hono/node-server/serve-static');
-const mongoose = require('mongoose');
+import config from 'config';
+import path from 'path';
+import fs from 'fs';
+import { Hono } from 'hono';
+import { serve } from '@hono/node-server';
+import { serveStatic } from '@hono/node-server/serve-static';
+import mongoose from 'mongoose';
+
+import citiesRouter from './routes/api/cities.js';
+import itinerariesRouter from './routes/api/itineraries.js';
+import favoritesRouter from './routes/api/favorites.js';
+import usersRouter from './routes/api/users.js';
+import authRouter from './routes/api/auth.js';
+import activitiesRouter from './routes/api/activities.js';
+import commentsRouter from './routes/api/comments.js';
 
 const app = new Hono();
 
@@ -22,13 +30,13 @@ app.use('*', async (c, next) => {
 });
 
 // Routes
-app.route('/api/cities', require('./routes/api/cities'));
-app.route('/api/itineraries', require('./routes/api/itineraries'));
-app.route('/api/favorites', require('./routes/api/favorites'));
-app.route('/api/users', require('./routes/api/users'));
-app.route('/api/auth', require('./routes/api/auth'));
-app.route('/api/activities', require('./routes/api/activities'));
-app.route('/api/comments', require('./routes/api/comments'));
+app.route('/api/cities', citiesRouter);
+app.route('/api/itineraries', itinerariesRouter);
+app.route('/api/favorites', favoritesRouter);
+app.route('/api/users', usersRouter);
+app.route('/api/auth', authRouter);
+app.route('/api/activities', activitiesRouter);
+app.route('/api/comments', commentsRouter);
 
 // Static uploads
 app.use('/uploads/*', serveStatic({ root: './' }));

@@ -1,5 +1,5 @@
-const { Hono } = require('hono');
-const City = require('../../models/City');
+import { Hono } from 'hono';
+import City from '../../models/City.js';
 
 const router = new Hono();
 
@@ -30,4 +30,4 @@ router.get('/:id', async (c) => {
   return c.json(city);
 });
 
-module.exports = router;
+export default router;

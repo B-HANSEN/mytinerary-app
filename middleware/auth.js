@@ -1,5 +1,5 @@
-const config = require('config');
-const jwt = require('jsonwebtoken');
+import config from 'config';
+import jwt from 'jsonwebtoken';
 
 const auth = async (c, next) => {
   const token = c.req.header('x-auth-token');
@@ -13,4 +13,4 @@ const auth = async (c, next) => {
   }
 };
 
-module.exports = auth;
+export default auth;

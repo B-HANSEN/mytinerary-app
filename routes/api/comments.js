@@ -1,5 +1,5 @@
-const { Hono } = require('hono');
-const Comment = require('../../models/Comment');
+import { Hono } from 'hono';
+import Comment from '../../models/Comment.js';
 
 const router = new Hono();
 
@@ -20,4 +20,4 @@ router.post('/', async (c) => {
   return c.json(comment);
 });
 
-module.exports = router;
+export default router;

@@ -7,7 +7,7 @@ export const config = { runtime: 'nodejs' };
 // Reuse DB connection across warm invocations
 app.use('*', async (c, next) => {
   if (mongoose.connection.readyState === 0) {
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 5000 });
   }
   return next();
 });

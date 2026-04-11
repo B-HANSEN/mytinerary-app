@@ -5,8 +5,11 @@ import app from '../app.js';
 export const config = { runtime: 'nodejs' };
 
 // Reuse DB connection across warm invocations
-if (mongoose.connection.readyState === 0) {
-  await mongoose.connect(process.env.MONGO_URI);
-}
+app.use('*', async (c, next) => {
+  if (mongoose.connection.readyState === 0) {
+    await mongoose.connect(process.env.MONGO_URI);
+  }
+  return next();
+});
 
 export default handle(app);

@@ -16,6 +16,12 @@ const app = express();
 // body parser middle ware
 app.use(express.json());
 
+// Allow Google OAuth popup to communicate back
+app.use((req, res, next) => {
+  res.setHeader('Cross-Origin-Opener-Policy', 'same-origin-allow-popups');
+  next();
+});
+
 // DB config
 // const db = process.env.DATABASE // replace with config.get 
 const db = config.get('mongoURI');

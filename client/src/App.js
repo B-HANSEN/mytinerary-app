@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import store from './store';
 import { loadUser } from  './actions/authActions';
 
@@ -26,6 +27,7 @@ class App extends Component {
   }
   render () {
     return (
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID} onScriptLoadError={() => {}}>
       <Provider store={store}>
         <div className="App">
          
@@ -40,6 +42,7 @@ class App extends Component {
         
         </div>
       </Provider>
+      </GoogleOAuthProvider>
     );
   } 
 }

@@ -11,7 +11,7 @@ import {
   NavLink,
   DropdownItem
 } from 'reactstrap';
-import GoogleLogout from 'react-google-login';
+import { googleLogout } from '@react-oauth/google';
 import PropTypes from 'prop-types';
 
 import RegisterModal from './auth/RegisterModal';
@@ -40,12 +40,10 @@ class AppNavbar extends Component {
     });
   }
 
-  logOut = (response) => {
-    console.log("logOut", response);
-    this.props.logoutSocial(
-      { email: response.profileObj.email, name: response.profileObj.name }     
-    );
-    this.toggleNavbar()  
+  logOut = () => {
+    googleLogout();
+    this.props.logoutSocial();
+    this.toggleNavbar();
   }
 
   onClick = e => {
@@ -122,12 +120,7 @@ class AppNavbar extends Component {
                           </Nav> 
 
                     { isAuthenticated
-                      ? <GoogleLogout
-                        icon={false}
-                        clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
-                        buttonText="Logout"
-                        onSuccess={ this.logOut }
-                        />
+                      ? <button onClick={ this.logOut } className="btn btn-sm btn-outline-secondary">Logout</button>
                       : null }
                     
                     <DropdownItem divider />

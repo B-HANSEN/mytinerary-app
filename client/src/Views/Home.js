@@ -10,7 +10,7 @@ import Footer from './../components/Footer'
 import logo from '../files/images/MYtineraryLogo.png';
 import arrow from '../files/images/circled-right-2.png';
 import './views.css';
-import GoogleLogin from 'react-google-login';
+import { GoogleLogin } from '@react-oauth/google';
 import PropTypes from 'prop-types';
 
 
@@ -25,14 +25,12 @@ class Home extends React.Component {
   
 
     responseGoogleSuccess = (response) => {
-      console.log(response);
-      this.props.loginSocial(
-        { email: response.profileObj.email, name: response.profileObj.name }  
-      );
+      const decoded = JSON.parse(atob(response.credential.split('.')[1]));
+      this.props.loginSocial({ email: decoded.email, name: decoded.name });
     }
-  
-    responseGoogleFail = (response) => {
-      console.log(response);
+
+    responseGoogleFail = () => {
+      console.log('Google login failed');
     }
 
     // Redirect for Cities page
@@ -92,12 +90,8 @@ class Home extends React.Component {
                     { isAuthenticated
                       ? null
                       : <GoogleLogin
-                          clientId="207436970178-tt81pf2cbje3tfhb1q4esg4qe1fcjkod.apps.googleusercontent.com"
-                          buttonText="Login with Google"
-                          icon={true}
                           onSuccess={ this.responseGoogleSuccess }
-                          onFailure={ this.responseGoogleFail }
-                          cookiePolicy={ 'single_host_origin' }
+                          onError={ this.responseGoogleFail }
                     /> }
                 
               </div>

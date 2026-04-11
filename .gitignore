@@ -25,7 +25,11 @@ yarn-debug.log*
 yarn-error.log*
 
 # exclude files
+.env
+client/.env
+/.claude
 /.qodo
 /config/keys.js
+/config/default.json
 /TODO.md
 

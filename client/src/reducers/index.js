@@ -1,5 +1,5 @@
 // root reducer to combine various reducers
-import { combineReducers } from 'redux';
+import { combineReducers } from '@reduxjs/toolkit';
 import cityReducer from './cityReducer';
 import itReducer from './itReducer';
 import actReducer from './actReducer';

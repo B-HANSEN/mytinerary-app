@@ -10,7 +10,7 @@ const initialState = {
   msg: 'Hello world (from favorites)',
 };
 
-export default function (state = initialState, action) {
+export default function favReducer(state = initialState, action) {
   switch (action.type) {
     case GET_FAVORITES:
       return {

@@ -11,7 +11,7 @@ const app = new Hono();
 // DB config
 const db = config.get('mongoURI');
 mongoose
-  .connect(db, { useNewUrlParser: true, useCreateIndex: true })
+  .connect(db)
   .then(() => console.log('connection done'))
   .catch((err) => console.log(err));
 

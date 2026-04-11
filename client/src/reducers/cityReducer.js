@@ -7,7 +7,7 @@ const initialState = {
   msg: 'Hello world',
 };
 
-export default function (state = initialState, action) {
+export default function cityReducer(state = initialState, action) {
   switch (action.type) {
     // case all cities
     case GET_CITIES:

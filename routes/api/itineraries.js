@@ -39,7 +39,7 @@ router.post('/', async (c) => {
 router.delete('/:id', async (c) => {
   try {
     const itinerary = await Itinerary.findById(c.req.param('id'));
-    await itinerary.remove();
+    await itinerary.deleteOne();
     return c.json({ success: true });
   } catch (err) {
     return c.json({ success: false }, 404);

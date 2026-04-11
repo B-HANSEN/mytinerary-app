@@ -23,7 +23,7 @@ router.post('/', async (c) => {
 router.delete('/:id', async (c) => {
   try {
     const activity = await Activity.findById(c.req.param('id'));
-    await activity.remove();
+    await activity.deleteOne();
     return c.json({ success: true });
   } catch (err) {
     return c.json({ success: false }, 404);

@@ -18,7 +18,7 @@ router.post('/', async (c) => {
 router.delete('/:id', async (c) => {
   try {
     const city = await City.findById(c.req.param('id'));
-    await city.remove();
+    await city.deleteOne();
     return c.json({ success: true });
   } catch (err) {
     return c.json({ success: false }, 404);

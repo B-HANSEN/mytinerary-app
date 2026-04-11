@@ -2,19 +2,19 @@
   "name": "mytinerary-app",
   "version": "1.0.0",
   "engines": {
-    "node": "10.16.0",
-    "npm": "6.9.0"
+    "node": ">=22.0.0",
+    "npm": ">=10.0.0"
   },
   "description": "",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
+    "setup": "npm install && npm install --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "build": "webpack",
-    "client": "cd client && npm start",
+    "client": "npm start --prefix client",
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "build": "npm run build --prefix client",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
@@ -39,6 +39,7 @@
     "react-router-last-location": "^2.0.1"
   },
   "devDependencies": {
-    "concurrently": "^4.0.1"
+    "concurrently": "^4.0.1",
+    "nodemon": "^3.0.0"
   }
 }

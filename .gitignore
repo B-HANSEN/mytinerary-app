@@ -25,5 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # exclude files
-/files
+/.qodo
 /config/keys.js
+/TODO.md
+

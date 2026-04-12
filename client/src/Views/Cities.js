@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { getCities } from '../actions/citiesActions';
 import Search from '../components/Search';
@@ -11,62 +10,42 @@ import { Container, Row, Col } from 'reactstrap';
 import { Button } from 'reactstrap';
 import './views.css';
 
-class Cities extends Component {
-  state = {
-    cities: [],
-    searchfield: '',
-    images: [],
-    filteredCities: [],
-  };
+function Cities() {
+  const [searchfield, setSearchfield] = useState('');
+  const dispatch = useDispatch();
+  const { cities } = useSelector((state) => state.city);
 
-  componentDidMount() {
-    this.props.getCities();
-  }
+  useEffect(() => {
+    dispatch(getCities());
+  }, [dispatch]);
 
-  handleInput = (e) => {
-    this.setState({ searchfield: e.target.value });
-  };
+  const filteredCities = cities.filter((city) =>
+    city.city.toLowerCase().includes(searchfield.toLowerCase())
+  );
 
-  render() {
-    let filteredCities = this.props.city.cities.filter((city) => {
-      return city.city.toLowerCase().includes(this.state.searchfield.toLowerCase());
-    });
+  return (
+    <div className='cities'>
+      <h4>Cities</h4>
 
-    let mappedCities = filteredCities.map((city) => {
-      return (
-        <Col key={city._id} xs='6' md='4'>
-          <h5>
-            <Button color='warning' block>
-              <Link to={'/itineraries/' + city._id}>{city.city}</Link>
-            </Button>
-          </h5>
-        </Col>
-      );
-    });
+      <Search handleInput={(e) => setSearchfield(e.target.value)} />
 
-    return (
-      <div className='cities'>
-        <h4>Cities</h4>
+      <Container fluid className='cityList'>
+        <Row>
+          {filteredCities.map((city) => (
+            <Col key={city._id} xs='6' md='4'>
+              <h5>
+                <Button color='warning' block>
+                  <Link to={'/itineraries/' + city._id}>{city.city}</Link>
+                </Button>
+              </h5>
+            </Col>
+          ))}
+        </Row>
+      </Container>
 
-        <Search handleInput={this.handleInput} />
-
-        <Container fluid className='cityList'>
-          <Row>{mappedCities}</Row>
-        </Container>
-
-        <Footer />
-      </div>
-    );
-  }
+      <Footer />
+    </div>
+  );
 }
 
-Cities.propTypes = {
-  getCities: PropTypes.func.isRequired,
-  city: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  city: state.city,
-});
-
-export default connect(mapStateToProps, { getCities })(Cities);
+export default Cities;

@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeFromFavorites, removeLikes } from '../actions/favActions';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -8,35 +7,23 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import { MDBIcon } from 'mdbreact';
 
-class ToUnlike extends Component {
-  decreaseFavorites = () => {
-    console.log('itinId', this.props.itinId);
-    console.log('user._id', this.props.auth.user._id);
+function ToUnlike({ itinId, cityId }) {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
-    this.props.removeFromFavorites(this.props.itinId, this.props.auth.user._id);
-    this.props.removeLikes(this.props.itinId, -1, this.props.cityId);
+  const decreaseFavorites = () => {
+    dispatch(removeFromFavorites(itinId, auth.user._id));
+    dispatch(removeLikes(itinId, -1, cityId));
   };
 
-  render() {
-    return (
-      <button onClick={this.decreaseFavorites} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
-        <MDBIcon icon='heart' className='bluehighlight' />
-      </button>
-    );
-  }
+  return (
+    <button
+      onClick={decreaseFavorites}
+      style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+    >
+      <MDBIcon icon='heart' className='bluehighlight' />
+    </button>
+  );
 }
 
-ToUnlike.propTypes = {
-  itinerary: PropTypes.object.isRequired,
-  user: PropTypes.object,
-};
-
-const mapStateToProps = (state) => ({
-  itinerary: state.itinerary,
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, {
-  removeFromFavorites,
-  removeLikes,
-})(ToUnlike);
+export default ToUnlike;

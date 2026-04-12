@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-// import components & styles
 import RegisterModal from './../components/auth/RegisterModal';
 import LoginModal from './../components/auth/LoginModal';
 import { loginSocial } from './../actions/authActions';
@@ -11,77 +10,58 @@ import logo from '../files/images/MYtineraryLogo.png';
 import arrow from '../files/images/circled-right-2.png';
 import './views.css';
 import { GoogleLogin } from '@react-oauth/google';
-import PropTypes from 'prop-types';
 
-class Home extends React.Component {
-  state = {};
+function Home() {
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
-  static propTypes = {
-    auth: PropTypes.object.isRequired,
-  };
-
-  responseGoogleSuccess = (response) => {
+  const responseGoogleSuccess = (response) => {
     const decoded = JSON.parse(atob(response.credential.split('.')[1]));
-    this.props.loginSocial({ email: decoded.email, name: decoded.name });
+    dispatch(loginSocial({ email: decoded.email, name: decoded.name }));
   };
 
-  responseGoogleFail = () => {
-    console.log('Google login failed');
-  };
+  return (
+    <div className='logo'>
+      <img className='companyLogo' src={logo} alt='logo' />
+      <p>
+        Find your perfect trip, designed by insiders <br /> who know and love their cities
+      </p>
+      <h2>Start browsing</h2>
 
-  render() {
-    const { isAuthenticated } = this.props.auth;
-    return (
-      <div className='logo'>
-        <img className='companyLogo' src={logo} alt='logo' />
-        <p>
-          Find your perfect trip, designed by insiders <br /> who know and love their cities
-        </p>
-        <h2>Start browsing</h2>
+      <div>
+        <Link to='/cities'>
+          <img className='arrow' src={arrow} alt='arrow' />
+        </Link>
+      </div>
 
-        <div>
-          <Link to='/cities'>
-            <img className='arrow' src={arrow} alt='arrow' />
-          </Link>
-        </div>
+      <p className='bold'>Want to build your own itinerary?</p>
 
-        <p className='bold'>Want to build your own itinerary?</p>
+      <div className='links'>
+        {isAuthenticated ? null : <RegisterModal />}
 
-        <div className='links'>
-          <Link to='#' onClick={() => this.setState({ showModal: true })}>
-            {isAuthenticated ? null : <RegisterModal open={this.state.showModal}></RegisterModal>}
-          </Link>
+        <div className='login_section'>
+          {isAuthenticated ? (
+            <Link to='/CreateItinerary' className='bluehighlight'>
+              Create your own itinerary here...
+            </Link>
+          ) : (
+            <LoginModal />
+          )}
 
-          <div className='login_section'>
-            {isAuthenticated ? (
-              <Link
-                onClick={() => this.setState({ showModal: true })}
-                to='/CreateItinerary'
-                className='bluehighlight'
-              >
-                Create your own itinerary here...
-              </Link>
-            ) : (
-              <LoginModal open={this.state.showModal}></LoginModal>
-            )}
-
-            {isAuthenticated ? null : (
-              <GoogleLogin
-                onSuccess={this.responseGoogleSuccess}
-                onError={this.responseGoogleFail}
-              />
-            )}
-          </div>
-        </div>
-
-        <div>
-          <Footer />
+          {isAuthenticated ? null : (
+            <GoogleLogin
+              onSuccess={responseGoogleSuccess}
+              onError={() => console.log('Google login failed')}
+            />
+          )}
         </div>
       </div>
-    );
-  }
+
+      <div>
+        <Footer />
+      </div>
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => ({ auth: state.auth });
-
-export default connect(mapStateToProps, { loginSocial })(Home);
+export default Home;

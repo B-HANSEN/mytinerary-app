@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Modal,
@@ -11,178 +11,127 @@ import {
   NavLink,
   Alert,
 } from 'reactstrap';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 import './auth.css';
 
-class UploadPreview extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { file: null };
-    this.onChange = this.onChange.bind(this);
-    this.resetFile = this.resetFile.bind(this);
-  }
-  onChange(event) {
-    this.setState({ file: URL.createObjectURL(event.target.files[0]) });
-    this.props.handleFileInput(event.target.files[0]);
-  }
-  resetFile(event) {
-    event.preventDefault();
-    this.setState({ file: null });
-    this.props.handleFileInput(null);
-  }
+function UploadPreview({ handleFileInput }) {
+  const [file, setFile] = useState(null);
 
-  render() {
-    return (
-      <div>
-        <input type='file' onChange={this.onChange} />
-        {this.state.file && (
-          <div style={{ textAlign: 'center' }}>
-            <button onClick={this.resetFile}>Remove File</button>
-          </div>
-        )}
-        <img style={{ width: '100%' }} src={this.state.file} alt='' />
-      </div>
-    );
-  }
+  const onChange = (event) => {
+    setFile(URL.createObjectURL(event.target.files[0]));
+    handleFileInput(event.target.files[0]);
+  };
+
+  const resetFile = (event) => {
+    event.preventDefault();
+    setFile(null);
+    handleFileInput(null);
+  };
+
+  return (
+    <div>
+      <input type='file' onChange={onChange} />
+      {file && (
+        <div style={{ textAlign: 'center' }}>
+          <button onClick={resetFile}>Remove File</button>
+        </div>
+      )}
+      <img style={{ width: '100%' }} src={file} alt='' />
+    </div>
+  );
 }
 
-class RegisterModal extends Component {
-  state = {
-    modal: false,
-    name: '',
-    email: '',
-    password: '',
-    msg: null,
+function RegisterModal() {
+  const [modal, setModal] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fileInputElement, setFileInputElement] = useState(null);
+  const [msg, setMsg] = useState(null);
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const error = useSelector((state) => state.error);
+
+  const toggle = () => {
+    dispatch(clearErrors());
+    setModal((m) => !m);
   };
 
-  // With introduction of static keyword in ES6,
-  // possible to define static methods inside the class definition itself.
-  static propTypes = {
-    isAuthenticated: PropTypes.bool,
-    error: PropTypes.object.isRequired,
-    register: PropTypes.func.isRequired,
-    clearErrors: PropTypes.func.isRequired,
-  };
+  useEffect(() => {
+    if (error.id === 'REGISTER_FAIL') setMsg(error.msg.msg);
+    else setMsg(null);
+  }, [error]);
 
-  componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props;
-    if (error !== prevProps.error) {
-      // Check for register error
-      if (error.id === 'REGISTER_FAIL') {
-        this.setState({ msg: error.msg.msg });
-      } else {
-        this.setState({ msg: null });
-      }
-    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (modal && isAuthenticated) toggle();
+  }, [isAuthenticated]);
 
-    // If authenticated, close modal
-    if (this.state.modal) {
-      if (isAuthenticated) {
-        this.toggle();
-      }
-    }
-  }
-
-  handleFileInput = (file) => {
-    console.log(file);
-    this.setState({ fileInputElement: file });
-  };
-
-  // opemn & close the modal
-  toggle = () => {
-    // Clear errors
-    this.props.clearErrors();
-    this.setState({
-      modal: !this.state.modal,
-    });
-  };
-
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-
-  onSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    const { name, email, password } = this.state;
-
-    // create FormData-constructor:
-    let newUser = new FormData();
+    const newUser = new FormData();
     newUser.append('name', name);
     newUser.append('email', email);
     newUser.append('password', password);
-
-    // HTML file input, chosen by user
-    //  fileInputElement.files[0] represent the input of an input type="file" element:
-    newUser.append('avatar', this.state.fileInputElement);
-
-    // Attempt to register
-    this.props.register(newUser);
+    newUser.append('avatar', fileInputElement);
+    dispatch(register(newUser));
   };
 
-  render() {
-    return (
-      <div>
-        <NavLink onClick={this.toggle} className='bluehighlight'>
-          Register here
-        </NavLink>
+  return (
+    <div>
+      <NavLink onClick={toggle} className='bluehighlight'>
+        Register here
+      </NavLink>
 
-        <Modal isOpen={this.state.modal} toggle={this.toggle}>
-          <ModalHeader toggle={this.toggle}>Register</ModalHeader>
-          <ModalBody>
-            {this.state.msg ? <Alert color='danger'>{this.state.msg}</Alert> : null}
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for='name'>Name</Label>
-                <Input
-                  type='text'
-                  name='name'
-                  id='name'
-                  placeholder='Name'
-                  className='mb-3'
-                  onChange={this.onChange}
-                />
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Register</ModalHeader>
+        <ModalBody>
+          {msg ? <Alert color='danger'>{msg}</Alert> : null}
+          <Form onSubmit={onSubmit}>
+            <FormGroup>
+              <Label for='name'>Name</Label>
+              <Input
+                type='text'
+                name='name'
+                id='name'
+                placeholder='Name'
+                className='mb-3'
+                onChange={(e) => setName(e.target.value)}
+              />
 
-                <Label for='email'>Email</Label>
-                <Input
-                  type='email'
-                  name='email'
-                  id='email'
-                  placeholder='Email'
-                  className='mb-3'
-                  onChange={this.onChange}
-                />
+              <Label for='email'>Email</Label>
+              <Input
+                type='email'
+                name='email'
+                id='email'
+                placeholder='Email'
+                className='mb-3'
+                onChange={(e) => setEmail(e.target.value)}
+              />
 
-                <Label for='password'>Password</Label>
-                <Input
-                  type='password'
-                  name='password'
-                  id='password'
-                  placeholder='Password'
-                  className='mb-3'
-                  onChange={this.onChange}
-                />
+              <Label for='password'>Password</Label>
+              <Input
+                type='password'
+                name='password'
+                id='password'
+                placeholder='Password'
+                className='mb-3'
+                onChange={(e) => setPassword(e.target.value)}
+              />
 
-                <UploadPreview handleFileInput={this.handleFileInput} />
+              <UploadPreview handleFileInput={setFileInputElement} />
 
-                <Button color='dark' style={{ marginTop: '2rem' }} block>
-                  Register
-                </Button>
-              </FormGroup>
-            </Form>
-          </ModalBody>
-        </Modal>
-      </div>
-    );
-  }
+              <Button color='dark' style={{ marginTop: '2rem' }} block>
+                Register
+              </Button>
+            </FormGroup>
+          </Form>
+        </ModalBody>
+      </Modal>
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => ({
-  // from reducer which gives access to all parts of the state; component informed where to find data in the store
-  isAuthenticated: state.auth.isAuthenticated,
-  error: state.error,
-});
-
-export default connect(mapStateToProps, { register, clearErrors })(RegisterModal);
+export default RegisterModal;

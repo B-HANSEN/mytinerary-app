@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites, addLikes } from '../actions/favActions';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -8,37 +7,23 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import { MDBIcon } from 'mdbreact';
 
-class ToLike extends Component {
-  increaseFavorites = () => {
-    console.log('itinId', this.props.itinId);
-    console.log('user._id', this.props);
-    console.log(this.props.cityId);
-    console.log(this.props);
+function ToLike({ itinId, cityId }) {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
 
-    this.props.addToFavorites(this.props.itinId, this.props.auth.user._id);
-    this.props.addLikes(this.props.itinId, 1, this.props.cityId);
+  const increaseFavorites = () => {
+    dispatch(addToFavorites(itinId, auth.user._id));
+    dispatch(addLikes(itinId, 1, cityId));
   };
 
-  render() {
-    return (
-      <button onClick={this.increaseFavorites} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
-        <MDBIcon far icon='heart' className='bluehighlight' />
-      </button>
-    );
-  }
+  return (
+    <button
+      onClick={increaseFavorites}
+      style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+    >
+      <MDBIcon far icon='heart' className='bluehighlight' />
+    </button>
+  );
 }
 
-ToLike.propTypes = {
-  itinerary: PropTypes.object.isRequired,
-  user: PropTypes.object,
-};
-
-const mapStateToProps = (state) => ({
-  itinerary: state.itinerary,
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps, {
-  addToFavorites,
-  addLikes,
-})(ToLike);
+export default ToLike;

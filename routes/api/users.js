@@ -3,7 +3,6 @@ import { promisify } from 'util';
 import fs from 'fs';
 import path from 'path';
 import bcrypt from 'bcryptjs';
-import config from 'config';
 import jwt from 'jsonwebtoken';
 import User from '../../models/User.js';
 
@@ -43,7 +42,7 @@ router.post('/', async (c) => {
   newUser.password = await bcrypt.hash(newUser.password, salt);
   const user = await newUser.save();
 
-  const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+  const token = await signAsync({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 3600 });
   return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [], avatar: user.avatar } });
 });
 
@@ -58,13 +57,13 @@ router.post('/social', async (c) => {
 
   const existing = await User.findOne({ email }).select('-password');
   if (existing) {
-    const token = await signAsync({ id: existing.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+    const token = await signAsync({ id: existing.id }, process.env.JWT_SECRET, { expiresIn: 3600 });
     return c.json({ token, user: existing });
   }
 
   const newUser = new User({ name, email });
   const user = await newUser.save();
-  const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+  const token = await signAsync({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 3600 });
   return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [] } });
 });
 

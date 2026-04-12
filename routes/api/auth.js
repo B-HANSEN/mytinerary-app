@@ -1,7 +1,6 @@
 import { Hono } from 'hono';
 import { promisify } from 'util';
 import bcrypt from 'bcryptjs';
-import config from 'config';
 import jwt from 'jsonwebtoken';
 import auth from '../../middleware/auth.js';
 import User from '../../models/User.js';
@@ -23,7 +22,7 @@ router.post('/', async (c) => {
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return c.json({ msg: 'Invalid credentials' }, 400);
 
-  const token = await signAsync({ id: user.id }, config.get('jwtSecret'), { expiresIn: 3600 });
+  const token = await signAsync({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 3600 });
   return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: user.favorites } });
 });
 

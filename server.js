@@ -1,4 +1,3 @@
-import config from 'config';
 import path from 'path';
 import fs from 'fs';
 import { serve } from '@hono/node-server';
@@ -6,10 +5,8 @@ import { serveStatic } from '@hono/node-server/serve-static';
 import mongoose from 'mongoose';
 import app from './app.js';
 
-// DB config
-const db = config.get('mongoURI');
 mongoose
-  .connect(db)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log('connection done'))
   .catch((err) => console.log(err));
 

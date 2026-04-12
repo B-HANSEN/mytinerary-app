@@ -29,8 +29,6 @@ yarn-error.log*
 # exclude files
 /.claude
 /.qodo
-/config/keys.js
-/config/default.json
 /TODO.md
 .vercel
 

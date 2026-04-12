@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import {
   Button,
   Modal,
@@ -25,7 +24,6 @@ class LoginModal extends Component {
     email: '',
     password: '',
     msg: null,
-    redirect: false,
   };
 
   static propTypes = {
@@ -75,15 +73,6 @@ class LoginModal extends Component {
     this.props.login(user);
   };
 
-  setRedirect = () => {
-    this.setState({ redirect: true });
-  };
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/' />;
-    }
-  };
-
   render() {
     return (
       <div>
@@ -119,7 +108,6 @@ class LoginModal extends Component {
                   onChange={this.onChange}
                 />
 
-                {this.renderRedirect()}
                 <Button to={'/'} color='dark' style={{ marginTop: '2rem' }} block>
                   Login
                 </Button>

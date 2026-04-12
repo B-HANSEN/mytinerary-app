@@ -7,7 +7,6 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import { MDBIcon } from 'mdbreact';
-import { Link } from 'react-router-dom';
 
 class ToUnlike extends Component {
   decreaseFavorites = () => {
@@ -20,9 +19,9 @@ class ToUnlike extends Component {
 
   render() {
     return (
-      <Link onClick={this.decreaseFavorites}>
+      <button onClick={this.decreaseFavorites} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
         <MDBIcon icon='heart' className='bluehighlight' />
-      </Link>
+      </button>
     );
   }
 }

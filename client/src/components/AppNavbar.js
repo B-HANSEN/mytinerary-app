@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   Collapse,
@@ -27,7 +27,6 @@ import { MDBIcon } from 'mdbreact';
 class AppNavbar extends Component {
   state = {
     collapsed: true,
-    redirect: false,
   };
 
   static propTypes = {
@@ -48,13 +47,6 @@ class AppNavbar extends Component {
 
   onClick = (e) => {
     this.setState({ collapsed: true });
-  };
-
-  setRedirect = () => {
-    this.setState({ redirect: true });
-  };
-  renderRedirect = () => {
-    return <Redirect to='/' />;
   };
 
   render() {
@@ -128,7 +120,6 @@ class AppNavbar extends Component {
               Cities
             </Link>
           </Collapse>
-          {isAuthenticated ? null : this.renderRedirect()}
         </Navbar>
       </div>
     );

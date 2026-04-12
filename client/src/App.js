@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import store from './store';
@@ -35,11 +35,13 @@ class App extends Component {
           <div className='App'>
             <BrowserRouter>
               <Headers />
-              <Route exact path='/' component={Home} />
-              <Route path='/createitinerary' component={CreateItinerary} />
-              <Route path='/cities' component={Cities} />
-              <Route path='/itineraries/:cityId' component={MYtinerary} />
-              <Route path='/favorites/:userId' component={Favorites} />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/createitinerary' element={<CreateItinerary />} />
+                <Route path='/cities' element={<Cities />} />
+                <Route path='/itineraries/:cityId' element={<MYtinerary />} />
+                <Route path='/favorites/:userId' element={<Favorites />} />
+              </Routes>
             </BrowserRouter>
           </div>
         </Provider>

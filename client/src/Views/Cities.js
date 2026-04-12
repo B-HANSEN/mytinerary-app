@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -17,7 +17,6 @@ class Cities extends Component {
     searchfield: '',
     images: [],
     filteredCities: [],
-    redirect: false,
   };
 
   componentDidMount() {
@@ -25,24 +24,10 @@ class Cities extends Component {
   }
 
   handleInput = (e) => {
-    console.log(e.target.value);
     this.setState({ searchfield: e.target.value });
   };
 
-  // link to single city's itineraries page
-  setRedirect = () => {
-    this.setState({ redirect: true });
-  };
-  renderRedirect = (id) => {
-    console.log(this.props);
-    this.props.location.push('/itineraries/' + id);
-    return <Redirect to={'/itineraries/' + id} />;
-  };
-
   render() {
-    console.log('Hello World', this.props.city.cities);
-
-    // show cities that match with what has been input in searchfield
     let filteredCities = this.props.city.cities.filter((city) => {
       return city.city.toLowerCase().includes(this.state.searchfield.toLowerCase());
     });
@@ -63,18 +48,13 @@ class Cities extends Component {
       <div className='cities'>
         <h4>Cities</h4>
 
-        {/* pass down to component */}
         <Search handleInput={this.handleInput} />
 
         <Container fluid className='cityList'>
           <Row>{mappedCities}</Row>
         </Container>
 
-        {/* navigation buttons */}
-        {/* <div className="navbuttons"> */}
-        {/* <button className="dummyButton"></button> */}
         <Footer />
-        {/* </div> */}
       </div>
     );
   }

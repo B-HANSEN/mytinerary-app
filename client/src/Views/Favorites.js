@@ -7,6 +7,7 @@ import { getFavorites } from '../actions/favActions';
 import { getUserById } from '../actions/authActions';
 
 import PropTypes from 'prop-types';
+import { withRouter } from '../utils/withRouter';
 import './views.css';
 
 class Favorites extends React.Component {
@@ -17,10 +18,8 @@ class Favorites extends React.Component {
   };
 
   componentDidMount() {
-    console.log(this.props.match.params.userId);
-
-    this.props.getUserById(this.props.match.params.userId); // get user for title
-    this.props.getFavorites(this.props.match.params.userId); // get the itineraries by userID to show favorites
+    this.props.getUserById(this.props.params.userId);
+    this.props.getFavorites(this.props.params.userId);
   }
 
   handleSelection = (id) => {
@@ -29,8 +28,6 @@ class Favorites extends React.Component {
 
   render() {
     const { user } = this.props.auth;
-    console.log(this.props.auth);
-    console.log(this.props);
 
     return (
       <div>
@@ -67,4 +64,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { getFavorites, getUserById })(Favorites);
+export default withRouter(connect(mapStateToProps, { getFavorites, getUserById })(Favorites));

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // import components & styles
@@ -14,9 +14,7 @@ import { GoogleLogin } from '@react-oauth/google';
 import PropTypes from 'prop-types';
 
 class Home extends React.Component {
-  state = {
-    redirectCities: false,
-  };
+  state = {};
 
   static propTypes = {
     auth: PropTypes.object.isRequired,
@@ -31,20 +29,6 @@ class Home extends React.Component {
     console.log('Google login failed');
   };
 
-  // Redirect for Cities page
-  setRedirectCities = () => {
-    this.setState({ redirectCities: true });
-  };
-  renderRedirectCities = () => {
-    if (this.state.redirectCities) {
-      return <Redirect to='/cities' />;
-    }
-  };
-
-  renderRedirect = () => {
-    return <Redirect to='/' />;
-  };
-
   render() {
     const { isAuthenticated } = this.props.auth;
     return (
@@ -56,8 +40,7 @@ class Home extends React.Component {
         <h2>Start browsing</h2>
 
         <div>
-          {this.renderRedirectCities()}
-          <Link to='/cities' onClick={this.setRedirectCities}>
+          <Link to='/cities'>
             <img className='arrow' src={arrow} alt='arrow' />
           </Link>
         </div>

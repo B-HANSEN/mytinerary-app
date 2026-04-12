@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Footer from './../components/Footer';
 import { TinyButton as ScrollUpButton } from 'react-scroll-up-button';
@@ -9,38 +9,25 @@ import { getItineraries } from '../actions/itActions';
 import { getCityById } from '../actions/citiesActions';
 
 import PropTypes from 'prop-types';
+import { withRouter } from '../utils/withRouter';
 import './views.css';
 
 class MYtinerary extends React.Component {
   state = {
     itineraries: [],
-    redirect: false,
     selectedItin: '',
   };
 
   componentDidMount() {
-    console.log(this.props);
-    this.props.getCityById(this.props.match.params.cityId); // load single city page showing cityPic
-    this.props.getItineraries(this.props.match.params.cityId); // load all itineraries related to this city
+    this.props.getCityById(this.props.params.cityId);
+    this.props.getItineraries(this.props.params.cityId);
   }
 
   handleSelection = (id) => {
     this.setState({ selectedItin: id });
   };
 
-  // link back to Cities page
-  setRedirect = () => {
-    this.setState({ redirect: true });
-  };
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/cities' />;
-    }
-  };
-
   render() {
-    console.log(this.props);
-
     return (
       <div>
         <div className='title'>
@@ -68,8 +55,7 @@ class MYtinerary extends React.Component {
 
           {/* link back to Cities page */}
           <div className='center'>
-            {this.renderRedirect()}
-            <Link className='otherCity' onClick={this.setRedirect} to={'/cities'}>
+            <Link className='otherCity' to={'/cities'}>
               Choose another city...
             </Link>
           </div>
@@ -94,4 +80,4 @@ const mapStateToProps = (state) => ({
   city: state.city,
 });
 
-export default connect(mapStateToProps, { getItineraries, getCityById })(MYtinerary);
+export default withRouter(connect(mapStateToProps, { getItineraries, getCityById })(MYtinerary));

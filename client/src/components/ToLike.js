@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addToFavorites, addLikes } from '../actions/favActions';
-import { Link } from 'react-router-dom';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
@@ -22,9 +21,9 @@ class ToLike extends Component {
 
   render() {
     return (
-      <Link onClick={this.increaseFavorites}>
+      <button onClick={this.increaseFavorites} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}>
         <MDBIcon far icon='heart' className='bluehighlight' />
-      </Link>
+      </button>
     );
   }
 }

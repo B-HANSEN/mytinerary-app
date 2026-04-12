@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import { getActivities } from '../actions/itActions';
@@ -7,9 +7,10 @@ import './components.css';
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <button
+      aria-label='Next'
       className={className}
-      style={{ ...style, display: 'block', background: 'lightgrey' }}
+      style={{ ...style, display: 'block', background: 'lightgrey', border: 'none', cursor: 'pointer' }}
       onClick={onClick}
     />
   );
@@ -18,9 +19,10 @@ function SampleNextArrow(props) {
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (
-    <div
+    <button
+      aria-label='Previous'
       className={className}
-      style={{ ...style, display: 'block', background: 'lightgrey' }}
+      style={{ ...style, display: 'block', background: 'lightgrey', border: 'none', cursor: 'pointer' }}
       onClick={onClick}
     />
   );
@@ -50,7 +52,7 @@ function ActivitySlider({ itinId }) {
       <Slider {...sliderSettings} style={{ width: '300px' }}>
         {activity.activities.map((activity, index) => (
           <div className='actPicnPlace' key={index}>
-            <img className='actPic' src={activity.actPic} alt='actPic' />
+            <img className='actPic' src={activity.actPic} alt={activity.actPlace} />
             <p className='actPlace'>{activity.actPlace}</p>
           </div>
         ))}

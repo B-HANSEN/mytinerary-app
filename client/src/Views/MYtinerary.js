@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from './../components/Footer';
@@ -25,7 +25,7 @@ function MYtinerary() {
   return (
     <div>
       <div className='title'>
-        <img className='titlePic' src={city.img} alt='titlePic' />
+        <img className='titlePic' src={city.img} alt={city.city} />
         <h3>{city.city}</h3>
 
         {itineraries.length === 0 ? (

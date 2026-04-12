@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -70,9 +70,9 @@ function AppNavbar() {
     <div>
       <Navbar style={{ backgroundColor: '#f5f5f5' }} light>
         {isAuthenticated ? (
-          <img className='headerpic' src={user.avatar} alt='' />
+          <img className='headerpic' src={user.avatar} alt={`Avatar of ${user.name}`} />
         ) : (
-          <MDBIcon icon='user-circle' size='2x' />
+          <MDBIcon icon='user-circle' size='2x' aria-hidden='true' />
         )}
 
         <NavbarBrand href='/'>MYtinerary travel app</NavbarBrand>

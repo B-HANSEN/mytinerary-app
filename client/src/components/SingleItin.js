@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import './singleItin.css';
 
@@ -23,7 +22,7 @@ function SingleItin({ itin, selectedItin, handleSelection }) {
     <div className='textAndLink'>
       <div className='allDetailsIt'>
         <div className='profilePic'>
-          <img className='prof' src={itin.profilePic} alt='prof1' />
+          <img className='prof' src={itin.profilePic} alt={itin.username} />
           <h6 className='username'>{itin.username}</h6>
         </div>
 

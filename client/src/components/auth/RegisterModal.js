@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Button,
   Modal,
@@ -32,13 +32,14 @@ function UploadPreview({ handleFileInput }) {
 
   return (
     <div>
-      <input type='file' onChange={onChange} />
+      <label htmlFor='avatar-upload'>Profile photo</label>
+      <input id='avatar-upload' type='file' onChange={onChange} />
       {file && (
         <div style={{ textAlign: 'center' }}>
           <button onClick={resetFile}>Remove File</button>
         </div>
       )}
-      <img style={{ width: '100%' }} src={file} alt='' />
+      <img style={{ width: '100%' }} src={file} alt='Avatar preview' />
     </div>
   );
 }

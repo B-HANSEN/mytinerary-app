@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../actions/authActions';
@@ -7,7 +6,7 @@ function Logout() {
   const dispatch = useDispatch();
   return (
     <>
-      <NavLink to={'/'} onClick={() => dispatch(logout())}></NavLink>
+      <NavLink to={'/'} onClick={() => dispatch(logout())}>Logout</NavLink>
     </>
   );
 }

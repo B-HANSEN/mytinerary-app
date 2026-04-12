@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 // import icon & styles
@@ -8,7 +7,7 @@ import './components.css';
 const Footer = () => (
   <div className='footerContainer'>
     <Link className='footer' to='/'>
-      <img src={home} alt='titlePic' />
+      <img src={home} alt='Home' />
     </Link>
   </div>
 );

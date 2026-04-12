@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites, addLikes } from '../actions/favActions';
 
@@ -19,6 +18,7 @@ function ToLike({ itinId, cityId }) {
   return (
     <button
       onClick={increaseFavorites}
+      aria-label='Add to favorites'
       style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
     >
       <MDBIcon far icon='heart' className='bluehighlight' />

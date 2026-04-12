@@ -20,15 +20,15 @@ A travel itinerary platform where users can browse cities, explore curated itine
 - ESM modules throughout
 
 **Frontend**
-- React 16.14 + Redux Toolkit
-- React Router 5
+- React 18 + Redux Toolkit
+- React Router 7
 - Material-UI v4 + Bootstrap 4
 - Google OAuth via `@react-oauth/google`
 - Axios for API requests
 
 ## Prerequisites
 
-- Node.js >= 22
+- Node.js >= 24
 - npm >= 10
 - MongoDB Atlas account
 
@@ -44,13 +44,11 @@ npm run setup
 
 ### 2. Configure environment
 
-Create `config/default.json` (not committed):
+Create `.env` in the project root (not committed):
 
-```json
-{
-  "mongoURI": "mongodb+srv://<user>:<password>@<cluster>.mongodb.net/mytinerary-app?retryWrites=true&w=majority",
-  "jwtSecret": "your_jwt_secret"
-}
+```
+MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/mytinerary-app?retryWrites=true&w=majority
+JWT_SECRET=your_jwt_secret
 ```
 
 Create `client/.env` (not committed):
@@ -75,6 +73,18 @@ npm run build
 npm start
 ```
 
+## Deployment
+
+Deployed on [Vercel](https://vercel.com). Set the following environment variables in the Vercel dashboard:
+
+| Variable | Description |
+|----------|-------------|
+| `MONGO_URI` | MongoDB Atlas connection string |
+| `JWT_SECRET` | JWT signing secret |
+| `REACT_APP_GOOGLE_CLIENT_ID` | Google OAuth client ID |
+
+Google OAuth also requires the production domain to be added to **Authorized JavaScript origins** in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
+
 ## Scripts
 
 | Command | Description |
@@ -83,6 +93,7 @@ npm start
 | `npm run dev` | Run backend and frontend concurrently |
 | `npm start` | Start production server |
 | `npm run build` | Build React client |
+| `npm run seed` | Seed the database with sample data |
 | `npm run lint` | Run ESLint |
 | `npm run format` | Format code with Prettier |
 
@@ -117,8 +128,9 @@ All routes are prefixed with `/api`.
 
 ```
 mytinerary-app/
-├── server.js               # Entry point
-├── config/                 # Credentials (not committed)
+├── api/index.js            # Vercel serverless entry point
+├── server.js               # Local dev entry point
+├── app.js                  # Hono app (routes + middleware)
 ├── middleware/             # JWT auth middleware
 ├── models/                 # Mongoose schemas
 ├── routes/api/             # API route handlers

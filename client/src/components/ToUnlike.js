@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromFavorites, removeLikes } from '../actions/favActions';
 
@@ -19,6 +18,7 @@ function ToUnlike({ itinId, cityId }) {
   return (
     <button
       onClick={decreaseFavorites}
+      aria-label='Remove from favorites'
       style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
     >
       <MDBIcon icon='heart' className='bluehighlight' />

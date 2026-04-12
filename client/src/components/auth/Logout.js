@@ -6,7 +6,9 @@ function Logout() {
   const dispatch = useDispatch();
   return (
     <>
-      <NavLink to={'/'} onClick={() => dispatch(logout())}>Logout</NavLink>
+      <NavLink to={'/'} onClick={() => dispatch(logout())}>
+        Logout
+      </NavLink>
     </>
   );
 }

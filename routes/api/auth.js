@@ -23,7 +23,10 @@ router.post('/', async (c) => {
   if (!isMatch) return c.json({ msg: 'Invalid credentials' }, 400);
 
   const token = await signAsync({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 3600 });
-  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: user.favorites } });
+  return c.json({
+    token,
+    user: { _id: user.id, name: user.name, email: user.email, favorites: user.favorites },
+  });
 });
 
 // @route   GET api/auth/user

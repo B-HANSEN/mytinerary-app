@@ -34,7 +34,10 @@ router.post('/', async (c) => {
     }
     const filename = Date.now() + '-' + file.name;
     avatarPath = `uploads/${filename}`;
-    await fs.promises.writeFile(path.join('./uploads', filename), Buffer.from(await file.arrayBuffer()));
+    await fs.promises.writeFile(
+      path.join('./uploads', filename),
+      Buffer.from(await file.arrayBuffer())
+    );
   }
 
   const newUser = new User({ name, email, password, avatar: avatarPath });
@@ -43,7 +46,10 @@ router.post('/', async (c) => {
   const user = await newUser.save();
 
   const token = await signAsync({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 3600 });
-  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [], avatar: user.avatar } });
+  return c.json({
+    token,
+    user: { _id: user.id, name: user.name, email: user.email, favorites: [], avatar: user.avatar },
+  });
 });
 
 // @route   POST api/users/social
@@ -64,7 +70,10 @@ router.post('/social', async (c) => {
   const newUser = new User({ name, email });
   const user = await newUser.save();
   const token = await signAsync({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 3600 });
-  return c.json({ token, user: { _id: user.id, name: user.name, email: user.email, favorites: [] } });
+  return c.json({
+    token,
+    user: { _id: user.id, name: user.name, email: user.email, favorites: [] },
+  });
 });
 
 router.get('/:userId', async (c) => {

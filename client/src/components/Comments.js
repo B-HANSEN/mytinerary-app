@@ -17,7 +17,11 @@ function Comments({ itinId }) {
       {comment.comments.map((comment, index) => (
         <div key={index} className='commentsBlock'>
           <div className='userNamePic'>
-            <img className='profForComments' src={comment.user.profilePic} alt={comment.user.username} />
+            <img
+              className='profForComments'
+              src={comment.user.profilePic}
+              alt={comment.user.username}
+            />
             <p className='usernameForComments'>{comment.user.username}</p>
           </div>
           <p className='commentsText'>{comment.text}</p>

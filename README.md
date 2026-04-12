@@ -13,6 +13,7 @@ A travel itinerary platform where users can browse cities, explore curated itine
 ## Tech Stack
 
 **Backend**
+
 - [Hono](https://hono.dev/) — lightweight web framework
 - [Mongoose 8](https://mongoosejs.com/) + MongoDB Atlas
 - JWT authentication via `jsonwebtoken`
@@ -20,6 +21,7 @@ A travel itinerary platform where users can browse cities, explore curated itine
 - ESM modules throughout
 
 **Frontend**
+
 - React 18 + Redux Toolkit
 - React Router 7
 - Material-UI v4 + Bootstrap 4
@@ -77,52 +79,52 @@ npm start
 
 Deployed on [Vercel](https://vercel.com). Set the following environment variables in the Vercel dashboard:
 
-| Variable | Description |
-|----------|-------------|
-| `MONGO_URI` | MongoDB Atlas connection string |
-| `JWT_SECRET` | JWT signing secret |
-| `REACT_APP_GOOGLE_CLIENT_ID` | Google OAuth client ID |
+| Variable                     | Description                     |
+| ---------------------------- | ------------------------------- |
+| `MONGO_URI`                  | MongoDB Atlas connection string |
+| `JWT_SECRET`                 | JWT signing secret              |
+| `REACT_APP_GOOGLE_CLIENT_ID` | Google OAuth client ID          |
 
 Google OAuth also requires the production domain to be added to **Authorized JavaScript origins** in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
 
 ## Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run setup` | Install all dependencies (root + client) |
-| `npm run dev` | Run backend and frontend concurrently |
-| `npm start` | Start production server |
-| `npm run build` | Build React client |
-| `npm run seed` | Seed the database with sample data |
-| `npm run lint` | Run ESLint |
-| `npm run format` | Format code with Prettier |
+| Command          | Description                              |
+| ---------------- | ---------------------------------------- |
+| `npm run setup`  | Install all dependencies (root + client) |
+| `npm run dev`    | Run backend and frontend concurrently    |
+| `npm start`      | Start production server                  |
+| `npm run build`  | Build React client                       |
+| `npm run seed`   | Seed the database with sample data       |
+| `npm run lint`   | Run ESLint                               |
+| `npm run format` | Format code with Prettier                |
 
 ## API Routes
 
 All routes are prefixed with `/api`.
 
-| Method | Route | Description | Auth |
-|--------|-------|-------------|------|
-| POST | `/auth` | Login with email/password | — |
-| GET | `/auth/user` | Get current user | ✓ |
-| GET | `/users` | List all users | — |
-| POST | `/users` | Register new user | — |
-| POST | `/users/social` | Register/login via Google | — |
-| GET | `/cities` | List all cities | — |
-| POST | `/cities` | Create city | — |
-| GET | `/cities/:id` | Get single city | — |
-| DELETE | `/cities/:id` | Delete city | — |
-| GET | `/itineraries/:cityId` | Get itineraries for a city | — |
-| POST | `/itineraries` | Create itinerary | — |
-| PUT | `/itineraries/:id/rating` | Update rating | — |
-| DELETE | `/itineraries/:id` | Delete itinerary | — |
-| GET | `/activities/:itinId` | Get activities for itinerary | — |
-| POST | `/activities` | Create activity | — |
-| GET | `/comments/:itinId` | Get comments for itinerary | — |
-| POST | `/comments` | Add comment | — |
-| GET | `/favorites/users/:id` | Get user favourites | — |
-| PUT | `/favorites/users/:id` | Add favourite | — |
-| DELETE | `/favorites/users/:id/:favId` | Remove favourite | — |
+| Method | Route                         | Description                  | Auth |
+| ------ | ----------------------------- | ---------------------------- | ---- |
+| POST   | `/auth`                       | Login with email/password    | —    |
+| GET    | `/auth/user`                  | Get current user             | ✓    |
+| GET    | `/users`                      | List all users               | —    |
+| POST   | `/users`                      | Register new user            | —    |
+| POST   | `/users/social`               | Register/login via Google    | —    |
+| GET    | `/cities`                     | List all cities              | —    |
+| POST   | `/cities`                     | Create city                  | —    |
+| GET    | `/cities/:id`                 | Get single city              | —    |
+| DELETE | `/cities/:id`                 | Delete city                  | —    |
+| GET    | `/itineraries/:cityId`        | Get itineraries for a city   | —    |
+| POST   | `/itineraries`                | Create itinerary             | —    |
+| PUT    | `/itineraries/:id/rating`     | Update rating                | —    |
+| DELETE | `/itineraries/:id`            | Delete itinerary             | —    |
+| GET    | `/activities/:itinId`         | Get activities for itinerary | —    |
+| POST   | `/activities`                 | Create activity              | —    |
+| GET    | `/comments/:itinId`           | Get comments for itinerary   | —    |
+| POST   | `/comments`                   | Add comment                  | —    |
+| GET    | `/favorites/users/:id`        | Get user favourites          | —    |
+| PUT    | `/favorites/users/:id`        | Add favourite                | —    |
+| DELETE | `/favorites/users/:id/:favId` | Remove favourite             | —    |
 
 ## Project Structure
 

@@ -10,7 +10,13 @@ function SampleNextArrow(props) {
     <button
       aria-label='Next'
       className={className}
-      style={{ ...style, display: 'block', background: 'lightgrey', border: 'none', cursor: 'pointer' }}
+      style={{
+        ...style,
+        display: 'block',
+        background: 'lightgrey',
+        border: 'none',
+        cursor: 'pointer',
+      }}
       onClick={onClick}
     />
   );
@@ -22,7 +28,13 @@ function SamplePrevArrow(props) {
     <button
       aria-label='Previous'
       className={className}
-      style={{ ...style, display: 'block', background: 'lightgrey', border: 'none', cursor: 'pointer' }}
+      style={{
+        ...style,
+        display: 'block',
+        background: 'lightgrey',
+        border: 'none',
+        cursor: 'pointer',
+      }}
       onClick={onClick}
     />
   );

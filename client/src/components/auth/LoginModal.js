@@ -35,10 +35,12 @@ function LoginModal() {
     else setMsg(null);
   }, [error]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    if (modal && isAuthenticated) toggle();
-  }, [isAuthenticated]);
+    if (modal && isAuthenticated) {
+      dispatch(clearErrors());
+      setModal(false);
+    }
+  }, [modal, isAuthenticated, dispatch]);
 
   const onSubmit = (e) => {
     e.preventDefault();

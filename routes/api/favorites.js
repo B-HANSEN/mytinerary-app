@@ -7,13 +7,16 @@ const router = new Hono();
 router.put('/users/:id', async (c) => {
   const { itinId } = await c.req.json();
   console.log(itinId, c.req.param('id'));
-  await User.updateOne({ _id: c.req.param('id') }, { $push: { favorites: [itinId] } });
+  await User.updateOne({ _id: c.req.param('id') }, { $addToSet: { favorites: itinId } });
   return c.json({ msg: 'push done' });
 });
 
 router.delete('/users/:id/:favId', async (c) => {
-  console.log(c.req.param('id'), c.req.param('favId'));
-  await User.updateOne({ _id: c.req.param('id') }, { $pull: { favorites: c.req.param('favId') } });
+  const userId = c.req.param('id');
+  const favId = c.req.param('favId');
+  const user = await User.findById(userId);
+  const updated = user.favorites.filter((f) => f.toString() !== favId.toString());
+  await User.updateOne({ _id: userId }, { $set: { favorites: updated } });
   return c.json({ msg: 'delete done' });
 });
 

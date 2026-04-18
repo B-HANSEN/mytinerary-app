@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import './singleItin.css';
 
 import ToLike from './ToLike';
@@ -15,9 +14,7 @@ function Activities({ more, itinId }) {
   );
 }
 
-function SingleItin({ itin, selectedItin, handleSelection, cityName }) {
-  const auth = useSelector((state) => state.auth);
-
+function SingleItin({ itin, selectedItin, handleSelection, cityName, isLiked }) {
   return (
     <div className='textAndLink'>
       <div className='allDetailsIt'>
@@ -34,8 +31,8 @@ function SingleItin({ itin, selectedItin, handleSelection, cityName }) {
             <ul>
               <li className='singleDetails'>
                 Likes: {itin.rating}
-                {auth.user ? (
-                  auth.user.favorites.includes(itin._id) ? (
+                {isLiked !== undefined ? (
+                  isLiked ? (
                     <ToUnlike itinId={itin._id} cityId={itin.cityId} />
                   ) : (
                     <ToLike itinId={itin._id} cityId={itin.cityId} />

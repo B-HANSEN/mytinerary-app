@@ -1,19 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromFavorites, removeLikes } from '../actions/favActions';
+import { unlikeItinerary } from '../actions/favActions';
 import { FaHeart } from 'react-icons/fa';
 
 function ToUnlike({ itinId, cityId }) {
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-
-  const decreaseFavorites = () => {
-    dispatch(removeFromFavorites(itinId, auth.user._id));
-    dispatch(removeLikes(itinId, -1, cityId));
-  };
+  const userId = useSelector((state) => state.auth.user._id);
 
   return (
     <button
-      onClick={decreaseFavorites}
+      onClick={() => dispatch(unlikeItinerary(itinId, userId, cityId))}
       aria-label='Remove from favorites'
       style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
     >

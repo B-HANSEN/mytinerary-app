@@ -14,6 +14,7 @@ function MYtinerary() {
   const dispatch = useDispatch();
   const { itineraries } = useSelector((state) => state.itinerary);
   const { city } = useSelector((state) => state.city);
+  const userFavorites = useSelector((state) => state.auth.user?.favorites ?? []);
   const [selectedItin, setSelectedItin] = useState('');
 
   useEffect(() => {
@@ -41,6 +42,7 @@ function MYtinerary() {
                 itin={itinerary}
                 selectedItin={selectedItin}
                 handleSelection={setSelectedItin}
+                isLiked={userFavorites.includes(itinerary._id)}
               />
             ))}
           </div>

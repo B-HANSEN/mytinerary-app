@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from './../components/Footer';
 import SingleItin from '../components/SingleItin';
@@ -32,15 +32,29 @@ function Favorites() {
         <br />
         <h6>Favorite itineraries:</h6>
 
-        {favorite.favorites.map((itinerary, index) => (
-          <SingleItin
-            key={index}
-            itin={itinerary}
-            selectedItin={selectedItin}
-            handleSelection={setSelectedItin}
-            cityName={cities.find((c) => c._id === itinerary.cityId)?.city}
-          />
-        ))}
+        {favorite.favorites.length === 0 ? (
+          <div style={{ margin: '2rem', textAlign: 'center' }}>
+            <p>No favourite itineraries yet.</p>
+            <p style={{ marginBottom: '1.5rem' }}>Browse cities to find one you like!</p>
+            <Link
+              to='/cities'
+              className='btn btn-outline-primary'
+            >
+              Browse cities
+            </Link>
+          </div>
+        ) : (
+          favorite.favorites.map((itinerary, index) => (
+            <SingleItin
+              key={index}
+              itin={itinerary}
+              selectedItin={selectedItin}
+              handleSelection={setSelectedItin}
+              cityName={cities.find((c) => c._id === itinerary.cityId)?.city}
+              isLiked={true}
+            />
+          ))
+        )}
       </div>
 
       <ScrollUpButton />

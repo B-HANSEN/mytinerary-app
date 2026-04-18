@@ -8,60 +8,27 @@ import { getItineraries } from './itActions';
 export const getFavorites = (userId) => (dispatch) => {
   dispatch(setFavoritesLoading());
   axios.get('/api/favorites/users/' + userId).then((res) => {
-    console.log(res.data);
-    dispatch({
-      type: GET_FAVORITES,
-      payload: res.data,
-    });
+    dispatch({ type: GET_FAVORITES, payload: res.data });
   });
 };
 
-export const addToFavorites = (itinId, id) => (dispatch) => {
-  // Request body for adding favs
-  const body = { itinId: itinId };
+// Like: add to favorites + increment rating, reload state only after both complete
+export const likeItinerary = (itinId, userId, cityId) => async (dispatch) => {
   dispatch(setFavoritesLoading());
-  axios.put('/api/favorites/users/' + id, body).then((res) => {
-    dispatch(loadUser());
-  });
+  await axios.put('/api/favorites/users/' + userId, { itinId });
+  await axios.put('/api/itineraries/' + itinId + '/rating', { amount: 1 });
+  dispatch(loadUser());
+  dispatch(getItineraries(cityId));
 };
 
-export const removeFromFavorites = (favId, id) => (dispatch) => {
-  console.log(favId, id);
+// Unlike: remove from favorites + decrement rating, reload state only after both complete
+export const unlikeItinerary = (itinId, userId, cityId) => async (dispatch) => {
   dispatch(setFavoritesLoading());
-  axios.delete('/api/favorites/users/' + id + '/' + favId).then((res) => {
-    dispatch({
-      type: FAVORITE_COUNT,
-      payload: favId,
-    });
-    dispatch(loadUser());
-  });
-};
-
-// revise count of likes (Rating: )
-// re-dispatch getItineraries to show update immediately
-export const addLikes = (itinId, amount, cityId) => (dispatch) => {
-  dispatch(setFavoritesLoading());
-  console.log(amount, cityId);
-
-  axios.put('/api/itineraries/' + itinId + '/rating', { amount }).then((res) => {
-    dispatch({
-      type: FAVORITE_COUNT,
-      payload: res.data,
-    });
-    dispatch(getItineraries(cityId));
-  });
-};
-
-export const removeLikes = (itinId, amount, cityId) => (dispatch) => {
-  dispatch(setFavoritesLoading());
-
-  axios.put('/api/itineraries/' + itinId + '/rating', { amount }).then((res) => {
-    dispatch({
-      type: FAVORITE_COUNT,
-      payload: res.data,
-    });
-    dispatch(getItineraries(cityId));
-  });
+  await axios.delete('/api/favorites/users/' + userId + '/' + itinId);
+  await axios.put('/api/itineraries/' + itinId + '/rating', { amount: -1 });
+  dispatch({ type: FAVORITE_COUNT, payload: itinId });
+  dispatch(loadUser());
+  dispatch(getItineraries(cityId));
 };
 
 export const setFavoritesLoading = () => {

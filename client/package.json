@@ -2,6 +2,7 @@
   "name": "mytinerary-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
@@ -19,7 +20,6 @@
     "react-dom": "^18.0.0",
     "react-redux": "^8.1.0",
     "react-router-dom": "^7.0.0",
-    "react-scripts": "5.0.1",
     "react-scroll-up-button": "^1.6.4",
     "react-slick": "^0.31.0",
     "react-sticky-header": "^0.2.0",
@@ -27,13 +27,9 @@
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "browserslist": {
     "production": [
@@ -48,9 +44,11 @@
     ]
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.8",
     "eslint-config-prettier": "^10.1.8",
-    "jquery": "^3.4.1"
+    "jquery": "^3.4.1",
+    "vite": "^6.3.2"
   }
 }

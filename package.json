@@ -36,7 +36,7 @@
     "bcryptjs": "^3.0.3",
     "hono": "^4.6.0",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^8.0.0"
+    "mongoose": "^9.4.1"
   },
   "devDependencies": {
     "concurrently": "^9.0.0",

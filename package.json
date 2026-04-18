@@ -10,6 +10,7 @@
   "main": "server.js",
   "scripts": {
     "setup": "npm install && npm install --prefix client --legacy-peer-deps",
+    "clean-cache": "rm -rf node_modules client/node_modules client/dist",
     "seed": "node seed.js",
     "lint": "eslint .",
     "format": "prettier --write .",

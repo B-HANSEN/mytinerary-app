@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Slider from 'react-slick';
+import SliderLib from 'react-slick';
+const Slider = SliderLib.default ?? SliderLib;
 import { getActivities } from '../actions/itActions';
 import './components.css';
 

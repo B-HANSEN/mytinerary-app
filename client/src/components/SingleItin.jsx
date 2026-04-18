@@ -15,7 +15,7 @@ function Activities({ more, itinId }) {
   );
 }
 
-function SingleItin({ itin, selectedItin, handleSelection }) {
+function SingleItin({ itin, selectedItin, handleSelection, cityName }) {
   const auth = useSelector((state) => state.auth);
 
   return (
@@ -28,18 +28,20 @@ function SingleItin({ itin, selectedItin, handleSelection }) {
 
         <div className='overview'>
           <h5 className='titleIt'>{itin.title}</h5>
-
-          {auth.user ? (
-            auth.user.favorites.includes(itin._id) ? (
-              <ToUnlike itinId={itin._id} cityId={itin.cityId} />
-            ) : (
-              <ToLike itinId={itin._id} cityId={itin.cityId} />
-            )
-          ) : null}
+          {cityName && <p className='cityName'>{cityName}</p>}
 
           <div className='details'>
             <ul>
-              <li className='singleDetails'>Likes: {itin.rating}</li>
+              <li className='singleDetails'>
+                Likes: {itin.rating}
+                {auth.user ? (
+                  auth.user.favorites.includes(itin._id) ? (
+                    <ToUnlike itinId={itin._id} cityId={itin.cityId} />
+                  ) : (
+                    <ToLike itinId={itin._id} cityId={itin.cityId} />
+                  )
+                ) : null}
+              </li>
               <li className='singleDetails'>Duration: {itin.duration} hrs</li>
               <li className='singleDetails'>Cost category: {itin.price}</li>
               <li className='singleDetails'>{itin.hashtag}</li>

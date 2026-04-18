@@ -6,6 +6,8 @@ import SingleItin from '../components/SingleItin';
 
 import { getFavorites } from '../actions/favActions';
 import { getUserById } from '../actions/authActions';
+import { getCities } from '../actions/citiesActions';
+import ScrollUpButton from '../components/ScrollUpButton';
 
 import './views.css';
 
@@ -14,11 +16,13 @@ function Favorites() {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   const favorite = useSelector((state) => state.favorite);
+  const cities = useSelector((state) => state.city.cities);
   const [selectedItin, setSelectedItin] = useState('');
 
   useEffect(() => {
     dispatch(getUserById(userId));
     dispatch(getFavorites(userId));
+    dispatch(getCities());
   }, [dispatch, userId]);
 
   return (
@@ -34,10 +38,12 @@ function Favorites() {
             itin={itinerary}
             selectedItin={selectedItin}
             handleSelection={setSelectedItin}
+            cityName={cities.find((c) => c._id === itinerary.cityId)?.city}
           />
         ))}
       </div>
 
+      <ScrollUpButton />
       <Footer />
     </div>
   );

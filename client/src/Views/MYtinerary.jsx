@@ -2,35 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from './../components/Footer';
-import { FaArrowUp } from 'react-icons/fa';
-
-function ScrollUpButton() {
-  return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      aria-label='Scroll to top'
-      style={{
-        position: 'fixed',
-        bottom: '60px',
-        right: '20px',
-        background: '#3f51b5',
-        color: 'white',
-        border: 'none',
-        borderRadius: '50%',
-        width: '40px',
-        height: '40px',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <FaArrowUp />
-    </button>
-  );
-}
-
 import SingleItin from '../components/SingleItin';
+import ScrollUpButton from '../components/ScrollUpButton';
 import { getItineraries } from '../actions/itActions';
 import { getCityById } from '../actions/citiesActions';
 

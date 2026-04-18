@@ -12,16 +12,12 @@ import {
   DropdownItem,
 } from 'reactstrap';
 import { googleLogout } from '@react-oauth/google';
+import { FaUserCircle } from 'react-icons/fa';
 
 import RegisterModal from './auth/RegisterModal';
 import LoginModal from './auth/LoginModal';
 import { logoutSocial } from './../actions/authActions';
 import './components.css';
-
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
-import { MDBIcon } from 'mdbreact';
 
 function AppNavbar() {
   const [collapsed, setCollapsed] = useState(true);
@@ -72,7 +68,7 @@ function AppNavbar() {
         {isAuthenticated ? (
           <img className='headerpic' src={user.avatar} alt={`Avatar of ${user.name}`} />
         ) : (
-          <MDBIcon icon='user-circle' size='2x' aria-hidden='true' />
+          <FaUserCircle size={32} aria-hidden='true' />
         )}
 
         <NavbarBrand href='/'>MYtinerary travel app</NavbarBrand>

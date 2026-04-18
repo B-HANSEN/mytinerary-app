@@ -1,10 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites, addLikes } from '../actions/favActions';
-
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
-import { MDBIcon } from 'mdbreact';
+import { FaRegHeart } from 'react-icons/fa';
 
 function ToLike({ itinId, cityId }) {
   const dispatch = useDispatch();
@@ -21,7 +17,7 @@ function ToLike({ itinId, cityId }) {
       aria-label='Add to favorites'
       style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
     >
-      <MDBIcon far icon='heart' className='bluehighlight' />
+      <FaRegHeart className='bluehighlight' />
     </button>
   );
 }

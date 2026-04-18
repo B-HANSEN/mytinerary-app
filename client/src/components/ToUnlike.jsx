@@ -1,10 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromFavorites, removeLikes } from '../actions/favActions';
-
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
-import { MDBIcon } from 'mdbreact';
+import { FaHeart } from 'react-icons/fa';
 
 function ToUnlike({ itinId, cityId }) {
   const dispatch = useDispatch();
@@ -21,7 +17,7 @@ function ToUnlike({ itinId, cityId }) {
       aria-label='Remove from favorites'
       style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
     >
-      <MDBIcon icon='heart' className='bluehighlight' />
+      <FaHeart className='bluehighlight' />
     </button>
   );
 }

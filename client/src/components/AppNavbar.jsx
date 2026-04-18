@@ -9,7 +9,6 @@ import {
   Nav,
   NavItem,
   NavLink,
-  DropdownItem,
 } from 'reactstrap';
 import { googleLogout } from '@react-oauth/google';
 import { FaUserCircle } from 'react-icons/fa';
@@ -37,9 +36,9 @@ function AppNavbar() {
       <NavLink className='dropdownItem' href='/' style={{ color: 'black' }}>
         Home
       </NavLink>
-      <DropdownItem divider />
+      <hr className='my-1' />
       <NavItem>
-        <span className='navbar-text mr-3'>
+        <span className='navbar-text me-3'>
           <strong>{user ? `Welcome ${user.name}!` : ''}</strong>
         </span>
       </NavItem>
@@ -52,7 +51,7 @@ function AppNavbar() {
       <NavLink className='dropdownItem' href='/' style={{ color: 'black' }}>
         Home
       </NavLink>
-      <DropdownItem divider />
+      <hr className='my-1' />
       <NavItem>
         <RegisterModal />
       </NavItem>
@@ -73,10 +72,10 @@ function AppNavbar() {
 
         <NavbarBrand href='/'>MYtinerary travel app</NavbarBrand>
 
-        <NavbarToggler onClick={toggleNavbar} className='mr-2' />
+        <NavbarToggler onClick={toggleNavbar} className='me-2' />
 
         <Collapse isOpen={!collapsed} navbar>
-          <DropdownItem divider />
+          <hr className='my-1' />
           <Nav onClick={() => setCollapsed(true)} navbar>
             {isAuthenticated ? authLinks : guestLinks}
           </Nav>
@@ -87,7 +86,7 @@ function AppNavbar() {
             </button>
           ) : null}
 
-          <DropdownItem divider />
+          <hr className='my-1' />
           <Link className='dropdownItem' to='/cities' onClick={toggleNavbar}>
             Cities
           </Link>

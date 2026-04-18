@@ -126,7 +126,7 @@ function RegisterModal() {
 
               <UploadPreview handleFileInput={setFileInputElement} />
 
-              <Button color='dark' style={{ marginTop: '2rem' }} block>
+              <Button color='dark' style={{ marginTop: '2rem' }} className='w-100'>
                 Register
               </Button>
             </FormGroup>

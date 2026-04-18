@@ -34,7 +34,7 @@ function Cities() {
           {filteredCities.map((city) => (
             <Col key={city._id} xs='6' md='4'>
               <h5>
-                <Button color='warning' block>
+                <Button color='warning' className='w-100'>
                   <Link to={'/itineraries/' + city._id}>{city.city}</Link>
                 </Button>
               </h5>

@@ -81,7 +81,7 @@ function LoginModal() {
                 onChange={(e) => setPassword(e.target.value)}
               />
 
-              <Button to={'/'} color='dark' style={{ marginTop: '2rem' }} block>
+              <Button to={'/'} color='dark' style={{ marginTop: '2rem' }} className='w-100'>
                 Login
               </Button>
             </FormGroup>

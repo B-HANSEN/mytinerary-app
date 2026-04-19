@@ -11,7 +11,7 @@
   "scripts": {
     "setup": "npm install && npm install --prefix client --legacy-peer-deps",
     "clean-cache": "rm -rf node_modules client/node_modules client/dist",
-    "seed": "node seed.js",
+    "seed": "node --env-file=.env seed.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "echo \"Error: no test specified\" && exit 1",

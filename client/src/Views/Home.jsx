@@ -16,7 +16,7 @@ function Home() {
 
   const responseGoogleSuccess = (response) => {
     const decoded = JSON.parse(atob(response.credential.split('.')[1]));
-    dispatch(loginSocial({ email: decoded.email, name: decoded.name }));
+    dispatch(loginSocial({ email: decoded.email, name: decoded.name, picture: decoded.picture }));
   };
 
   return (

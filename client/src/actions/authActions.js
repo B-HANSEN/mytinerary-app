@@ -92,10 +92,9 @@ export const tokenConfig = (getState) => {
 // ****************************** Social media login ****************************** //
 // ******************** Login User ******************** //
 export const loginSocial =
-  ({ email, name }) =>
+  ({ email, name, picture }) =>
   (dispatch) => {
-    // Request body
-    const body = JSON.stringify({ email, name });
+    const body = JSON.stringify({ email, name, picture });
 
     axios
       .post('/api/users/social', body, config)

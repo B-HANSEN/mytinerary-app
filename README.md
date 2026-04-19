@@ -22,9 +22,9 @@ A travel itinerary platform where users can browse cities, explore curated itine
 
 **Frontend**
 
-- React 18 + Redux Toolkit
+- React 19 + Redux Toolkit
 - React Router 7
-- Vite 6 (build tool)
+- Vite 8 (build tool)
 - Material-UI v4 + Bootstrap 4
 - Google OAuth via `@react-oauth/google`
 - Axios for API requests
@@ -80,11 +80,11 @@ npm start
 
 Deployed on [Vercel](https://vercel.com). Set the following environment variables in the Vercel dashboard:
 
-| Variable                     | Description                     |
-| ---------------------------- | ------------------------------- |
-| `MONGO_URI`                  | MongoDB Atlas connection string |
-| `JWT_SECRET`                 | JWT signing secret              |
-| `VITE_GOOGLE_CLIENT_ID`      | Google OAuth client ID          |
+| Variable                | Description                     |
+| ----------------------- | ------------------------------- |
+| `MONGO_URI`             | MongoDB Atlas connection string |
+| `JWT_SECRET`            | JWT signing secret              |
+| `VITE_GOOGLE_CLIENT_ID` | Google OAuth client ID          |
 
 Google OAuth also requires the production domain to be added to **Authorized JavaScript origins** in the [Google Cloud Console](https://console.cloud.google.com/apis/credentials).
 

@@ -57,22 +57,26 @@ router.post('/', async (c) => {
 // @access  Public
 router.post('/social', async (c) => {
   console.log('login to google');
-  const { name, email } = await c.req.json();
+  const { name, email, picture } = await c.req.json();
 
   if (!name || !email) return c.json({ msg: 'Please enter all fields' }, 400);
 
   const existing = await User.findOne({ email }).select('-password');
   if (existing) {
+    if (picture && existing.avatar !== picture) {
+      await User.updateOne({ _id: existing._id }, { avatar: picture });
+      existing.avatar = picture;
+    }
     const token = await signAsync({ id: existing.id }, process.env.JWT_SECRET, { expiresIn: 3600 });
     return c.json({ token, user: existing });
   }
 
-  const newUser = new User({ name, email });
+  const newUser = new User({ name, email, avatar: picture });
   const user = await newUser.save();
   const token = await signAsync({ id: user.id }, process.env.JWT_SECRET, { expiresIn: 3600 });
   return c.json({
     token,
-    user: { _id: user.id, name: user.name, email: user.email, favorites: [] },
+    user: { _id: user.id, name: user.name, email: user.email, avatar: user.avatar, favorites: [] },
   });
 });
 

@@ -60,7 +60,7 @@ function AppNavbar() {
         {isAuthenticated ? (
           <img
             className='headerpic'
-            src={user.avatar}
+            src={user.avatar || AVATAR_PLACEHOLDER}
             alt={`Avatar of ${user.name}`}
             onError={(e) => {
               e.target.src = AVATAR_PLACEHOLDER;

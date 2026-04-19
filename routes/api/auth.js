@@ -35,7 +35,9 @@ router.post('/', async (c) => {
 router.get('/user', auth, async (c) => {
   console.log('LoadUser', c.get('user').id);
   const user = await User.findById(c.get('user').id).select('-password');
-  return c.json(user);
+  const cleaned = user.toObject();
+  cleaned.favorites = cleaned.favorites.flat().map((f) => f.toString());
+  return c.json(cleaned);
 });
 
 export default router;

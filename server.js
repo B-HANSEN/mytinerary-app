@@ -15,9 +15,9 @@ app.use('/uploads/*', serveStatic({ root: './' }));
 
 // Serve React build in production
 if (process.env.NODE_ENV === 'production') {
-  app.use('/*', serveStatic({ root: './client/build' }));
+  app.use('/*', serveStatic({ root: './client/dist' }));
   app.get('*', async (c) => {
-    const html = await fs.promises.readFile(path.resolve('./client/build/index.html'), 'utf8');
+    const html = await fs.promises.readFile(path.resolve('./client/dist/index.html'), 'utf8');
     return c.html(html);
   });
 }

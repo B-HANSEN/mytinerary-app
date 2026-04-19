@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import Slider from 'react-slick';
+import SliderLib from 'react-slick';
+import type { Settings } from 'react-slick';
+// react-slick ships as CJS; Vite exposes the module object, not the component directly
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Slider = ((SliderLib as any).default ?? SliderLib) as React.ComponentType<Settings>;
 import { getActivities } from '../actions/itActions';
 import { IMG_PLACEHOLDER } from '../utils/placeholders';
 import './components.css';

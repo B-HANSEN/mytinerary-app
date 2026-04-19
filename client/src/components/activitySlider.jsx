@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SliderLib from 'react-slick';
 const Slider = SliderLib.default ?? SliderLib;
 import { getActivities } from '../actions/itActions';
+import { IMG_PLACEHOLDER } from '../utils/placeholders';
 import './components.css';
 
 function SampleNextArrow(props) {
@@ -49,6 +50,7 @@ const sliderSettings = {
   slidesToScroll: 2,
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />,
+  accessibility: false,
 };
 
 function ActivitySlider({ itinId }) {
@@ -65,7 +67,7 @@ function ActivitySlider({ itinId }) {
       <Slider {...sliderSettings} style={{ width: '300px' }}>
         {activity.activities.map((activity, index) => (
           <div className='actPicnPlace' key={index}>
-            <img className='actPic' src={activity.actPic} alt={activity.actPlace} />
+            <img className='actPic' src={activity.actPic} alt={activity.actPlace} onError={(e) => { e.target.src = IMG_PLACEHOLDER; }} />
             <p className='actPlace'>{activity.actPlace}</p>
           </div>
         ))}

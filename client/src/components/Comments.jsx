@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getComments } from '../actions/itActions';
+import { AVATAR_PLACEHOLDER } from '../utils/placeholders';
 import './singleItin.css';
 
 function Comments({ itinId }) {
@@ -21,6 +22,7 @@ function Comments({ itinId }) {
               className='profForComments'
               src={comment.user.profilePic}
               alt={comment.user.username}
+              onError={(e) => { e.target.src = AVATAR_PLACEHOLDER; }}
             />
             <p className='usernameForComments'>{comment.user.username}</p>
           </div>

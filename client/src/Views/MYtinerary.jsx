@@ -6,6 +6,7 @@ import SingleItin from '../components/SingleItin';
 import ScrollUpButton from '../components/ScrollUpButton';
 import { getItineraries } from '../actions/itActions';
 import { getCityById } from '../actions/citiesActions';
+import { IMG_PLACEHOLDER } from '../utils/placeholders';
 
 import './views.css';
 
@@ -25,7 +26,7 @@ function MYtinerary() {
   return (
     <div>
       <div className='title'>
-        <img className='titlePic' src={city.img} alt={city.city} />
+        <img className='titlePic' src={city.img} alt={city.city} onError={(e) => { e.target.src = IMG_PLACEHOLDER; }} />
         <h3>{city.city}</h3>
 
         {itineraries.length === 0 ? (

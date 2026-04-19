@@ -1,21 +1,14 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
 import { googleLogout } from '@react-oauth/google';
+import { useState } from 'react';
 import { FaUserCircle } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
+import { AVATAR_PLACEHOLDER } from '../utils/placeholders';
 
-import RegisterModal from './auth/RegisterModal';
-import LoginModal from './auth/LoginModal';
 import { logoutSocial } from './../actions/authActions';
+import LoginModal from './auth/LoginModal';
+import RegisterModal from './auth/RegisterModal';
 import './components.css';
 
 function AppNavbar() {
@@ -65,9 +58,16 @@ function AppNavbar() {
     <div>
       <Navbar style={{ backgroundColor: '#f5f5f5' }} light>
         {isAuthenticated ? (
-          <img className='headerpic' src={user.avatar} alt={`Avatar of ${user.name}`} />
+          <img
+            className='headerpic'
+            src={user.avatar}
+            alt={`Avatar of ${user.name}`}
+            onError={(e) => {
+              e.target.src = AVATAR_PLACEHOLDER;
+            }}
+          />
         ) : (
-          <FaUserCircle size={32} aria-hidden='true' />
+          <FaUserCircle size={32} aria-hidden />
         )}
 
         <NavbarBrand href='/'>MYtinerary travel app</NavbarBrand>

@@ -1,5 +1,5 @@
 import './singleItin.css';
-
+import { AVATAR_PLACEHOLDER } from '../utils/placeholders';
 import ToLike from './ToLike';
 import ToUnlike from './ToUnlike';
 import Comments from './Comments';
@@ -19,7 +19,7 @@ function SingleItin({ itin, selectedItin, handleSelection, cityName, isLiked }) 
     <div className='textAndLink'>
       <div className='allDetailsIt'>
         <div className='profilePic'>
-          <img className='prof' src={itin.profilePic} alt={itin.username} />
+          <img className='prof' src={itin.profilePic} alt={itin.username} onError={(e) => { e.target.src = AVATAR_PLACEHOLDER; }} />
           <h6 className='username'>{itin.username}</h6>
         </div>
 

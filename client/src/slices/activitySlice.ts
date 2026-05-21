@@ -18,7 +18,9 @@ const activitySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getActivities.pending, (state) => { state.loading = true; })
+      .addCase(getActivities.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getActivities.fulfilled, (state, action) => {
         state.activities = action.payload;
         state.loading = false;

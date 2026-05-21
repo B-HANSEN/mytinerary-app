@@ -14,7 +14,11 @@ export const getComments = createAsyncThunk('comment/getByItinerary', async (iti
 
 export const addComment = createAsyncThunk(
   'comment/add',
-  async (payload: { itinId: string; text: string; user: { username: string; profilePic: string } }) => {
+  async (payload: {
+    itinId: string;
+    text: string;
+    user: { username: string; profilePic: string };
+  }) => {
     const res = await axios.post('/api/comments', payload);
     return res.data;
   }
@@ -26,7 +30,9 @@ const commentSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getComments.pending, (state) => { state.loading = true; })
+      .addCase(getComments.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getComments.fulfilled, (state, action) => {
         state.comments = action.payload;
         state.loading = false;

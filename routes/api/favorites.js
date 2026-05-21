@@ -15,7 +15,10 @@ router.delete('/users/:id/:favId', async (c) => {
   const userId = c.req.param('id');
   const favId = c.req.param('favId');
   const user = await User.findById(userId);
-  const updated = user.favorites.flat().map((f) => f.toString()).filter((f) => f !== favId.toString());
+  const updated = user.favorites
+    .flat()
+    .map((f) => f.toString())
+    .filter((f) => f !== favId.toString());
   await User.updateOne({ _id: userId }, { $set: { favorites: updated } });
   return c.json({ msg: 'delete done' });
 });

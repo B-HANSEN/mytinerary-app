@@ -27,7 +27,10 @@ export const loadUser = createAsyncThunk(
     const token = (getState() as RootState).auth.token;
     try {
       const res = await axios.get('/api/auth/user', {
-        headers: { 'Content-Type': 'application/json', ...(token ? { 'x-auth-token': token } : {}) },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'x-auth-token': token } : {}),
+        },
       });
       return res.data;
     } catch (err: any) {
@@ -44,7 +47,9 @@ export const register = createAsyncThunk(
       const res = await axios.post('/api/users', user, jsonHeaders);
       return res.data;
     } catch (err: any) {
-      dispatch(setError({ msg: err.response.data, status: err.response.status, id: 'REGISTER_FAIL' }));
+      dispatch(
+        setError({ msg: err.response.data, status: err.response.status, id: 'REGISTER_FAIL' })
+      );
       return rejectWithValue(null);
     }
   }
@@ -52,7 +57,10 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk(
   'auth/login',
-  async ({ email, password }: { email: string; password: string }, { dispatch, rejectWithValue }) => {
+  async (
+    { email, password }: { email: string; password: string },
+    { dispatch, rejectWithValue }
+  ) => {
     try {
       const res = await axios.post('/api/auth', JSON.stringify({ email, password }), jsonHeaders);
       return res.data;
@@ -70,7 +78,11 @@ export const loginSocial = createAsyncThunk(
     { dispatch, rejectWithValue }
   ) => {
     try {
-      const res = await axios.post('/api/users/social', JSON.stringify({ email, name, picture }), jsonHeaders);
+      const res = await axios.post(
+        '/api/users/social',
+        JSON.stringify({ email, name, picture }),
+        jsonHeaders
+      );
       return res.data;
     } catch (err: any) {
       dispatch(setError({ msg: err.response.data, status: err.response.status, id: 'LOGIN_FAIL' }));
@@ -93,7 +105,9 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loadUser.pending, (state) => { state.isLoading = true; })
+      .addCase(loadUser.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(loadUser.fulfilled, (state, action) => {
         state.isAuthenticated = true;
         state.isLoading = false;

@@ -37,7 +37,9 @@ function SingleItin({ itin, selectedItin, handleSelection, cityName, isLiked }: 
             className='prof'
             src={itin.profilePic}
             alt={itin.username}
-            onError={(e) => { e.currentTarget.src = AVATAR_PLACEHOLDER; }}
+            onError={(e) => {
+              e.currentTarget.src = AVATAR_PLACEHOLDER;
+            }}
           />
           <h6 className='username'>{itin.username}</h6>
         </div>

@@ -31,7 +31,9 @@ function MYtinerary() {
           className='titlePic'
           src={city.img}
           alt={city.city}
-          onError={(e) => { e.currentTarget.src = IMG_PLACEHOLDER; }}
+          onError={(e) => {
+            e.currentTarget.src = IMG_PLACEHOLDER;
+          }}
         />
         <h3>{city.city}</h3>
 

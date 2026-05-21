@@ -20,7 +20,13 @@ function SampleNextArrow({ className, style, onClick }: ArrowProps) {
     <button
       aria-label='Next'
       className={className}
-      style={{ ...style, display: 'block', background: 'lightgrey', border: 'none', cursor: 'pointer' }}
+      style={{
+        ...style,
+        display: 'block',
+        background: 'lightgrey',
+        border: 'none',
+        cursor: 'pointer',
+      }}
       onClick={onClick}
     />
   );
@@ -31,7 +37,13 @@ function SamplePrevArrow({ className, style, onClick }: ArrowProps) {
     <button
       aria-label='Previous'
       className={className}
-      style={{ ...style, display: 'block', background: 'lightgrey', border: 'none', cursor: 'pointer' }}
+      style={{
+        ...style,
+        display: 'block',
+        background: 'lightgrey',
+        border: 'none',
+        cursor: 'pointer',
+      }}
       onClick={onClick}
     />
   );
@@ -82,7 +94,9 @@ function ActivitySlider({ itinId }: ActivitySliderProps) {
                 className='actPic'
                 src={act.actPic}
                 alt={act.actPlace}
-                onError={(e) => { e.currentTarget.src = IMG_PLACEHOLDER; }}
+                onError={(e) => {
+                  e.currentTarget.src = IMG_PLACEHOLDER;
+                }}
               />
               <p className='actPlace'>{act.actPlace}</p>
             </div>

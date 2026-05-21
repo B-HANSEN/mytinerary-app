@@ -19,18 +19,66 @@ console.log('Cleared existing data');
 // ─── Cities ───────────────────────────────────────────────────────────────────
 
 const cities = await City.insertMany([
-  { city: 'Buenos Aires', country: 'Argentina', img: 'https://images.unsplash.com/photo-1612294037637-ec328d0e075e?w=800' },
-  { city: 'Barcelona', country: 'Spain', img: 'https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800' },
-  { city: 'Cape Town', country: 'South Africa', img: 'https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800' },
-  { city: 'Tokyo', country: 'Japan', img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800' },
-  { city: 'Lisbon', country: 'Portugal', img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800' },
-  { city: 'Amsterdam', country: 'Netherlands', img: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=800' },
-  { city: 'New York', country: 'USA', img: 'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=800' },
-  { city: 'Rome', country: 'Italy', img: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800' },
-  { city: 'Bangkok', country: 'Thailand', img: 'https://images.unsplash.com/photo-1528181304800-259b08848526?w=800' },
-  { city: 'Sydney', country: 'Australia', img: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800' },
-  { city: 'Marrakech', country: 'Morocco', img: 'https://images.unsplash.com/photo-1489493887464-892be6d1daae?w=800' },
-  { city: 'Copenhagen', country: 'Denmark', img: 'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=800' },
+  {
+    city: 'Buenos Aires',
+    country: 'Argentina',
+    img: 'https://images.unsplash.com/photo-1612294037637-ec328d0e075e?w=800',
+  },
+  {
+    city: 'Barcelona',
+    country: 'Spain',
+    img: 'https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=800',
+  },
+  {
+    city: 'Cape Town',
+    country: 'South Africa',
+    img: 'https://images.unsplash.com/photo-1580060839134-75a5edca2e99?w=800',
+  },
+  {
+    city: 'Tokyo',
+    country: 'Japan',
+    img: 'https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=800',
+  },
+  {
+    city: 'Lisbon',
+    country: 'Portugal',
+    img: 'https://images.unsplash.com/photo-1548707309-dcebeab9ea9b?w=800',
+  },
+  {
+    city: 'Amsterdam',
+    country: 'Netherlands',
+    img: 'https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?w=800',
+  },
+  {
+    city: 'New York',
+    country: 'USA',
+    img: 'https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=800',
+  },
+  {
+    city: 'Rome',
+    country: 'Italy',
+    img: 'https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800',
+  },
+  {
+    city: 'Bangkok',
+    country: 'Thailand',
+    img: 'https://images.unsplash.com/photo-1528181304800-259b08848526?w=800',
+  },
+  {
+    city: 'Sydney',
+    country: 'Australia',
+    img: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=800',
+  },
+  {
+    city: 'Marrakech',
+    country: 'Morocco',
+    img: 'https://images.unsplash.com/photo-1489493887464-892be6d1daae?w=800',
+  },
+  {
+    city: 'Copenhagen',
+    country: 'Denmark',
+    img: 'https://images.unsplash.com/photo-1513622470522-26c3c8a854bc?w=800',
+  },
 ]);
 console.log(`Inserted ${cities.length} cities`);
 

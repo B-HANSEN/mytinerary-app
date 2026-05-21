@@ -18,7 +18,9 @@ const itinerarySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getItineraries.pending, (state) => { state.loading = true; })
+      .addCase(getItineraries.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getItineraries.fulfilled, (state, action) => {
         state.itineraries = action.payload;
         state.loading = false;

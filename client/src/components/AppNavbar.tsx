@@ -61,7 +61,9 @@ function AppNavbar() {
             className='headerpic'
             src={user.avatar || AVATAR_PLACEHOLDER}
             alt={`Avatar of ${user.name}`}
-            onError={(e) => { e.currentTarget.src = AVATAR_PLACEHOLDER; }}
+            onError={(e) => {
+              e.currentTarget.src = AVATAR_PLACEHOLDER;
+            }}
           />
         ) : (
           <FaUserCircle size={32} aria-hidden />

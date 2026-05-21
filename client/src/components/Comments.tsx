@@ -26,7 +26,9 @@ function Comments({ itinId }: CommentsProps) {
               className='profForComments'
               src={comment.user.profilePic}
               alt={comment.user.username}
-              onError={(e) => { e.currentTarget.src = AVATAR_PLACEHOLDER; }}
+              onError={(e) => {
+                e.currentTarget.src = AVATAR_PLACEHOLDER;
+              }}
             />
             <p className='usernameForComments'>{comment.user.username}</p>
           </div>

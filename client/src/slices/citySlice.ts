@@ -24,12 +24,16 @@ const citySlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getCities.pending, (state) => { state.loading = true; })
+      .addCase(getCities.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getCities.fulfilled, (state, action) => {
         state.cities = action.payload;
         state.loading = false;
       })
-      .addCase(getCityById.pending, (state) => { state.loading = true; })
+      .addCase(getCityById.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getCityById.fulfilled, (state, action) => {
         state.city = action.payload;
         state.loading = false;

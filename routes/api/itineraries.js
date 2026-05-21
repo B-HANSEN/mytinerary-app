@@ -39,7 +39,7 @@ router.delete('/:id', async (c) => {
     const itinerary = await Itinerary.findById(c.req.param('id'));
     await itinerary.deleteOne();
     return c.json({ success: true });
-  } catch (err) {
+  } catch {
     return c.json({ success: false }, 404);
   }
 });

@@ -7,7 +7,7 @@ const auth = async (c, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     c.set('user', decoded);
     await next();
-  } catch (e) {
+  } catch {
     return c.json({ msg: 'Token is not valid' }, 400);
   }
 };

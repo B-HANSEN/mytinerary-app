@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Button,
   Modal,
@@ -56,27 +56,17 @@ function RegisterModal() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fileInputElement, setFileInputElement] = useState<File | null>(null);
-  const [msg, setMsg] = useState<string | null>(null);
   const dispatch = useAppDispatch();
   const isAuthenticated = useAppSelector((state) => state.auth.isAuthenticated);
   const error = useAppSelector((state) => state.error);
+
+  const msg = error.id === 'REGISTER_FAIL' ? (error.msg.msg as string) : null;
+  const isOpen = modal && !isAuthenticated;
 
   const toggle = () => {
     dispatch(clearErrors());
     setModal((m) => !m);
   };
-
-  useEffect(() => {
-    if (error.id === 'REGISTER_FAIL') setMsg(error.msg.msg as string);
-    else setMsg(null);
-  }, [error]);
-
-  useEffect(() => {
-    if (modal && isAuthenticated) {
-      dispatch(clearErrors());
-      setModal(false);
-    }
-  }, [modal, isAuthenticated, dispatch]);
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -94,7 +84,7 @@ function RegisterModal() {
         Register here
       </NavLink>
 
-      <Modal isOpen={modal} toggle={toggle}>
+      <Modal isOpen={isOpen} toggle={toggle}>
         <ModalHeader toggle={toggle}>Register</ModalHeader>
         <ModalBody>
           {msg ? <Alert color='danger'>{msg}</Alert> : null}

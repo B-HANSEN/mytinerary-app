@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import axios, { type AxiosError } from 'axios';
 import type { User } from '../types';
 import type { RootState } from '../store';
 import { setError } from './errorSlice';
@@ -33,8 +33,9 @@ export const loadUser = createAsyncThunk(
         },
       });
       return res.data;
-    } catch (err: any) {
-      dispatch(setError({ msg: err.response.data, status: err.response.status, id: null }));
+    } catch (err) {
+      const e = err as AxiosError;
+      dispatch(setError({ msg: e.response?.data, status: e.response?.status ?? 500, id: null }));
       return rejectWithValue(null);
     }
   }
@@ -46,9 +47,10 @@ export const register = createAsyncThunk(
     try {
       const res = await axios.post('/api/users', user, jsonHeaders);
       return res.data;
-    } catch (err: any) {
+    } catch (err) {
+      const e = err as AxiosError;
       dispatch(
-        setError({ msg: err.response.data, status: err.response.status, id: 'REGISTER_FAIL' })
+        setError({ msg: e.response?.data, status: e.response?.status ?? 500, id: 'REGISTER_FAIL' })
       );
       return rejectWithValue(null);
     }
@@ -64,8 +66,9 @@ export const login = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth', JSON.stringify({ email, password }), jsonHeaders);
       return res.data;
-    } catch (err: any) {
-      dispatch(setError({ msg: err.response.data, status: err.response.status, id: 'LOGIN_FAIL' }));
+    } catch (err) {
+      const e = err as AxiosError;
+      dispatch(setError({ msg: e.response?.data, status: e.response?.status ?? 500, id: 'LOGIN_FAIL' }));
       return rejectWithValue(null);
     }
   }
@@ -84,8 +87,9 @@ export const loginSocial = createAsyncThunk(
         jsonHeaders
       );
       return res.data;
-    } catch (err: any) {
-      dispatch(setError({ msg: err.response.data, status: err.response.status, id: 'LOGIN_FAIL' }));
+    } catch (err) {
+      const e = err as AxiosError;
+      dispatch(setError({ msg: e.response?.data, status: e.response?.status ?? 500, id: 'LOGIN_FAIL' }));
       return rejectWithValue(null);
     }
   }

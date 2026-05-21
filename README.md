@@ -142,9 +142,10 @@ mytinerary-app/
     └── src/
         ├── Views/          # Page components
         ├── components/     # Reusable components
-        ├── actions/        # Redux actions
-        ├── reducers/       # Redux reducers
-        └── store.js        # Redux store
+        ├── slices/         # Redux Toolkit slices (state + thunks)
+        ├── reducers/       # Root reducer (combineReducers)
+        ├── types/          # Shared TypeScript types
+        └── store.ts        # Redux store
 ```
 
 ## Authentication

@@ -70,14 +70,6 @@ ul {
   justify-content: center;
 }
 
-.material-icons {
-  font-family: 'Material Icons';
-  font-weight: bolder;
-  color: black;
-  font-size: 40px;
-  display: inline-block;
-}
-
 .username {
   text-align: center;
   word-wrap: break-word;

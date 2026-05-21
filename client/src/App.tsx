@@ -3,7 +3,7 @@ import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import store from './store';
-import { loadUser } from './actions/authActions';
+import { loadUser } from './slices/authSlice';
 
 import Headers from './components/Headers';
 import Home from './Views/Home';

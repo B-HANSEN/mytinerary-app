@@ -4,9 +4,7 @@ import Itinerary from '../../models/Itinerary.js';
 const router = new Hono();
 
 router.get('/:singleCityId', async (c) => {
-  console.log(c.req.param('singleCityId'));
   const itineraries = await Itinerary.find({ cityId: c.req.param('singleCityId') });
-  console.log(itineraries);
   return c.json(itineraries);
 });
 

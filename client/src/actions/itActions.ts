@@ -11,7 +11,6 @@ import type { AppDispatch } from '../store';
 
 // retrieve itineraries for specific city from database
 export const getItineraries = (cityId: string) => (dispatch: AppDispatch) => {
-  console.log(cityId);
   dispatch(setItinerariesLoading());
   axios.get('/api/itineraries/' + cityId).then((res) =>
     dispatch({ type: GET_ITINERARIES, payload: res.data })

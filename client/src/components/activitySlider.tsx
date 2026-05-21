@@ -60,23 +60,34 @@ function ActivitySlider({ itinId }: ActivitySliderProps) {
     dispatch(getActivities(itinId));
   }, [dispatch, itinId]);
 
+  if (activity.loading || activity.activities.length === 0) {
+    return <p>Loading activities...</p>;
+  }
+
+  const settings = {
+    ...sliderSettings,
+    infinite: activity.activities.length >= sliderSettings.slidesToShow,
+    slidesToShow: Math.min(sliderSettings.slidesToShow, activity.activities.length),
+    slidesToScroll: Math.min(sliderSettings.slidesToScroll, activity.activities.length),
+  };
+
   return (
     <div>
       <h2>Activities</h2>
       <div style={{ width: '300px' }}>
-      <Slider {...sliderSettings}>
-        {activity.activities.map((activity, index) => (
-          <div className='actPicnPlace' key={index}>
-            <img
-              className='actPic'
-              src={activity.actPic}
-              alt={activity.actPlace}
-              onError={(e) => { e.currentTarget.src = IMG_PLACEHOLDER; }}
-            />
-            <p className='actPlace'>{activity.actPlace}</p>
-          </div>
-        ))}
-      </Slider>
+        <Slider {...settings}>
+          {activity.activities.map((act, index) => (
+            <div className='actPicnPlace' key={index}>
+              <img
+                className='actPic'
+                src={act.actPic}
+                alt={act.actPlace}
+                onError={(e) => { e.currentTarget.src = IMG_PLACEHOLDER; }}
+              />
+              <p className='actPlace'>{act.actPlace}</p>
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );

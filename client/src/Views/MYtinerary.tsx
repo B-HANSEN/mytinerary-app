@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import Footer from './../components/Footer';
 import SingleItin from '../components/SingleItin';
 import ScrollUpButton from '../components/ScrollUpButton';
-import { getItineraries } from '../actions/itActions';
-import { getCityById } from '../actions/citiesActions';
+import { getItineraries } from '../slices/itinerarySlice';
+import { getCityById } from '../slices/citySlice';
 import { IMG_PLACEHOLDER } from '../utils/placeholders';
 import './views.css';
 

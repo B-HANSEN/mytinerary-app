@@ -12,8 +12,8 @@ import {
   Alert,
 } from 'reactstrap';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { login } from '../../actions/authActions';
-import { clearErrors } from '../../actions/errorActions';
+import { login } from '../../slices/authSlice';
+import { clearErrors } from '../../slices/errorSlice';
 import './auth.css';
 
 function LoginModal() {

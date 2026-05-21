@@ -1,19 +1,18 @@
-// root reducer to combine various reducers
 import { combineReducers } from '@reduxjs/toolkit';
-import cityReducer from './cityReducer';
-import itReducer from './itReducer';
-import actReducer from './actReducer';
-import errorReducer from './errorReducer';
-import authReducer from './authReducer';
-import favReducer from './favReducer';
-import comReducer from './comReducer';
+import cityReducer from '../slices/citySlice';
+import itineraryReducer from '../slices/itinerarySlice';
+import activityReducer from '../slices/activitySlice';
+import errorReducer from '../slices/errorSlice';
+import authReducer from '../slices/authSlice';
+import favoriteReducer from '../slices/favoriteSlice';
+import commentReducer from '../slices/commentSlice';
 
 export default combineReducers({
   city: cityReducer,
-  itinerary: itReducer,
-  activity: actReducer,
+  itinerary: itineraryReducer,
+  activity: activityReducer,
   error: errorReducer,
   auth: authReducer,
-  favorite: favReducer,
-  comment: comReducer,
+  favorite: favoriteReducer,
+  comment: commentReducer,
 });

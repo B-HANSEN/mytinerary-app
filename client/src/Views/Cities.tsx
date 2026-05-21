@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { getCities } from '../actions/citiesActions';
+import { getCities } from '../slices/citySlice';
 import Search from '../components/Search';
 import Footer from './../components/Footer';
 import { Container, Row, Col } from 'reactstrap';

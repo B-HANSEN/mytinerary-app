@@ -12,8 +12,8 @@ import {
   Alert,
 } from 'reactstrap';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { register } from '../../actions/authActions';
-import { clearErrors } from '../../actions/errorActions';
+import { register } from '../../slices/authSlice';
+import { clearErrors } from '../../slices/errorSlice';
 import './auth.css';
 
 interface UploadPreviewProps {

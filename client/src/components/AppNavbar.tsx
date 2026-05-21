@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../hooks';
 import { Link } from 'react-router-dom';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { AVATAR_PLACEHOLDER } from '../utils/placeholders';
-import { logoutSocial } from './../actions/authActions';
+import { logoutSocial } from './../slices/authSlice';
 import LoginModal from './auth/LoginModal';
 import RegisterModal from './auth/RegisterModal';
 import './components.css';

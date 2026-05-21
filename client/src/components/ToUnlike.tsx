@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { unlikeItinerary } from '../actions/favActions';
+import { unlikeItinerary } from '../slices/favoriteSlice';
 import { FaHeart } from 'react-icons/fa';
 
 interface ToUnlikeProps {
@@ -13,7 +13,7 @@ function ToUnlike({ itinId, cityId }: ToUnlikeProps) {
 
   return (
     <button
-      onClick={() => dispatch(unlikeItinerary(itinId, userId, cityId))}
+      onClick={() => dispatch(unlikeItinerary({ itinId, userId, cityId }))}
       aria-label='Remove from favorites'
       style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
     >

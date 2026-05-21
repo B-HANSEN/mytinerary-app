@@ -1,6 +1,6 @@
 import { NavLink } from 'reactstrap';
 import { useAppDispatch } from '../../hooks';
-import { logout } from '../../actions/authActions';
+import { logout } from '../../slices/authSlice';
 
 function Logout() {
   const dispatch = useAppDispatch();

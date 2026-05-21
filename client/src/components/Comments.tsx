@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { getComments } from '../actions/itActions';
+import { getComments } from '../slices/commentSlice';
 import { AVATAR_PLACEHOLDER } from '../utils/placeholders';
 import './singleItin.css';
 

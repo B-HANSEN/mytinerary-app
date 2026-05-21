@@ -3,9 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import Footer from './../components/Footer';
 import SingleItin from '../components/SingleItin';
-import { getFavorites } from '../actions/favActions';
-import { getUserById } from '../actions/authActions';
-import { getCities } from '../actions/citiesActions';
+import { getFavorites } from '../slices/favoriteSlice';
+import { getCities } from '../slices/citySlice';
 import ScrollUpButton from '../components/ScrollUpButton';
 import './views.css';
 
@@ -19,7 +18,6 @@ function Favorites() {
 
   useEffect(() => {
     if (userId) {
-      dispatch(getUserById(userId));
       dispatch(getFavorites(userId));
       dispatch(getCities());
     }

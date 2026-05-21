@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import RegisterModal from './../components/auth/RegisterModal';
 import LoginModal from './../components/auth/LoginModal';
-import { loginSocial } from './../actions/authActions';
+import { loginSocial } from './../slices/authSlice';
 import Footer from './../components/Footer';
 import logo from '../files/images/MYtineraryLogo.png';
 import arrow from '../files/images/circled-right-2.png';

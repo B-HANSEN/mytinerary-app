@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { likeItinerary } from '../actions/favActions';
+import { likeItinerary } from '../slices/favoriteSlice';
 import { FaRegHeart } from 'react-icons/fa';
 
 interface ToLikeProps {
@@ -13,7 +13,7 @@ function ToLike({ itinId, cityId }: ToLikeProps) {
 
   return (
     <button
-      onClick={() => dispatch(likeItinerary(itinId, userId, cityId))}
+      onClick={() => dispatch(likeItinerary({ itinId, userId, cityId }))}
       aria-label='Add to favorites'
       style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
     >

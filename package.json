@@ -9,7 +9,7 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "setup": "npm install && npm install --prefix client --legacy-peer-deps",
+    "setup": "npm install && npm install --prefix client",
     "clean-cache": "rm -rf node_modules client/node_modules client/dist",
     "seed": "node --env-file=.env seed.js",
     "lint": "eslint .",
@@ -19,7 +19,7 @@
     "client": "npm start --prefix client",
     "server": "nodemon --exec 'node --env-file=.env' server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "build": "npm install --prefix client --legacy-peer-deps && npm run build --prefix client"
+    "build": "npm install --prefix client  && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
